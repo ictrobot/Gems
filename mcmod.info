@@ -1,0 +1,19 @@
+[
+{
+  "modid": "LapisGem",
+  "name": "LapisGem",
+  "description": "Lapis Gems",
+  "version": "1.0.0",
+  "credits": "ictrobot",
+  "logoFile": "/logo.png",
+  "mcversion": "1.6.2",
+  "url": "",
+  "updateUrl": "",
+  "authors": [ "ictrobot" ],
+  "parent": "",
+  "screenshots": [],
+  "dependencies": [
+     "mod_MinecraftForge"
+  ]
+}
+]
