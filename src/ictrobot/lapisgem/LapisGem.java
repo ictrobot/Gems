@@ -14,7 +14,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "LapisGem", name = "LapisGem", version = "1.0.0")
+@Mod(modid = "LapisGem", name = "LapisGem", version = "1.0.1")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class LapisGem {
   // The instance of your mod that Forge uses.
