@@ -17,16 +17,13 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 @Mod(modid = "LapisGem", name = "LapisGem", version = "1.0.1")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class LapisGem {
-  // The instance of your mod that Forge uses.
   @Instance("LapisGem")
   public static LapisGem instance;
 
-  // Says where the client and server 'proxy' code is loaded.
   @SidedProxy(clientSide = "ictrobot.lapisgem.client.ClientProxy", serverSide = "ictrobot.lapisgem.CommonProxy")
   public static CommonProxy proxy;
 
   @EventHandler
-  // used in 1.6.2
   public void preInit(FMLPreInitializationEvent event) {
     Configuration config = new Configuration(
         event.getSuggestedConfigurationFile());
@@ -38,7 +35,6 @@ public class LapisGem {
   }
 
   @EventHandler
-  // used in 1.6.2
   public void load(FMLInitializationEvent event) {
     proxy.registerRenderers();
 
@@ -52,7 +48,6 @@ public class LapisGem {
   }
 
   @EventHandler
-  // used in 1.6.2
   public void postInit(FMLPostInitializationEvent event) {
 
   }
