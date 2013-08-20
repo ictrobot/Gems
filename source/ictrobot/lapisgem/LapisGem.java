@@ -14,7 +14,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "LapisGem", name = "LapisGem", version = "1.0.1")
+@Mod(modid = "LapisGem", name = "LapisGem", version = "Alpha 0.0.1")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class LapisGem {
   @Instance("LapisGem")
@@ -29,8 +29,7 @@ public class LapisGem {
         event.getSuggestedConfigurationFile());
     config.load();
     @SuppressWarnings("unused")
-    int lapisGemID = config.get(Configuration.CATEGORY_ITEM, "LapisGemItem",
-        30000).getInt();
+    int lapisGemID = config.get(Configuration.CATEGORY_ITEM, "LapisGemItem", 5000).getInt();
     config.save();
   }
 
