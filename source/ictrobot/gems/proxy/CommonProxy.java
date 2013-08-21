@@ -1,4 +1,4 @@
-package ictrobot.lapisgem.proxy;
+package ictrobot.gems.proxy;
 
 public class CommonProxy {
   

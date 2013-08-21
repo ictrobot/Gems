@@ -1,13 +1,13 @@
-package ictrobot.lapisgem;
+package ictrobot.gems;
 
 //imports
-import ictrobot.lapisgem.armor.LapisGemHelmet;
-import ictrobot.lapisgem.armor.LapisGemChestplate;
-import ictrobot.lapisgem.armor.LapisGemLeggings;
-import ictrobot.lapisgem.armor.LapisGemBoots;
-import ictrobot.lapisgem.items.LapisGemItem;
-import ictrobot.lapisgem.items.ChargedLapisGemHandler;
-import ictrobot.lapisgem.proxy.CommonProxy;
+import ictrobot.gems.armor.LapisGemBoots;
+import ictrobot.gems.armor.LapisGemChestplate;
+import ictrobot.gems.armor.LapisGemHelmet;
+import ictrobot.gems.armor.LapisGemLeggings;
+import ictrobot.gems.items.ChargedLapisGemHandler;
+import ictrobot.gems.items.LapisGemItem;
+import ictrobot.gems.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
@@ -26,10 +26,10 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "LapisGem", name = "LapisGem", version = "Alpha 0.0.1")
+@Mod(modid = "Gems", name = "Gems", version = "Alpha 0.0.1")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class LapisGem {
-  @Instance("LapisGem")
+  @Instance("Gems")
   public static LapisGem instance;
   
   //Define IDs
@@ -49,7 +49,7 @@ public class LapisGem {
   public static Item lapisGemBoots;
   
   //Proxy
-  @SidedProxy(clientSide = "ictrobot.lapisgem.proxy.ClientProxy", serverSide = "ictrobot.lapisgem.proxy.CommonProxy")
+  @SidedProxy(clientSide = "ictrobot.gems.proxy.ClientProxy", serverSide = "ictrobot.gems.proxy.CommonProxy")
   public static CommonProxy proxy;
 
   //preInit / Read Config

@@ -1,4 +1,4 @@
-package ictrobot.lapisgem.proxy;
+package ictrobot.gems.proxy;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
