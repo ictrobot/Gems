@@ -1,4 +1,4 @@
-LapisGem
+Gems
 ========
 
-Lapis Gem Minecraft Mod
+Gems Minecraft Mod
