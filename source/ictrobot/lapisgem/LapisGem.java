@@ -1,10 +1,12 @@
 package ictrobot.lapisgem;
 
+//imports
 import ictrobot.lapisgem.armor.LapisGemHelmet;
 import ictrobot.lapisgem.armor.LapisGemChestplate;
 import ictrobot.lapisgem.armor.LapisGemLeggings;
 import ictrobot.lapisgem.armor.LapisGemBoots;
 import ictrobot.lapisgem.items.LapisGemItem;
+import ictrobot.lapisgem.items.ChargedLapisGemHandler;
 import ictrobot.lapisgem.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumArmorMaterial;
@@ -30,57 +32,70 @@ public class LapisGem {
   @Instance("LapisGem")
   public static LapisGem instance;
   
+  //Define IDs
   public static int lapisGemItemID;
+  public static int chargedLapisGemItemID;
   public static int lapisGemHelmetID;
   public static int lapisGemChestplateID;
   public static int lapisGemLeggingsID;
   public static int lapisGemBootsID;
   
+  //Define Items
   public static Item lapisGemItem;
+  public static Item chargedLapisGemItem;
   public static Item lapisGemHelmet;
   public static Item lapisGemChestplate;
   public static Item lapisGemLeggings;
   public static Item lapisGemBoots;
   
-  
-  @SidedProxy(clientSide = "ictrobot.lapisgem.client.ClientProxy", serverSide = "ictrobot.lapisgem.CommonProxy")
+  //Proxy
+  @SidedProxy(clientSide = "ictrobot.lapisgem.proxy.ClientProxy", serverSide = "ictrobot.lapisgem.proxy.CommonProxy")
   public static CommonProxy proxy;
 
+  //preInit / Read Config
   @EventHandler
   public void preInit(FMLPreInitializationEvent event) {
-    Configuration config = new Configuration(
-        event.getSuggestedConfigurationFile());
+    Configuration config = new Configuration(event.getSuggestedConfigurationFile());
     config.load();
-    lapisGemItemID = config.get(Configuration.CATEGORY_ITEM, "LapisGemItem", 5000).getInt();
-    lapisGemHelmetID = config.get(Configuration.CATEGORY_ITEM, "LapisGemItem", 5001).getInt();
-    lapisGemChestplateID = config.get(Configuration.CATEGORY_ITEM, "LapisGemItem", 5002).getInt();
-    lapisGemLeggingsID = config.get(Configuration.CATEGORY_ITEM, "LapisGemItem", 5003).getInt();
-    lapisGemBootsID = config.get(Configuration.CATEGORY_ITEM, "LapisGemItem", 5004).getInt();
+    lapisGemItemID = config.get(Configuration.CATEGORY_ITEM, "LapisGemItem", 5001).getInt();
+    chargedLapisGemItemID = config.get(Configuration.CATEGORY_ITEM, "ChargedLapisGemItem", 5002).getInt();
+    lapisGemHelmetID = config.get(Configuration.CATEGORY_ITEM, "LapisGemHelmet", 5011).getInt();
+    lapisGemChestplateID = config.get(Configuration.CATEGORY_ITEM, "LapisChestplate", 5012).getInt();
+    lapisGemLeggingsID = config.get(Configuration.CATEGORY_ITEM, "LapisGemLeggings", 5013).getInt();
+    lapisGemBootsID = config.get(Configuration.CATEGORY_ITEM, "LapisGemBoots", 5014).getInt();
     config.save();
   }
-
+  
+  //load
   @EventHandler
   public void load(FMLInitializationEvent event) {
     proxy.registerRenderers();
     
+    // Settings for Items, Unlocalized Names, Creative Tabs
     lapisGemItem = (new LapisGemItem(lapisGemItemID)).setMaxStackSize(64).setUnlocalizedName("LapisGem").setCreativeTab(CreativeTabs.tabMaterials);
+    chargedLapisGemItem = (new LapisGemItem(chargedLapisGemItemID)).setMaxStackSize(1).setUnlocalizedName("ChargedLapisGem").setCreativeTab(CreativeTabs.tabMaterials);
     
-    EnumArmorMaterial lapisGemArmor = EnumHelper.addArmorMaterial("Lapis Gem Armor", 40, new int[]{3, 8, 6, 3}, 50);
+    EnumArmorMaterial lapisGemArmor = EnumHelper.addArmorMaterial("Lapis Gem Armor", 40, new int[]{5, 10, 8, 5}, 50);
     
     lapisGemHelmet = new LapisGemHelmet(lapisGemHelmetID, lapisGemArmor, ModLoader.addArmor("LapisGem"), 0).setUnlocalizedName("LapisGemHelmet").setCreativeTab(CreativeTabs.tabCombat);
     lapisGemChestplate = new LapisGemChestplate(lapisGemChestplateID, lapisGemArmor, ModLoader.addArmor("LapisGem"), 1).setUnlocalizedName("LapisGemChestplate").setCreativeTab(CreativeTabs.tabCombat);
     lapisGemLeggings = new LapisGemLeggings(lapisGemLeggingsID, lapisGemArmor, ModLoader.addArmor("LapisGem"), 2).setUnlocalizedName("LapisGemLeggings").setCreativeTab(CreativeTabs.tabCombat);
     lapisGemBoots = new LapisGemBoots(lapisGemBootsID, lapisGemArmor, ModLoader.addArmor("LapisGem"), 3).setUnlocalizedName("LapisGemBoots").setCreativeTab(CreativeTabs.tabCombat);
 
-    ItemStack lapisStack = new ItemStack(Item.dyePowder, 1, 4);
-    ItemStack diamondStack = new ItemStack(Item.diamond);
-    GameRegistry.addRecipe(new ItemStack(lapisGemItem), "xxx", "xyx", "xxx",
-        'x', lapisStack, 'y', diamondStack);
+    //Register Recipes
+
+    GameRegistry.registerCraftingHandler(new ChargedLapisGemHandler());
+    
+    GameRegistry.addRecipe(new ItemStack(lapisGemItem, 1), "lll", "ldl", "lll", 'l',  new ItemStack(Item.dyePowder, 1, 4), 'd', new ItemStack(Item.diamond));
+    GameRegistry.addRecipe(new ItemStack(chargedLapisGemItem, 1), " f ", "flf", " f ", 'l',  new ItemStack(lapisGemItem), 'f', (new ItemStack(Item.flintAndSteel, 1, -1)));
+
   }
 
+  //postInit / Add Names
   @EventHandler
   public void postInit(FMLPostInitializationEvent event) {
     LanguageRegistry.addName(lapisGemItem, "Lapis Gem");
+    LanguageRegistry.addName(chargedLapisGemItem, "Charged Lapis Gem");
     LanguageRegistry.addName(lapisGemHelmet, "Lapis Gem Helmet");
     LanguageRegistry.addName(lapisGemChestplate, "Lapis Gem Chestplate");
     LanguageRegistry.addName(lapisGemLeggings, "Lapis Gem Leggings");
