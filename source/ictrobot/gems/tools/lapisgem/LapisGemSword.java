@@ -28,6 +28,3 @@ public class LapisGemSword extends ItemTool {
       return false;
   }
 }
-
-
-

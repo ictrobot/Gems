@@ -34,11 +34,4 @@ public class LapisGemPaxel extends ItemTool {
   
 }
 
-/* if (par1ItemStack==(new ItemStack(Gems.lapisGemPaxel)) && par2ItemStack==(new ItemStack(Gems.chargedLapisGem)))
-return true;
-else
-return false; */
-
-
-
 
