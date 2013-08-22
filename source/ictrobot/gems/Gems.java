@@ -135,24 +135,24 @@ public class Gems {
   @EventHandler
   public void postInit(FMLPostInitializationEvent event) {
     //Items
-    LanguageRegistry.addName(lapisGem, "§3Lapis Gem");
+    LanguageRegistry.addName(lapisGem, "Lapis Gem");
     GameRegistry.registerItem(lapisGem, "lapisGem");
-    LanguageRegistry.addName(chargedLapisGem, "§3Charged Lapis Gem");
+    LanguageRegistry.addName(chargedLapisGem, "Charged Lapis Gem");
     GameRegistry.registerItem(chargedLapisGem, "chargedLapisGem");
-    LanguageRegistry.addName(lapisGemHelmet, "§3Lapis Gem Helmet");
+    LanguageRegistry.addName(lapisGemHelmet, "Lapis Gem Helmet");
     GameRegistry.registerItem(lapisGemHelmet, "lapisGemHelmet");
-    LanguageRegistry.addName(lapisGemChestplate, "§3Lapis Gem Chestplate");
+    LanguageRegistry.addName(lapisGemChestplate, "Lapis Gem Chestplate");
     GameRegistry.registerItem(lapisGemChestplate, "lapisGemChestplate");
-    LanguageRegistry.addName(lapisGemLeggings, "§3Lapis Gem Leggings");
+    LanguageRegistry.addName(lapisGemLeggings, "Lapis Gem Leggings");
     GameRegistry.registerItem(lapisGemLeggings, "lapisGemLeggings");
-    LanguageRegistry.addName(lapisGemBoots, "§3Lapis Gem Boots");
+    LanguageRegistry.addName(lapisGemBoots, "Lapis Gem Boots");
     GameRegistry.registerItem(lapisGemBoots, "lapisGemBoots");
-    LanguageRegistry.addName(lapisGemTool, "§3Lapis Gem Paxel");
+    LanguageRegistry.addName(lapisGemTool, "Lapis Gem Paxel");
     GameRegistry.registerItem(lapisGemTool, "lapisGemTool");
-    LanguageRegistry.addName(lapisGemSword, "§3Lapis Gem Sword");
+    LanguageRegistry.addName(lapisGemSword, "Lapis Gem Sword");
     GameRegistry.registerItem(lapisGemSword, "lapisGemSword");
     //Blocks
-    LanguageRegistry.addName(blockLapisGem, "§3Block of Lapis Gems");
+    LanguageRegistry.addName(blockLapisGem, "Block of Lapis Gems");
     GameRegistry.registerBlock(blockLapisGem, "blockLapisGem");
     MinecraftForge.setBlockHarvestLevel(blockLapisGem, "pickaxe", 2);
   }
