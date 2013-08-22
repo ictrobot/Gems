@@ -11,6 +11,7 @@ import ictrobot.gems.block.lapisgem.BlockLapisGem;
 import ictrobot.gems.Reference;
 import ictrobot.gems.proxy.CommonProxy;
 import ictrobot.gems.tools.lapisgem.LapisGemTool;
+import ictrobot.gems.tools.lapisgem.LapisGemSword;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -48,6 +49,7 @@ public class Gems {
   public static int lapisGemLeggingsID;
   public static int lapisGemBootsID;
   public static int lapisGemToolID;
+  public static int lapisGemSwordID;
   // Define Items
   public static Item lapisGem;
   public static Item chargedLapisGem;
@@ -56,6 +58,7 @@ public class Gems {
   public static Item lapisGemLeggings;
   public static Item lapisGemBoots;
   public static Item lapisGemTool;
+  public static Item lapisGemSword;
   
   //Define Blocks
   public static Block blockLapisGem;
@@ -76,7 +79,8 @@ public class Gems {
     lapisGemChestplateID = config.get(Configuration.CATEGORY_ITEM, "LapisChestplate", 5012).getInt();
     lapisGemLeggingsID = config.get(Configuration.CATEGORY_ITEM, "LapisGemLeggings", 5013).getInt();
     lapisGemBootsID = config.get(Configuration.CATEGORY_ITEM, "LapisGemBoots", 5014).getInt();
-    lapisGemToolID = config.get(Configuration.CATEGORY_ITEM, "lapisGemTool", 5021).getInt();
+    lapisGemToolID = config.get(Configuration.CATEGORY_ITEM, "LapisGemTool", 5021).getInt();
+    lapisGemSwordID = config.get(Configuration.CATEGORY_ITEM, "LapisGemSword", 5022).getInt();
     //Blocks
     blockLapisGemID = config.get(Configuration.CATEGORY_BLOCK, "BlockLapisGem", 1001).getInt();
     config.save();
@@ -94,8 +98,14 @@ public class Gems {
     
     //Tools
     
-    EnumToolMaterial lapisGemToolMaterial = EnumHelper.addToolMaterial("Lapis Gem Tool", 4, 2048, 10F, -4F, 50);
+    EnumToolMaterial lapisGemToolMaterial = EnumHelper.addToolMaterial("Lapis Gem Paxel", 4, 2048, 10F, -4F, 50);
     lapisGemTool = (new LapisGemTool(lapisGemToolID, 10F, lapisGemToolMaterial)).setUnlocalizedName("lapisGemTool").setCreativeTab(CreativeTabs.tabTools);
+    
+    //Swords
+    
+    EnumToolMaterial lapisGemSwordMaterial = EnumHelper.addToolMaterial("Lapis Gem Sword", 4, 2048, 10F, 0F, 50);
+    lapisGemSword = (new lapisGemSword);
+    
     
     //Armor
     EnumArmorMaterial lapisGemArmorMaterial = EnumHelper.addArmorMaterial("Lapis Gem Armor", 40, new int[] { 5, 10, 8, 5 }, 50);
@@ -119,6 +129,7 @@ public class Gems {
     GameRegistry.addRecipe(new ItemStack(blockLapisGem), "lll", "lll", "lll", 'l', new ItemStack(chargedLapisGem));
     GameRegistry.addShapelessRecipe(new ItemStack(lapisGem, 9), new ItemStack(blockLapisGem));
     GameRegistry.addRecipe(new ItemStack(lapisGemTool), "lll", "lsl", "lll", 'l', new ItemStack(chargedLapisGem), 's', new ItemStack(Item.stick));
+    GameRegistry.addRecipe(new ItemStack(lapisGemSword), " l ", " l ", " s ", 'l', new ItemStack(chargedLapisGem), 's', new ItemStack(Item.stick));
   }
 
   // postInit / Add Names
@@ -139,6 +150,8 @@ public class Gems {
     GameRegistry.registerItem(lapisGemBoots, "lapisGemBoots");
     LanguageRegistry.addName(lapisGemTool, "Lapis Gem Tool");
     GameRegistry.registerItem(lapisGemTool, "lapisGemTool");
+    LanguageRegistry.addName(lapisGemSword, "Lapis Gem Sword");
+    GameRegistry.registerItem(lapisGemSword, "lapisGemSword");
     //Blocks
     LanguageRegistry.addName(blockLapisGem, "Block of Lapis Gems");
     GameRegistry.registerBlock(blockLapisGem, "blockLapisGem");
