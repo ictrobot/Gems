@@ -10,10 +10,13 @@ TODO:
 //imports
 import ictrobot.gems.armor.lapisgem.*;
 import ictrobot.gems.block.lapisgem.*;
+import ictrobot.gems.block.colourgems.*;
+import ictrobot.gems.items.*;
 import ictrobot.gems.items.lapisgem.*;
 import ictrobot.gems.proxy.*;
 import ictrobot.gems.tools.lapisgem.*;
 import ictrobot.gems.tools.vanilla.*;
+import ictrobot.gems.items.colourgems.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -36,6 +39,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
+@SuppressWarnings("unused")
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class Gems {
@@ -61,6 +65,8 @@ public class Gems {
   public static Item lapisGemBoots;
   public static Item lapisGemPaxel;
   public static Item lapisGemSword;
+  //Define Blocks - Lapis Gem
+  public static Block blockLapisGem;
   
   //Define IDs - Vanilla Paxel
   public static int woodPaxelID;
@@ -68,7 +74,6 @@ public class Gems {
   public static int ironPaxelID;
   public static int goldPaxelID;
   public static int diamondPaxelID;
-  
   //Define Items - Vanilla Paxel
   public static Item woodPaxel;
   public static Item stonePaxel;
@@ -76,8 +81,22 @@ public class Gems {
   public static Item goldPaxel;
   public static Item diamondPaxel;
   
-  //Define Blocks - Lapis Gem
-  public static Block blockLapisGem;
+  //Define IDs - Colour Gems
+  public static int oreSapphireID;
+  public static int oreGreenSapphireID;
+  public static int oreRubyID;
+  public static int SapphireID;
+  public static int GreenSapphireID;
+  public static int RubyID;
+  //Define Blocks - Colour Gems
+  public static Block oreSapphire;
+  public static Block oreGreenSapphire;
+  public static Block oreRuby;
+  //Define Items - Colour Gems
+  public static Item Sapphire;
+  public static Item GreenSapphire;
+  public static Item Ruby;
+  
 
   // Proxy
   @SidedProxy(clientSide = "ictrobot.gems.proxy.ClientProxy", serverSide = "ictrobot.gems.proxy.CommonProxy")
@@ -104,8 +123,15 @@ public class Gems {
     goldPaxelID = config.get(Configuration.CATEGORY_ITEM, "goldPaxel", 5034).getInt();
     diamondPaxelID = config.get(Configuration.CATEGORY_ITEM, "diamondPaxel", 5035).getInt();
     
+    SapphireID = config.get(Configuration.CATEGORY_ITEM, "Sapphire", 5041).getInt();
+    GreenSapphireID = config.get(Configuration.CATEGORY_ITEM, "GreenSapphire", 5042).getInt();
+    RubyID = config.get(Configuration.CATEGORY_ITEM, "Ruby", 5043).getInt();
+    
     //Blocks
     blockLapisGemID = config.get(Configuration.CATEGORY_BLOCK, "BlockLapisGem", 1001).getInt();
+    oreSapphireID = config.get(Configuration.CATEGORY_BLOCK, "OreSapphire", 1011).getInt();
+    oreGreenSapphireID = config.get(Configuration.CATEGORY_BLOCK, "OreGreenSapphire", 1012).getInt();
+    oreRubyID = config.get(Configuration.CATEGORY_BLOCK, "OreRuby", 1013).getInt();
     config.save();
   }
 
@@ -115,33 +141,25 @@ public class Gems {
     proxy.registerRenderers();
 
     // Settings for Items, Unlocalized Names, Creative Tabs
+    
     //Items - Lapis Gem
     lapisGem = (new LapisGem(lapisGemID)).setMaxStackSize(64).setUnlocalizedName("LapisGem").setCreativeTab(CreativeTabs.tabMaterials);
-    chargedLapisGem = (new ChargedLapisGem(chargedLapisGemID)).setMaxStackSize(64).setUnlocalizedName("ChargedLapisGem").setCreativeTab(CreativeTabs.tabMaterials);
-    
+    chargedLapisGem = (new ChargedLapisGem(chargedLapisGemID)).setMaxStackSize(16).setUnlocalizedName("ChargedLapisGem").setCreativeTab(CreativeTabs.tabMaterials);
     //Tools - Lapis Gem
-    
     EnumToolMaterial lapisGemPaxelMaterial = EnumHelper.addToolMaterial("Lapis Gem Tool", 4, 2048, 10F, -3F, 50);
     lapisGemPaxel = (new LapisGemPaxel(lapisGemPaxelID, 10F, lapisGemPaxelMaterial)).setUnlocalizedName("lapisGemPaxel").setCreativeTab(CreativeTabs.tabTools);
-    
     //Swords - Lapis Gem
-    
     EnumToolMaterial lapisGemSwordMaterial = EnumHelper.addToolMaterial("Lapis Gem Sword", 4, 2048, 10F, 7F, 50);
     lapisGemSword = (new LapisGemSword(4001, lapisGemSwordMaterial).setUnlocalizedName("LapisGemSword").setCreativeTab(CreativeTabs.tabCombat));
-    
-    
     //Armor - Lapis Gem
     EnumArmorMaterial lapisGemArmorMaterial = EnumHelper.addArmorMaterial("Lapis Gem Armor", 40, new int[] { 5, 10, 8, 5 }, 50);
-
     lapisGemHelmet = new LapisGemHelmet(lapisGemHelmetID, lapisGemArmorMaterial, ModLoader.addArmor("LapisGem"), 0).setUnlocalizedName("LapisGemHelmet").setCreativeTab(CreativeTabs.tabCombat);
     lapisGemChestplate = new LapisGemChestplate(lapisGemChestplateID, lapisGemArmorMaterial, ModLoader.addArmor("LapisGem"), 1).setUnlocalizedName("LapisGemChestplate").setCreativeTab(CreativeTabs.tabCombat);
     lapisGemLeggings = new LapisGemLeggings(lapisGemLeggingsID, lapisGemArmorMaterial, ModLoader.addArmor("LapisGem"), 2).setUnlocalizedName("LapisGemLeggings").setCreativeTab(CreativeTabs.tabCombat);
     lapisGemBoots = new LapisGemBoots(lapisGemBootsID, lapisGemArmorMaterial, ModLoader.addArmor("LapisGem"), 3).setUnlocalizedName("LapisGemBoots").setCreativeTab(CreativeTabs.tabCombat);
     //Blocks - Lapis Gem
     blockLapisGem = new BlockLapisGem(blockLapisGemID, Material.rock).setHardness(4.0F).setResistance(7.5F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BlockLapisGem").setCreativeTab(CreativeTabs.tabBlock);
-    
     // Register Recipes - Lapis Gem
-
     GameRegistry.addRecipe(new ItemStack(lapisGem, 1), "lll", "ldl", "lll", 'l', new ItemStack(Item.dyePowder, 1, 4), 'd', new ItemStack(Item.diamond));
     GameRegistry.addSmelting(lapisGemID + 256, new ItemStack(chargedLapisGem), 1);
     GameRegistry.addRecipe(new ItemStack(lapisGemHelmet), "lll", "l l", "   ", 'l', new ItemStack(chargedLapisGem));
@@ -160,8 +178,21 @@ public class Gems {
     ironPaxel = (new VanillaPaxel(ironPaxelID, 2F, EnumToolMaterial.IRON, "Iron")).setUnlocalizedName("ironPaxel").setCreativeTab(CreativeTabs.tabTools);
     goldPaxel = (new VanillaPaxel(goldPaxelID, 2F, EnumToolMaterial.GOLD, "Gold")).setUnlocalizedName("goldPaxel").setCreativeTab(CreativeTabs.tabTools);
     diamondPaxel = (new VanillaPaxel(diamondPaxelID, 2F, EnumToolMaterial.EMERALD, "Diamond")).setUnlocalizedName("diamondPaxel").setCreativeTab(CreativeTabs.tabTools);
-    
     //Register Recipes - Vanilla Paxel
+    GameRegistry.addRecipe(new ItemStack(woodPaxel), "iii", "isi", "iii", 'i', new ItemStack(Block.planks), 's', new ItemStack(Item.stick));
+    GameRegistry.addRecipe(new ItemStack(stonePaxel), "iii", "isi", "iii", 'i', new ItemStack(Block.cobblestone), 's', new ItemStack(Item.stick));
+    GameRegistry.addRecipe(new ItemStack(ironPaxel), "iii", "isi", "iii", 'i', new ItemStack(Item.ingotIron), 's', new ItemStack(Item.stick));
+    GameRegistry.addRecipe(new ItemStack(goldPaxel), "iii", "isi", "iii", 'i', new ItemStack(Item.ingotGold), 's', new ItemStack(Item.stick));
+    GameRegistry.addRecipe(new ItemStack(diamondPaxel), "iii", "isi", "iii", 'i', new ItemStack(Item.diamond), 's', new ItemStack(Item.stick));
+    
+    //Blocks - Colour Gems
+    oreSapphire = (new Ore(oreSapphireID, Material.rock, "OreSapphire")).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("oreSapphire").setCreativeTab(CreativeTabs.tabBlock);
+    oreGreenSapphire = (new Ore(oreGreenSapphireID, Material.rock, "OreGreenSapphire")).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("oreGreenSapphire").setCreativeTab(CreativeTabs.tabBlock);
+    oreRuby = (new Ore(oreRubyID, Material.rock, "OreRuby")).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("oreRuby").setCreativeTab(CreativeTabs.tabBlock);
+    //Items - Colour Gems
+    Sapphire = (new Gem(SapphireID, "GemSapphire")).setUnlocalizedName("Sapphire").setCreativeTab(CreativeTabs.tabMaterials);
+    GreenSapphire = (new Gem(GreenSapphireID, "GemGreenSapphire")).setUnlocalizedName("GreenSapphire").setCreativeTab(CreativeTabs.tabMaterials);
+    Ruby = (new Gem(RubyID, "GemRuby")).setUnlocalizedName("Ruby").setCreativeTab(CreativeTabs.tabMaterials);
   }
 
   // postInit / Add Names
@@ -200,6 +231,23 @@ public class Gems {
     GameRegistry.registerItem(goldPaxel, "goldPaxel");
     LanguageRegistry.addName(diamondPaxel, "Diamond Paxel");
     GameRegistry.registerItem(diamondPaxel, "diamondPaxel");
-    
+
+    //Blocks - Coloured Gems
+    LanguageRegistry.addName(oreSapphire, "Sapphire Ore");
+    GameRegistry.registerBlock(oreSapphire, "oreSapphire");
+    MinecraftForge.setBlockHarvestLevel(oreSapphire, "pickaxe", 2);
+    LanguageRegistry.addName(oreGreenSapphire, "Green Sapphire Ore");
+    GameRegistry.registerBlock(oreGreenSapphire, "oreGreenSapphire");
+    MinecraftForge.setBlockHarvestLevel(oreGreenSapphire, "pickaxe", 2);
+    LanguageRegistry.addName(oreRuby, "Ruby Ore");
+    GameRegistry.registerBlock(oreRuby, "oreRuby");
+    MinecraftForge.setBlockHarvestLevel(oreRuby, "pickaxe", 2);
+    //Items - Coloured Gems
+    LanguageRegistry.addName(Sapphire, "Sapphire");
+    GameRegistry.registerItem(Sapphire, "Sapphire");
+    LanguageRegistry.addName(GreenSapphire, "Green Sapphire");
+    GameRegistry.registerItem(GreenSapphire, "GreenSapphire");
+    LanguageRegistry.addName(Ruby, "Ruby");
+    GameRegistry.registerItem(Ruby, "Ruby");
   }
 }
