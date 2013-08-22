@@ -5,13 +5,12 @@ import ictrobot.gems.armor.lapisgem.LapisGemBoots;
 import ictrobot.gems.armor.lapisgem.LapisGemChestplate;
 import ictrobot.gems.armor.lapisgem.LapisGemHelmet;
 import ictrobot.gems.armor.lapisgem.LapisGemLeggings;
+import ictrobot.gems.block.lapisgem.BlockLapisGem;
 import ictrobot.gems.items.lapisgem.ChargedLapisGem;
 import ictrobot.gems.items.lapisgem.LapisGem;
-import ictrobot.gems.block.lapisgem.BlockLapisGem;
-import ictrobot.gems.Reference;
 import ictrobot.gems.proxy.CommonProxy;
-import ictrobot.gems.tools.lapisgem.LapisGemTool;
 import ictrobot.gems.tools.lapisgem.LapisGemSword;
+import ictrobot.gems.tools.lapisgem.LapisGemTool;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -98,13 +97,13 @@ public class Gems {
     
     //Tools
     
-    EnumToolMaterial lapisGemToolMaterial = EnumHelper.addToolMaterial("Lapis Gem Paxel", 4, 2048, 10F, -4F, 50);
+    EnumToolMaterial lapisGemToolMaterial = EnumHelper.addToolMaterial("Lapis Gem Tool", 4, 2048, 10F, -3F, 50);
     lapisGemTool = (new LapisGemTool(lapisGemToolID, 10F, lapisGemToolMaterial)).setUnlocalizedName("lapisGemTool").setCreativeTab(CreativeTabs.tabTools);
     
     //Swords
     
-    EnumToolMaterial lapisGemSwordMaterial = EnumHelper.addToolMaterial("Lapis Gem Sword", 4, 2048, 10F, 0F, 50);
-    lapisGemSword = (new lapisGemSword);
+    EnumToolMaterial lapisGemSwordMaterial = EnumHelper.addToolMaterial("Lapis Gem Sword", 4, 2048, 10F, 7F, 50);
+    lapisGemSword = (new LapisGemSword(4001, lapisGemSwordMaterial).setUnlocalizedName("LapisGemSword").setCreativeTab(CreativeTabs.tabCombat));
     
     
     //Armor
@@ -136,24 +135,24 @@ public class Gems {
   @EventHandler
   public void postInit(FMLPostInitializationEvent event) {
     //Items
-    LanguageRegistry.addName(lapisGem, "Lapis Gem");
+    LanguageRegistry.addName(lapisGem, "§3Lapis Gem");
     GameRegistry.registerItem(lapisGem, "lapisGem");
-    LanguageRegistry.addName(chargedLapisGem, "Charged Lapis Gem");
+    LanguageRegistry.addName(chargedLapisGem, "§3Charged Lapis Gem");
     GameRegistry.registerItem(chargedLapisGem, "chargedLapisGem");
-    LanguageRegistry.addName(lapisGemHelmet, "Lapis Gem Helmet");
+    LanguageRegistry.addName(lapisGemHelmet, "§3Lapis Gem Helmet");
     GameRegistry.registerItem(lapisGemHelmet, "lapisGemHelmet");
-    LanguageRegistry.addName(lapisGemChestplate, "Lapis Gem Chestplate");
+    LanguageRegistry.addName(lapisGemChestplate, "§3Lapis Gem Chestplate");
     GameRegistry.registerItem(lapisGemChestplate, "lapisGemChestplate");
-    LanguageRegistry.addName(lapisGemLeggings, "Lapis Gem Leggings");
+    LanguageRegistry.addName(lapisGemLeggings, "§3Lapis Gem Leggings");
     GameRegistry.registerItem(lapisGemLeggings, "lapisGemLeggings");
-    LanguageRegistry.addName(lapisGemBoots, "Lapis Gem Boots");
+    LanguageRegistry.addName(lapisGemBoots, "§3Lapis Gem Boots");
     GameRegistry.registerItem(lapisGemBoots, "lapisGemBoots");
-    LanguageRegistry.addName(lapisGemTool, "Lapis Gem Tool");
+    LanguageRegistry.addName(lapisGemTool, "§3Lapis Gem Paxel");
     GameRegistry.registerItem(lapisGemTool, "lapisGemTool");
-    LanguageRegistry.addName(lapisGemSword, "Lapis Gem Sword");
+    LanguageRegistry.addName(lapisGemSword, "§3Lapis Gem Sword");
     GameRegistry.registerItem(lapisGemSword, "lapisGemSword");
     //Blocks
-    LanguageRegistry.addName(blockLapisGem, "Block of Lapis Gems");
+    LanguageRegistry.addName(blockLapisGem, "§3Block of Lapis Gems");
     GameRegistry.registerBlock(blockLapisGem, "blockLapisGem");
     MinecraftForge.setBlockHarvestLevel(blockLapisGem, "pickaxe", 2);
   }

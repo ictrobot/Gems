@@ -1,12 +1,23 @@
 package ictrobot.gems.tools.lapisgem;
 
-import net.minecraft.item.Item;
+import net.minecraft.block.Block;
+import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.item.ItemTool;
 
-public class LapisGemSword extends Item {
-
-  public LapisGemSword(int par1) {
-    super(par1);
-    // TODO Auto-generated constructor stub
+public class LapisGemSword extends ItemTool {
+      
+  public static final Block[] swordBlock = {Block.web};
+  
+  public LapisGemSword(int id, EnumToolMaterial ToolMaterial) {
+    super(id, 2F, ToolMaterial, swordBlock);
+    func_111206_d("Gems:LapisGemSword");
   }
-
+  
+  public boolean canHarvestBlock(Block par1Block)
+  {
+      return par1Block.blockID == Block.web.blockID;
+  }
 }
+
+
+
