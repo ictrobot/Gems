@@ -29,6 +29,7 @@ public class ChargedLapisGem extends Item {
     return true;
   }
   
+  @SuppressWarnings({ "unchecked", "rawtypes" })
   public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
     par3List.add("\u00A7eCharged");
   }

@@ -2,9 +2,12 @@ package ictrobot.gems.tools.lapisgem;
 
 import ictrobot.gems.Gems;
 import net.minecraft.block.Block;
+import net.minecraft.entity.effect.EntityLightningBolt;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
+import net.minecraft.world.World;
 
 public class LapisGemSword extends ItemTool {
       
@@ -27,4 +30,14 @@ public class LapisGemSword extends ItemTool {
     else
       return false;
   }
+  
+  public void onCreated(ItemStack itemstack, World world, EntityPlayer entity) {
+    float var4 = 1.0F;
+    int i = (int) (entity.prevPosX + (entity.posX - entity.prevPosX) * var4);
+    int j = (int) (entity.prevPosY + (entity.posY - entity.prevPosY) * var4 + 1.62D - entity.yOffset);
+    int k = (int) (entity.prevPosZ + (entity.posZ - entity.prevPosZ) * var4);
+    world.spawnEntityInWorld(new EntityLightningBolt(world, i, j, k));
+  }
+
+  
 }
