@@ -1,5 +1,6 @@
 package ictrobot.gems.tools.lapisgem;
 
+import ictrobot.gems.Gems;
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
@@ -20,8 +21,23 @@ public class LapisGemPaxel extends ItemTool {
   public boolean canHarvestBlock(Block par1Block)
   {
   return true;
-  }  
+  }
+  
+  @Override
+  public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+  {
+    if (par2ItemStack.getItem()==Gems.chargedLapisGem)
+      return true;
+    else
+      return false;
+  }
+  
 }
+
+/* if (par1ItemStack==(new ItemStack(Gems.lapisGemPaxel)) && par2ItemStack==(new ItemStack(Gems.chargedLapisGem)))
+return true;
+else
+return false; */
 
 
 
