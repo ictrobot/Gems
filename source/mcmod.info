@@ -3,7 +3,7 @@
   "modid": "Gems",
   "name": "Gems",
   "description": "Gems",
-  "version": "Alpha 0.0.1",
+  "version": "Alpha 0.0.3",
   "credits": "ictrobot",
   "logoFile": "/assets/gems/textures/Logo.png",
   "mcversion": "1.6.2",

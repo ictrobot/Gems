@@ -1,6 +1,5 @@
 package ictrobot.gems;
 
-//By ictrobot
 //imports
 import ictrobot.gems.armor.lapisgem.LapisGemBoots;
 import ictrobot.gems.armor.lapisgem.LapisGemChestplate;
@@ -20,6 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.src.ModLoader;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
+import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -34,7 +34,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class Gems {
-  @Instance("Gems")
+  @Instance(Reference.MOD_ID)
   public static Gems instance;
 
   // Define IDs
@@ -116,13 +116,20 @@ public class Gems {
   public void postInit(FMLPostInitializationEvent event) {
     //Items
     LanguageRegistry.addName(lapisGem, "Lapis Gem");
+    GameRegistry.registerItem(lapisGem, "lapisGem");
     LanguageRegistry.addName(chargedLapisGem, "Charged Lapis Gem");
+    GameRegistry.registerItem(chargedLapisGem, "chargedLapisGem");
     LanguageRegistry.addName(lapisGemHelmet, "Lapis Gem Helmet");
+    GameRegistry.registerItem(lapisGemHelmet, "lapisGemHelmet");
     LanguageRegistry.addName(lapisGemChestplate, "Lapis Gem Chestplate");
+    GameRegistry.registerItem(lapisGemChestplate, "lapisGemChestplate");
     LanguageRegistry.addName(lapisGemLeggings, "Lapis Gem Leggings");
+    GameRegistry.registerItem(lapisGemLeggings, "lapisGemLeggings");
     LanguageRegistry.addName(lapisGemBoots, "Lapis Gem Boots");
+    GameRegistry.registerItem(lapisGemBoots, "lapisGemBoots");
     //Blocks
     LanguageRegistry.addName(blockLapisGem, "Block of Lapis Gems");
     GameRegistry.registerBlock(blockLapisGem, "blockLapisGem");
+    MinecraftForge.setBlockHarvestLevel(blockLapisGem, "pickaxe", 2);
   }
 }
