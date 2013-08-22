@@ -1,5 +1,7 @@
 package ictrobot.gems.items.lapisgem;
 
+import java.util.List;
+
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -26,5 +28,8 @@ public class ChargedLapisGem extends Item {
   public boolean hasEffect(ItemStack par1ItemStack) {
     return true;
   }
-
+  
+  public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+    par3List.add("\u00A7eCharged");
+  }
 }

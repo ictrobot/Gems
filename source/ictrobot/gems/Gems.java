@@ -170,7 +170,7 @@ public class Gems {
     //Items - Lapis Gem
     LanguageRegistry.addName(lapisGem, "Lapis Gem");
     GameRegistry.registerItem(lapisGem, "lapisGem");
-    LanguageRegistry.addName(chargedLapisGem, "Charged Lapis Gem");
+    LanguageRegistry.addName(chargedLapisGem, "Lapis Gem");
     GameRegistry.registerItem(chargedLapisGem, "chargedLapisGem");
     LanguageRegistry.addName(lapisGemHelmet, "Lapis Gem Helmet");
     GameRegistry.registerItem(lapisGemHelmet, "lapisGemHelmet");
