@@ -94,7 +94,7 @@ public class Gems {
     
     //Tools
     
-    EnumToolMaterial lapisGemToolMaterial = EnumHelper.addToolMaterial("Lapis Gem Tool", 4, 2048, 10F, 2F, 50);
+    EnumToolMaterial lapisGemToolMaterial = EnumHelper.addToolMaterial("Lapis Gem Tool", 4, 2048, 10F, -4F, 50);
     lapisGemTool = (new LapisGemTool(lapisGemToolID, 10F, lapisGemToolMaterial)).setUnlocalizedName("lapisGemTool").setCreativeTab(CreativeTabs.tabTools);
     
     //Armor

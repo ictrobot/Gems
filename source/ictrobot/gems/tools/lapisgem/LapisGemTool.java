@@ -20,10 +20,7 @@ public class LapisGemTool extends ItemTool {
   public boolean canHarvestBlock(Block par1Block)
   {
   return true;
-  }
-  @Override
-  public float damageVsEntity = 5;
-  
+  }  
 }
 
 
