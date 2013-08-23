@@ -16,4 +16,10 @@ public class OreRuby extends Block {
   public int idDropped(int par1, Random random, int par3) {
     return (ColourGemsModule.rubyID + 256);
   }
+  
+  public int quantityDropped(Random rand){
+    Random randomGenerator = new Random();
+    int randomInt = randomGenerator.nextInt(4);
+    return randomInt;
+  }
 }
