@@ -8,6 +8,7 @@ import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 
 public class LapisGemPaxel extends ItemTool {
   
@@ -18,7 +19,22 @@ public class LapisGemPaxel extends ItemTool {
   
   public boolean canHarvestBlock(Block par1Block, ItemStack itemStack)
   {
-  return this.canHarvestBlock(par1Block);
+    Boolean harvest = false;
+    int toolLevel = this.toolMaterial.getHarvestLevel();
+    int pickaxeLevel = MinecraftForge.getBlockHarvestLevel(par1Block, new ItemStack(par1Block).getItemDamage(), "pickaxe");
+    int shovelLevel = MinecraftForge.getBlockHarvestLevel(par1Block, new ItemStack(par1Block).getItemDamage(), "shovel");
+    int axeLevel = MinecraftForge.getBlockHarvestLevel(par1Block, new ItemStack(par1Block).getItemDamage(), "axe");
+    if (toolLevel >= pickaxeLevel && pickaxeLevel != -1){
+      harvest = true;
+    }
+    if (shovelLevel >= pickaxeLevel && pickaxeLevel != -1){
+      harvest = true;
+    }
+    if (axeLevel >= pickaxeLevel && pickaxeLevel != -1){
+      harvest = true;
+    }
+    
+    return harvest;
   }
 
   public boolean canHarvestBlock(Block par1Block)

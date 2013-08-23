@@ -118,6 +118,6 @@ public class LapisGemModule {
     //Blocks - Lapis Gem
     LanguageRegistry.addName(blockLapisGem, "Block of Lapis Gems");
     GameRegistry.registerBlock(blockLapisGem, "blockLapisGem");
-    MinecraftForge.setBlockHarvestLevel(blockLapisGem, "pickaxe", 2);
+    MinecraftForge.setBlockHarvestLevel(blockLapisGem, "pickaxe", 4);
   }
 }
