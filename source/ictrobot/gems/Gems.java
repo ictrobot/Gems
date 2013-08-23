@@ -45,9 +45,6 @@ public class Gems {
     if (ColouredGemsEnable==true) {
       ColourGemsModule.Config(event.getSuggestedConfigurationFile());
     }
-    
-    
-    
   }
 
   @EventHandler
@@ -63,11 +60,6 @@ public class Gems {
     if (ColouredGemsEnable==true) {
       ColourGemsModule.Settings();
     }
-    
-    
-    
-    
-
   }
 
   @EventHandler
@@ -82,11 +74,6 @@ public class Gems {
     if (ColouredGemsEnable==true) {
       ColourGemsModule.Register();
     }
-    
-    
-    
-    
-    
-
   }
+  
 }
