@@ -26,7 +26,7 @@ public class WorldSapphire implements IWorldGenerator {
   }
 
   public void generateSurface(World world, Random rand, int chunkX, int chunkZ) {
-    for (int i = 0; i < 6; i++) { // how many block will spawn in one chunk.
+    for (int i = 0; i < 7; i++) { // how many block will spawn in one chunk.
       int randPosX = chunkX + rand.nextInt(16);
       int randPosY = rand.nextInt(40); // height
       int randPosZ = chunkZ + rand.nextInt(16);

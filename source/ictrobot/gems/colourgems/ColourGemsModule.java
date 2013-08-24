@@ -41,6 +41,7 @@ public class ColourGemsModule {
    public static Item sapphirePaxel;
    public static Item greenSapphirePaxel;
    public static Item rubyPaxel;
+   
    //Define World Gen - Colour Gems
    public static WorldSapphire worldSapphire = new WorldSapphire();
    public static WorldGreenSapphire worldGreenSapphire = new WorldGreenSapphire();
@@ -50,7 +51,6 @@ public class ColourGemsModule {
       Configuration config = new Configuration(file);
       config.load();
       //Items
-      
       sapphireID = config.get(Configuration.CATEGORY_ITEM, "Sapphire", 5041).getInt();
       greenSapphireID = config.get(Configuration.CATEGORY_ITEM, "GreenSapphire", 5042).getInt();
       rubyID = config.get(Configuration.CATEGORY_ITEM, "Ruby", 5043).getInt();
