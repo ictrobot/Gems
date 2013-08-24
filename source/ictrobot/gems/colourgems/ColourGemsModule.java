@@ -14,6 +14,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
@@ -30,10 +31,17 @@ public class ColourGemsModule {
    public static int sapphirePaxelID;
    public static int greenSapphirePaxelID;
    public static int rubyPaxelID;
+   public static int blockSapphireID;
+   public static int blockGreenSapphireID;
+   public static int blockRubyID;
    //Define Blocks - Colour Gems
    public static Block oreSapphire;
    public static Block oreGreenSapphire;
    public static Block oreRuby;
+   public static Block blockSapphire;
+   public static Block blockGreenSapphire;
+   public static Block blockRuby;
+   
    //Define Items - Colour Gems
    public static Item sapphire;
    public static Item greenSapphire;
@@ -62,6 +70,9 @@ public class ColourGemsModule {
       oreSapphireID = config.get(Configuration.CATEGORY_BLOCK, "OreSapphire", 1011).getInt();
       oreGreenSapphireID = config.get(Configuration.CATEGORY_BLOCK, "OreGreenSapphire", 1012).getInt();
       oreRubyID = config.get(Configuration.CATEGORY_BLOCK, "OreRuby", 1013).getInt();
+      blockSapphireID = config.get(Configuration.CATEGORY_BLOCK, "BlockSapphire", 1014).getInt();
+      blockGreenSapphireID = config.get(Configuration.CATEGORY_BLOCK, "BlockGreenSapphire", 1015).getInt();
+      blockRubyID = config.get(Configuration.CATEGORY_BLOCK, "BlockRuby", 1016).getInt();
       config.save();
     }
 
@@ -70,6 +81,9 @@ public class ColourGemsModule {
       oreSapphire = (new OreSapphire(oreSapphireID, Material.rock)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("oreSapphire").setCreativeTab(CreativeTabs.tabBlock);
       oreGreenSapphire = (new OreGreenSapphire(oreGreenSapphireID, Material.rock)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("oreGreenSapphire").setCreativeTab(CreativeTabs.tabBlock);
       oreRuby = (new OreRuby(oreRubyID, Material.rock)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("oreRuby").setCreativeTab(CreativeTabs.tabBlock);
+      blockSapphire = (new BlockGem(blockSapphireID, "BlockSapphire")).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("blockSapphire").setCreativeTab(CreativeTabs.tabBlock);
+      blockGreenSapphire = (new BlockGem(blockGreenSapphireID, "BlockGreenSapphire")).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("blockGreenSapphire").setCreativeTab(CreativeTabs.tabBlock);
+      blockRuby = (new BlockGem(blockRubyID, "BlockRuby")).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("blockRuby").setCreativeTab(CreativeTabs.tabBlock);
       //Items - Colour Gems
       sapphire = (new Gem(sapphireID, "GemSapphire")).setUnlocalizedName("Sapphire").setCreativeTab(CreativeTabs.tabMaterials);
       greenSapphire = (new Gem(greenSapphireID, "GemGreenSapphire")).setUnlocalizedName("GreenSapphire").setCreativeTab(CreativeTabs.tabMaterials);
@@ -88,6 +102,9 @@ public class ColourGemsModule {
     }
     
     public static void Register(){
+      GameRegistry.addRecipe(new ItemStack(sapphirePaxel), "lbl", " s ", " s ", 'b', new ItemStack(blockSapphire), 'l', new ItemStack(sapphire), 's', new ItemStack(Item.stick));
+      GameRegistry.addRecipe(new ItemStack(greenSapphirePaxel), "lbl", " s ", " s ", 'b', new ItemStack(blockGreenSapphire), 'l', new ItemStack(greenSapphire), 's', new ItemStack(Item.stick));
+      GameRegistry.addRecipe(new ItemStack(rubyPaxel), "lbl", " s ", " s ", 'b', new ItemStack(blockRuby), 'l', new ItemStack(ruby), 's', new ItemStack(Item.stick));
       //Blocks - Coloured Gems
       LanguageRegistry.addName(oreSapphire, "Sapphire Ore");
       GameRegistry.registerBlock(oreSapphire, "oreSapphire");
@@ -98,6 +115,15 @@ public class ColourGemsModule {
       LanguageRegistry.addName(oreRuby, "Ruby Ore");
       GameRegistry.registerBlock(oreRuby, "oreRuby");
       MinecraftForge.setBlockHarvestLevel(oreRuby, "pickaxe", 2);
+      LanguageRegistry.addName(blockSapphire, "Block of Sapphire");
+      GameRegistry.registerBlock(blockSapphire, "blockSapphire");
+      MinecraftForge.setBlockHarvestLevel(blockSapphire, "pickaxe", 2);
+      LanguageRegistry.addName(blockGreenSapphire, "Block of Green Sapphire");
+      GameRegistry.registerBlock(blockGreenSapphire, "blockGreenSapphire");
+      MinecraftForge.setBlockHarvestLevel(blockGreenSapphire, "pickaxe", 2);
+      LanguageRegistry.addName(blockRuby, "Block of Ruby");
+      GameRegistry.registerBlock(blockRuby, "blockRuby");
+      MinecraftForge.setBlockHarvestLevel(blockRuby, "pickaxe", 2);
       //Items - Coloured Gems
       LanguageRegistry.addName(sapphire, "Sapphire");
       GameRegistry.registerItem(sapphire, "sapphire");
