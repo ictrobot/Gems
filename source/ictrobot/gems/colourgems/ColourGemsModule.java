@@ -1,6 +1,7 @@
 package ictrobot.gems.colourgems;
 
 import ictrobot.gems.colourgems.block.*;
+import ictrobot.gems.colourgems.world.*;
 import ictrobot.gems.colourgems.items.Gem;
 
 import java.io.File;
@@ -31,6 +32,10 @@ public class ColourGemsModule {
    public static Item sapphire;
    public static Item greenSapphire;
    public static Item ruby;
+   //Define World Gen - Colour Gems
+   public static WorldSapphire worldSapphire = new WorldSapphire();
+   public static WorldGreenSapphire worldGreenSapphire = new WorldGreenSapphire();
+   public static WorldRuby worldRuby = new WorldRuby();
   
     public static void Config(File file) {
       Configuration config = new Configuration(file);
@@ -58,6 +63,12 @@ public class ColourGemsModule {
       greenSapphire = (new Gem(greenSapphireID, "GemGreenSapphire")).setUnlocalizedName("GreenSapphire").setCreativeTab(CreativeTabs.tabMaterials);
       ruby = (new Gem(rubyID, "GemRuby")).setUnlocalizedName("Ruby").setCreativeTab(CreativeTabs.tabMaterials);
    }
+    
+    public static void WorldGen() {
+      GameRegistry.registerWorldGenerator(worldSapphire);
+      GameRegistry.registerWorldGenerator(worldGreenSapphire);
+      GameRegistry.registerWorldGenerator(worldRuby);
+    }
     
     public static void Register(){
       //Blocks - Coloured Gems

@@ -59,6 +59,7 @@ public class Gems {
     }
     if (ColouredGemsEnable==true) {
       ColourGemsModule.Settings();
+      ColourGemsModule.WorldGen();
     }
   }
 
