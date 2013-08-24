@@ -1,10 +1,12 @@
 package ictrobot.gems.colourgems.block;
 
+import ictrobot.gems.colourgems.ColourGemsModule;
+
 import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import ictrobot.gems.colourgems.ColourGemsModule;
+import net.minecraft.world.World;
 
 public class OreGreenSapphire extends Block {
 
@@ -21,5 +23,10 @@ public class OreGreenSapphire extends Block {
     Random randomGenerator = new Random();
     int randomInt = randomGenerator.nextInt(4);
     return randomInt;
+  }
+  
+  public void onBlockDestroyedByPlayer(World par1World, int par2, int par3, int par4, int par5) 
+  {
+   this.dropXpOnBlockBreak(par1World, par2, par3, par4, 20);
   }
 }

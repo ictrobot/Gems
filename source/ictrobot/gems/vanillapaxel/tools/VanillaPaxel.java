@@ -10,7 +10,7 @@ public class VanillaPaxel extends ItemTool {
   
   public static Block[] blocksEffectiveAgainst ={Block.cobblestone, Block.stoneDoubleSlab, Block.stoneSingleSlab, Block.stone, Block.sandStone, Block.cobblestoneMossy, Block.oreIron, Block.blockIron, Block.oreCoal, Block.blockGold, Block.oreGold, Block.oreDiamond, Block.blockDiamond, Block.ice, Block.netherrack, Block.oreLapis, Block.blockLapis, Block.oreRedstone, Block.oreRedstoneGlowing, Block.rail, Block.railDetector, Block.railPowered, Block.railActivator,Block.grass, Block.dirt, Block.sand, Block.gravel, Block.snow, Block.blockSnow, Block.blockClay, Block.tilledField, Block.slowSand, Block.mycelium, Block.planks, Block.bookShelf, Block.wood, Block.chest, Block.stoneDoubleSlab, Block.stoneSingleSlab, Block.pumpkin, Block.pumpkinLantern};
   public VanillaPaxel(int id, float speed, EnumToolMaterial ToolMaterial, String TextureName) {
-    super(id, speed, ToolMaterial, blocksEffectiveAgainst);
+    super(id, speed, ToolMaterial, Block.blocksList);
     func_111206_d("Gems:" + TextureName + "Paxel");
   }
   
