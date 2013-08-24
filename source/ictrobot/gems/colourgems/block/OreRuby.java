@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import ictrobot.gems.colourgems.ColourGemsModule;
 
@@ -18,14 +19,15 @@ public class OreRuby extends Block {
     return (ColourGemsModule.rubyID + 256);
   }
   
-  public int quantityDropped(Random rand){
+  public int quantityDropped(int meta, int fortune, Random random){
     Random randomGenerator = new Random();
-    int randomInt = randomGenerator.nextInt(4);
-    return randomInt;
+    int randomInt = randomGenerator.nextInt(3);
+    return randomInt + fortune;
   }
   
-  public void onBlockDestroyedByPlayer(World par1World, int par2, int par3, int par4, int par5) 
-  {
-   this.dropXpOnBlockBreak(par1World, par2, par3, par4, 20);
+  @Override
+  public void dropBlockAsItemWithChance(World world, int x, int y, int z, int id, float f, int meta) {
+      super.dropBlockAsItemWithChance(world, x, y, z, id, f, meta);
+      this.dropXpOnBlockBreak(world, x, y, z, MathHelper.getRandomIntegerInRange(world.rand, 3, 5));
   }
 }
