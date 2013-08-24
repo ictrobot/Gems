@@ -76,7 +76,7 @@ public class LapisGemModule {
     EnumToolMaterial lapisGemSwordMaterial = EnumHelper.addToolMaterial("Lapis Gem Sword", 4, 2048, 10F, 7F, 50);
     lapisGemSword = (new LapisGemSword(4001, lapisGemSwordMaterial).setUnlocalizedName("LapisGemSword").setCreativeTab(CreativeTabs.tabCombat));
     //Armor - Lapis Gem
-    EnumArmorMaterial lapisGemArmorMaterial = EnumHelper.addArmorMaterial("Lapis Gem Armor", 40, new int[] { 5, 10, 8, 5 }, 50);
+    EnumArmorMaterial lapisGemArmorMaterial = EnumHelper.addArmorMaterial("Lapis Gem Armor", 40, new int[] { 4, 9, 7, 4 }, 50);
     lapisGemHelmet = new LapisGemHelmet(lapisGemHelmetID, lapisGemArmorMaterial, ModLoader.addArmor("LapisGem"), 0).setUnlocalizedName("LapisGemHelmet").setCreativeTab(CreativeTabs.tabCombat);
     lapisGemChestplate = new LapisGemChestplate(lapisGemChestplateID, lapisGemArmorMaterial, ModLoader.addArmor("LapisGem"), 1).setUnlocalizedName("LapisGemChestplate").setCreativeTab(CreativeTabs.tabCombat);
     lapisGemLeggings = new LapisGemLeggings(lapisGemLeggingsID, lapisGemArmorMaterial, ModLoader.addArmor("LapisGem"), 2).setUnlocalizedName("LapisGemLeggings").setCreativeTab(CreativeTabs.tabCombat);
@@ -90,11 +90,10 @@ public class LapisGemModule {
     GameRegistry.addRecipe(new ItemStack(lapisGemChestplate), "l l", "lll", "lll", 'l', new ItemStack(chargedLapisGem));
     GameRegistry.addRecipe(new ItemStack(lapisGemLeggings), "lll", "l l", "l l", 'l', new ItemStack(chargedLapisGem));
     GameRegistry.addRecipe(new ItemStack(lapisGemBoots), "   ", "l l", "l l", 'l', new ItemStack(chargedLapisGem));
-    GameRegistry.addRecipe(new ItemStack(blockLapisGem), "lll", "lll", "lll", 'l', new ItemStack(lapisGem));
     GameRegistry.addRecipe(new ItemStack(blockLapisGem), "lll", "lll", "lll", 'l', new ItemStack(chargedLapisGem));
-    GameRegistry.addShapelessRecipe(new ItemStack(lapisGem, 9), new ItemStack(blockLapisGem));
-    GameRegistry.addRecipe(new ItemStack(lapisGemPaxel), "lll", "lsl", "lll", 'l', new ItemStack(chargedLapisGem), 's', new ItemStack(Item.stick));
-    GameRegistry.addRecipe(new ItemStack(lapisGemSword), " l ", " l ", " s ", 'l', new ItemStack(chargedLapisGem), 's', new ItemStack(Item.stick));    
+    GameRegistry.addShapelessRecipe(new ItemStack(chargedLapisGem, 9), new ItemStack(blockLapisGem));
+    GameRegistry.addRecipe(new ItemStack(lapisGemPaxel), "lbl", " s ", " s ", 'b', new ItemStack(blockLapisGem), 'l', new ItemStack(chargedLapisGem), 's', new ItemStack(Item.stick));
+    GameRegistry.addRecipe(new ItemStack(lapisGemSword), " b ", " l ", " s ", 'b', new ItemStack(blockLapisGem), 'l', new ItemStack(chargedLapisGem), 's', new ItemStack(Item.stick));    
   }
   
   public static void Register(){
