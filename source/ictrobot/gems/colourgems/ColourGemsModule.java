@@ -2,7 +2,8 @@ package ictrobot.gems.colourgems;
 
 import ictrobot.gems.colourgems.block.*;
 import ictrobot.gems.colourgems.world.*;
-import ictrobot.gems.colourgems.items.Gem;
+import ictrobot.gems.colourgems.items.*;
+import ictrobot.gems.colourgems.tools.*;
 
 import java.io.File;
 
@@ -11,8 +12,10 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
 
 public class ColourGemsModule {
@@ -24,6 +27,9 @@ public class ColourGemsModule {
    public static int sapphireID;
    public static int greenSapphireID;
    public static int rubyID;
+   public static int sapphirePaxelID;
+   public static int greenSapphirePaxelID;
+   public static int rubyPaxelID;
    //Define Blocks - Colour Gems
    public static Block oreSapphire;
    public static Block oreGreenSapphire;
@@ -32,6 +38,9 @@ public class ColourGemsModule {
    public static Item sapphire;
    public static Item greenSapphire;
    public static Item ruby;
+   public static Item sapphirePaxel;
+   public static Item greenSapphirePaxel;
+   public static Item rubyPaxel;
    //Define World Gen - Colour Gems
    public static WorldSapphire worldSapphire = new WorldSapphire();
    public static WorldGreenSapphire worldGreenSapphire = new WorldGreenSapphire();
@@ -45,6 +54,9 @@ public class ColourGemsModule {
       sapphireID = config.get(Configuration.CATEGORY_ITEM, "Sapphire", 5041).getInt();
       greenSapphireID = config.get(Configuration.CATEGORY_ITEM, "GreenSapphire", 5042).getInt();
       rubyID = config.get(Configuration.CATEGORY_ITEM, "Ruby", 5043).getInt();
+      sapphirePaxelID = config.get(Configuration.CATEGORY_ITEM, "SapphirePaxel", 5044).getInt();
+      greenSapphirePaxelID = config.get(Configuration.CATEGORY_ITEM, "GreenSapphirePaxel", 5045).getInt();
+      rubyPaxelID = config.get(Configuration.CATEGORY_ITEM, "RubyPaxel", 5046).getInt();
       
       //Blocks
       oreSapphireID = config.get(Configuration.CATEGORY_BLOCK, "OreSapphire", 1011).getInt();
@@ -62,6 +74,11 @@ public class ColourGemsModule {
       sapphire = (new Gem(sapphireID, "GemSapphire")).setUnlocalizedName("Sapphire").setCreativeTab(CreativeTabs.tabMaterials);
       greenSapphire = (new Gem(greenSapphireID, "GemGreenSapphire")).setUnlocalizedName("GreenSapphire").setCreativeTab(CreativeTabs.tabMaterials);
       ruby = (new Gem(rubyID, "GemRuby")).setUnlocalizedName("Ruby").setCreativeTab(CreativeTabs.tabMaterials);
+      //Tools - Colour Gems
+      EnumToolMaterial colourgemToolMaterial = EnumHelper.addToolMaterial("Gem Tool", 3, 512, 8.0F, -3.0F, 10);
+      sapphirePaxel = (new ColourGemPaxel(sapphirePaxelID, 8F, colourgemToolMaterial, "Sapphire")).setUnlocalizedName("sapphirePaxel").setCreativeTab(CreativeTabs.tabTools);
+      greenSapphirePaxel = (new ColourGemPaxel(greenSapphirePaxelID, 8F, colourgemToolMaterial, "GreenSapphire")).setUnlocalizedName("greenSapphirePaxel").setCreativeTab(CreativeTabs.tabTools);
+      rubyPaxel = (new ColourGemPaxel(rubyPaxelID, 8F, colourgemToolMaterial, "Ruby")).setUnlocalizedName("rubyPaxel").setCreativeTab(CreativeTabs.tabTools);
    }
     
     public static void WorldGen() {
@@ -88,5 +105,11 @@ public class ColourGemsModule {
       GameRegistry.registerItem(greenSapphire, "greenSapphire");
       LanguageRegistry.addName(ruby, "Ruby");
       GameRegistry.registerItem(ruby, "ruby");
+      LanguageRegistry.addName(sapphirePaxel, "Sapphire Paxel");
+      GameRegistry.registerItem(sapphirePaxel, "sapphirePaxel");
+      LanguageRegistry.addName(greenSapphirePaxel, "Green Sapphire Paxel");
+      GameRegistry.registerItem(greenSapphirePaxel, "greenSapphirePaxel");
+      LanguageRegistry.addName(rubyPaxel, "Ruby Paxel");
+      GameRegistry.registerItem(rubyPaxel, "rubyPaxel");
     }
 }
