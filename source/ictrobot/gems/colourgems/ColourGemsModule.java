@@ -105,6 +105,12 @@ public class ColourGemsModule {
       GameRegistry.addRecipe(new ItemStack(sapphirePaxel), "lbl", " s ", " s ", 'b', new ItemStack(blockSapphire), 'l', new ItemStack(sapphire), 's', new ItemStack(Item.stick));
       GameRegistry.addRecipe(new ItemStack(greenSapphirePaxel), "lbl", " s ", " s ", 'b', new ItemStack(blockGreenSapphire), 'l', new ItemStack(greenSapphire), 's', new ItemStack(Item.stick));
       GameRegistry.addRecipe(new ItemStack(rubyPaxel), "lbl", " s ", " s ", 'b', new ItemStack(blockRuby), 'l', new ItemStack(ruby), 's', new ItemStack(Item.stick));
+      GameRegistry.addRecipe(new ItemStack(blockSapphire), "ggg", "ggg", "ggg", 'g', new ItemStack(sapphire));
+      GameRegistry.addRecipe(new ItemStack(blockGreenSapphire), "ggg", "ggg", "ggg", 'g', new ItemStack(greenSapphire));
+      GameRegistry.addRecipe(new ItemStack(blockRuby), "ggg", "ggg", "ggg", 'g', new ItemStack(ruby));
+      GameRegistry.addShapelessRecipe(new ItemStack(sapphire, 9), new ItemStack(blockSapphire));
+      GameRegistry.addShapelessRecipe(new ItemStack(greenSapphire, 9), new ItemStack(blockGreenSapphire));
+      GameRegistry.addShapelessRecipe(new ItemStack(ruby, 9), new ItemStack(blockRuby));
       //Blocks - Coloured Gems
       LanguageRegistry.addName(oreSapphire, "Sapphire Ore");
       GameRegistry.registerBlock(oreSapphire, "oreSapphire");

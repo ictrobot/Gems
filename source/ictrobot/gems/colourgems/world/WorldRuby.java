@@ -31,7 +31,7 @@ public class WorldRuby implements IWorldGenerator {
       int randPosY = rand.nextInt(40); // height
       int randPosZ = chunkZ + rand.nextInt(16);
 
-      (new WorldGenMinable(ColourGemsModule.oreSapphireID, 8)).generate(world, rand, randPosX, randPosY, randPosZ);
+      (new WorldGenMinable(ColourGemsModule.oreRubyID, 8)).generate(world, rand, randPosX, randPosY, randPosZ);
     }
   }
 
