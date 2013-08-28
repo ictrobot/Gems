@@ -48,11 +48,11 @@
 		<antcall target="reobfuscate" />
 
 		<!-- Build the jar -->
-		<mkdir dir="${basedir}\jars\Gems\" />
-		<jar destfile="${basedir}\jars\Gems\Gems_${build.build_type}_${build.build_number.jar">
+		<mkdir dir="${basedir}\releases\Gems\" />
+		<jar destfile="${basedir}\Releases\Gems\Gems_${build.build_type}_${build.build_number}.jar">
 			<fileset dir="${basedir}\forge\mcp\reobf\minecraft" />
 			<fileset dir="${basedir}\source\Gems\resources"/>
-      <fileset dir="${basedir}\source\Gems\source" includes="LICENSE" />
+      <fileset dir="${basedir}\source\Gems\" includes="LICENSE" />
       <fileset dir="${basedir}\forge\mcp\src\minecraft" includes="mcmod.info" />
 		</jar>
 
