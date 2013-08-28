@@ -1,5 +1,5 @@
 <?xml version="1.0" ?> 
-<project name="Gems" default="build" basedir="C:\Users\Ethan\Minecraft\Development">
+<project name="Gems" default="build" basedir="../..">
 
   <property file="${basedir}\source\Gems\build.properties" prefix="build"/>
   
