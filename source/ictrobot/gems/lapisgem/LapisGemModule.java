@@ -74,7 +74,7 @@ public class LapisGemModule {
     lapisGemPaxel = (new LapisGemPaxel(lapisGemPaxelID, 10F, lapisGemPaxelMaterial)).setUnlocalizedName("lapisGemPaxel").setCreativeTab(CreativeTabs.tabTools);
     //Swords - Lapis Gem
     EnumToolMaterial lapisGemSwordMaterial = EnumHelper.addToolMaterial("Lapis Gem Sword", 4, 2048, 10F, 7F, 50);
-    lapisGemSword = (new LapisGemSword(4001, lapisGemSwordMaterial).setUnlocalizedName("LapisGemSword").setCreativeTab(CreativeTabs.tabCombat));
+    lapisGemSword = (new LapisGemSword(lapisGemSwordID, lapisGemSwordMaterial).setUnlocalizedName("LapisGemSword").setCreativeTab(CreativeTabs.tabCombat));
     //Armor - Lapis Gem
     EnumArmorMaterial lapisGemArmorMaterial = EnumHelper.addArmorMaterial("Lapis Gem Armor", 40, new int[] { 4, 9, 7, 4 }, 50);
     lapisGemHelmet = new LapisGemHelmet(lapisGemHelmetID, lapisGemArmorMaterial, ModLoader.addArmor("LapisGem"), 0).setUnlocalizedName("LapisGemHelmet").setCreativeTab(CreativeTabs.tabCombat);
