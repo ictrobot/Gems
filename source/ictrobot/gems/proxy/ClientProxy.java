@@ -7,7 +7,8 @@ public class ClientProxy extends CommonProxy {
   public void registerRenderers() {
 
   }
-
+  
+  @Override
   public int addArmor(String armor) {
     return RenderingRegistry.addNewArmourRendererPrefix(armor);
   }
