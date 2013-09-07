@@ -27,11 +27,12 @@ public class WorldSapphire implements IWorldGenerator {
 
   public void generateSurface(World world, Random rand, int chunkX, int chunkZ) {
     for (int i = 0; i < 7; i++) { // how many block will spawn in one chunk.
-      int randPosX = chunkX + rand.nextInt(16);
-      int randPosY = rand.nextInt(40); // height
-      int randPosZ = chunkZ + rand.nextInt(16);
+      Random rands = new Random();
+      int randPosX = chunkX + rands.nextInt(16);
+      int randPosY = rands.nextInt(40); // height
+      int randPosZ = chunkZ + rands.nextInt(16);
 
-      (new WorldGenMinable(ColourGemsModule.oreSapphireID, 8)).generate(world, rand, randPosX, randPosY, randPosZ);
+      (new WorldGenMinable(ColourGemsModule.oreSapphireID, 8)).generate(world, rands, randPosX, randPosY, randPosZ);
     }
   }
 

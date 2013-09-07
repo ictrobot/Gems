@@ -1,6 +1,7 @@
 package ictrobot.gems.colourgems.world;
 
 import java.util.Random;
+
 import ictrobot.gems.colourgems.ColourGemsModule;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -27,11 +28,12 @@ public class WorldGreenSapphire implements IWorldGenerator {
 
   public void generateSurface(World world, Random rand, int chunkX, int chunkZ) {
     for (int i = 0; i < 7; i++) { // how many block will spawn in one chunk.
-      int randPosX = chunkX + rand.nextInt(16);
-      int randPosY = rand.nextInt(40); // height
-      int randPosZ = chunkZ + rand.nextInt(16);
+      Random randgs = new Random();
+      int randPosX = chunkX + randgs.nextInt(16);
+      int randPosY = randgs.nextInt(40); // height
+      int randPosZ = chunkZ + randgs.nextInt(16);
 
-      (new WorldGenMinable(ColourGemsModule.oreGreenSapphireID, 8)).generate(world, rand, randPosX, randPosY, randPosZ);
+      (new WorldGenMinable(ColourGemsModule.oreGreenSapphireID, 8)).generate(world, randgs, randPosX, randPosY, randPosZ);
     }
   }
 

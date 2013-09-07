@@ -27,11 +27,12 @@ public class WorldRuby implements IWorldGenerator {
 
   public void generateSurface(World world, Random rand, int chunkX, int chunkZ) {
     for (int i = 0; i < 7; i++) { // how many block will spawn in one chunk.
-      int randPosX = chunkX + rand.nextInt(16);
-      int randPosY = rand.nextInt(40); // height
-      int randPosZ = chunkZ + rand.nextInt(16);
+      Random randr = new Random();
+      int randPosX = chunkX + randr.nextInt(16);
+      int randPosY = randr.nextInt(40); // height
+      int randPosZ = chunkZ + randr.nextInt(16);
 
-      (new WorldGenMinable(ColourGemsModule.oreRubyID, 8)).generate(world, rand, randPosX, randPosY, randPosZ);
+      (new WorldGenMinable(ColourGemsModule.oreRubyID, 8)).generate(world, randr, randPosX, randPosY, randPosZ);
     }
   }
 
