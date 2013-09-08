@@ -1,46 +1,49 @@
 <?xml version="1.0" ?> 
-<project name="Gems" default="build" basedir="../..">
+<project name="Gems" default="build" basedir="">
 
-  <property file="${basedir}\source\Gems\build.properties" prefix="build"/>
-  
+  <property file="build.properties" prefix="build"/>
+  <target name="forge">
+    <delete dir="${basedir}/temp/" />
+    <mkdir dir="${basedir}/temp/"/>
+    <get src="http://files.minecraftforge.net/minecraftforge/minecraftforge-src-1.6.2-9.10.1.859.zip" dest="${basedir}/temp/forge.zip" usetimestamp="True" />
+    <unzip src="${basedir}/temp/forge.zip" dest="${basedir}/temp/" failOnEmptyArchive="true" />
+	</target>
 	<target name="clean">
-    <delete file="${basedir}\forge\mcp\src\minecraft\mcmod.info" />
-		<delete dir="${basedir}\forge\mcp\src\minecraft\ictrobot" />
-		<delete dir="${basedir}\forge\mcp\reobf\minecraft" />
+		<delete dir="${basedir}\temp\" />
 	</target>
   <target name="copy">
-		<copy todir="${basedir}\forge\mcp\src\minecraft">
-			<fileset dir="${basedir}\source\Gems\source\"/>
+		<copy todir="${basedir}\temp\forge\mcp\src\minecraft">
+			<fileset dir="${basedir}\source\"/>
 		</copy>
 	</target>
   <target name="increment_build_number">
-		<propertyfile file="${basedir}\source\Gems\build.properties">
+		<propertyfile file="${basedir}\build.properties">
 			<entry key="build_number" type="int" operation="+" default="1"/>
 		</propertyfile>
 	</target>
   <target name="replace_tokens">
-		<replace dir="${basedir}\forge\mcp\src\minecraft\" token="@VERSION@" value="${build.build_type}_${build.build_number}" />
-		<replace dir="${basedir}\forge\mcp\src\minecraft\" token="@BUILD_NUMBER@" value="${build.build_number}" />
+		<replace file="${basedir}\temp\forge\mcp\src\ictrobot\gems\Reference.java" token="@VERSION@" value="${build.build_type}_${build.build_number}" />
+		<replace file="${basedir}\temp\forge\mcp\src\ictrobot\gems\Reference.java" token="@BUILD_NUMBER@" value="${build.build_number}" />
 	</target>
  <target name="recompile">
-		<exec dir="${basedir}\forge\mcp" executable="cmd" osfamily="windows">
+		<exec dir="${basedir}\temp\forge\mcp" executable="cmd" osfamily="windows">
 			<arg line="/c recompile.bat" />
 		</exec>
-		<exec dir="${basedir}\forge\mcp" executable="bash" osfamily="unix">
+		<exec dir="${basedir}\temp\forge\mcp" executable="bash" osfamily="unix">
 			<arg line="recompile.sh" />
 		</exec>
 	</target>
   <target name="reobfuscate">
-		<exec dir="${basedir}\forge\mcp" executable="cmd" osfamily="windows">
+		<exec dir="${basedir}\temp\forge\mcp" executable="cmd" osfamily="windows">
 			<arg line="/c reobfuscate_srg.bat" />
 		</exec>
-		<exec dir="${basedir}\forge\mcp" executable="bash" osfamily="unix">
+		<exec dir="${basedir}\temp\forge\mcp" executable="bash" osfamily="unix">
 			<arg line="reobfuscate_srg.sh" />
 		</exec>
 	</target>
   <target name="build">
 		<!-- Prep for the build -->
-		<antcall target="clean" />
+		<!-- <antcall target="forge" /> -->
 		<antcall target="copy" />
     <antcall target="increment_build_number" />
     <antcall target="replace_tokens" />
@@ -49,34 +52,14 @@
 
 		<!-- Build the jar -->
 		<mkdir dir="${basedir}\releases\Gems\" />
-		<jar destfile="${basedir}\Releases\Gems\Gems_${build.build_type}_${build.build_number}.jar">
-			<fileset dir="${basedir}\forge\mcp\reobf\minecraft" />
-			<fileset dir="${basedir}\source\Gems\resources"/>
-      <fileset dir="${basedir}\source\Gems\" includes="LICENSE" />
-      <fileset dir="${basedir}\forge\mcp\src\minecraft" includes="mcmod.info" />
+		<jar destfile="${basedir}\Gems_${build.build_type}_${build.build_number}.jar">
+			<fileset dir="${basedir}\temp\forge\mcp\reobf\minecraft" />
+			<fileset dir="${basedir}\resources"/>
+      <fileset dir="${basedir}" includes="LICENSE" />
+      <fileset dir="${basedir}\temp\forge\mcp\src\minecraft" includes="mcmod.info" />
 		</jar>
 
-		<!-- Clean up the MCP source now that we are done -->
-		<antcall target="clean" />
-	</target>
-  <target name="test">
-		<!-- Prep for the build -->
-		<antcall target="clean" />
-		<antcall target="copy" />
-		<antcall target="recompile" />		
-		<antcall target="reobfuscate" />
-
-		<!-- Build the jar -->
-		<mkdir dir="${basedir}\releases\Gems\" />
-    <delete file="${basedir}\Releases\Gems\Gems_Test.jar"/>
-		<jar destfile="${basedir}\Releases\Gems\Gems_Test.jar">
-			<fileset dir="${basedir}\forge\mcp\reobf\minecraft" />
-			<fileset dir="${basedir}\source\Gems\resources"/>
-      <fileset dir="${basedir}\source\Gems\" includes="LICENSE" />
-      <fileset dir="${basedir}\forge\mcp\src\minecraft" includes="mcmod.info" />
-		</jar>
-
-		<!-- Clean up the MCP source now that we are done -->
+		<!-- Clean up the Temp source now that we are done -->
 		<antcall target="clean" />
 	</target>
 </project>
