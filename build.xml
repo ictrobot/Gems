@@ -22,8 +22,8 @@
 		</propertyfile>
 	</target>
   <target name="replace_tokens">
-		<replace file="${basedir}\temp\forge\mcp\src\ictrobot\gems\Reference.java" token="@VERSION@" value="${build.build_type}_${build.build_number}" />
-		<replace file="${basedir}\temp\forge\mcp\src\ictrobot\gems\Reference.java" token="@BUILD_NUMBER@" value="${build.build_number}" />
+		<replace file="${basedir}\temp\forge\mcp\src\minecraft\ictrobot\gems\Reference.java" token="@VERSION@" value="${build.build_type}_${build.build_number}" />
+		<replace file="${basedir}\temp\forge\mcp\src\minecraft\ictrobot\gems\Reference.java" token="@BUILD_NUMBER@" value="${build.build_number}" />
 	</target>
  <target name="recompile">
 		<exec dir="${basedir}\temp\forge\mcp" executable="cmd" osfamily="windows">
