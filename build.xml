@@ -9,7 +9,7 @@
 			<arg line="/c install.cmd" />
 		</exec>
 		<exec dir="${basedir}\temp\forge\" executable="bash" osfamily="unix">
-			<arg line="install.sh" />
+      <arg line="python install.py" />
 		</exec>
 	</target>
 	<target name="clean">
