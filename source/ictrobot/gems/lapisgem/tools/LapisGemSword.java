@@ -6,15 +6,15 @@ import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTool;
+import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
 
-public class LapisGemSword extends ItemTool {
+public class LapisGemSword extends ItemSword {
       
   public static final Block[] swordBlock = {Block.web};
   
   public LapisGemSword(int id, EnumToolMaterial ToolMaterial) {
-    super(id, 2F, ToolMaterial, swordBlock);
+    super(id, ToolMaterial);
     func_111206_d("Gems:LapisGemSword");
   }
   
