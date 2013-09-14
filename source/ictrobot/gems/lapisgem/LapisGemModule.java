@@ -48,7 +48,8 @@ public class LapisGemModule {
   public static Item lapisGemSword;
   //Define Blocks - Lapis Gem
   public static Block blockLapisGem;
-    
+  //Define Blocks
+  public static int lapisGemSwordDamage;
   public static void Config(File file) {
     Configuration config = new Configuration(file);
     config.load();
@@ -60,9 +61,11 @@ public class LapisGemModule {
     lapisGemBootsID = config.get(Configuration.CATEGORY_ITEM, "LapisGemBoots", 5014).getInt();
     lapisGemPaxelID = config.get(Configuration.CATEGORY_ITEM, "lapisGemPaxel", 5021).getInt();
     lapisGemSwordID = config.get(Configuration.CATEGORY_ITEM, "LapisGemSword", 5022).getInt();
-    
+    lapisGemSwordDamage = config.get(Configuration.CATEGORY_GENERAL, "lapisGemSwordDamage", 10).getInt();
     blockLapisGemID = config.get(Configuration.CATEGORY_BLOCK, "BlockLapisGem", 1001).getInt();
     config.save();
+    
+    lapisGemSwordDamage = lapisGemSwordDamage - 4;
   }
   
   public static void Settings() {
@@ -73,7 +76,7 @@ public class LapisGemModule {
     EnumToolMaterial lapisGemPaxelMaterial = EnumHelper.addToolMaterial("Lapis Gem Tool", 4, 2048, 10F, -3F, 50);
     lapisGemPaxel = (new LapisGemPaxel(lapisGemPaxelID, 10F, lapisGemPaxelMaterial)).setUnlocalizedName("lapisGemPaxel").setCreativeTab(CreativeTabs.tabTools);
     //Swords - Lapis Gem
-    EnumToolMaterial lapisGemSwordMaterial = EnumHelper.addToolMaterial("Lapis Gem Sword", 4, 2048, 10F, 6F, 50);
+    EnumToolMaterial lapisGemSwordMaterial = EnumHelper.addToolMaterial("Lapis Gem Sword", 4, 2048, 10F, lapisGemSwordDamage, 50);
     lapisGemSword = (new LapisGemSword(lapisGemSwordID, lapisGemSwordMaterial).setUnlocalizedName("LapisGemSword").setCreativeTab(CreativeTabs.tabCombat));
     //Armor - Lapis Gem
     EnumArmorMaterial lapisGemArmorMaterial = EnumHelper.addArmorMaterial("Lapis Gem Armor", 40, new int[] { 4, 9, 7, 4 }, 50);
