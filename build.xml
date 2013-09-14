@@ -1,5 +1,8 @@
 <?xml version="1.0" ?> 
 <project name="Gems" default="build" basedir="">
+
+  <property file="build.properties" prefix="build"/>
+
   <target name="forge">
     <delete dir="${basedir}/temp/" />
     <mkdir dir="${basedir}/temp/"/>
@@ -14,6 +17,10 @@
 	</target>
 	<target name="clean">
 		<delete dir="${basedir}\temp\" />
+	</target>
+	<target name="cleanlocal">
+		<delete dir="${basedir}\temp\forge\mcp\src\minecraft\ictrobot" />
+    	<delete dir="${basedir}\temp\forge\mcp\reobf\minecraft" />
 	</target>
   <target name="copy">
 		<copy todir="${basedir}\temp\forge\mcp\src\minecraft">
@@ -38,6 +45,7 @@
 	</target>
   <target name="build">
 		<!-- Prep for the build -->
+    <antcall target="clean" />
 		<antcall target="forge" />
 		<antcall target="copy" />
 		<antcall target="recompile" />		
@@ -45,7 +53,7 @@
 
 		<!-- Build the jar -->
 		<mkdir dir="${basedir}\jars\" />
-		<jar destfile="${basedir}\jars\Gems.jar">
+		<jar destfile="${basedir}\jars\Gems_${build.build_type}_${build.build_number}.jar.jar">
 			<fileset dir="${basedir}\temp\forge\mcp\reobf\minecraft" />
 			<fileset dir="${basedir}\resources"/>
       <fileset dir="${basedir}" includes="LICENSE" />
@@ -54,5 +62,25 @@
 
 		<!-- Clean up the Temp source now that we are done -->
 		<antcall target="clean" />
+	</target>
+  <target name="buildlocal">
+    <!-- LOCAL BUILDS - MCP already installed -->
+		<!-- Prep for the build -->
+    <antcall target="cleanlocal" />
+		<antcall target="copy" />
+		<antcall target="recompile" />		
+		<antcall target="reobfuscate" />
+
+		<!-- Build the jar -->
+		<mkdir dir="${basedir}\jars\" />
+		<jar destfile="${basedir}\jars\Gems_${build.build_type}_${build.build_number}.jar">
+			<fileset dir="${basedir}\temp\forge\mcp\reobf\minecraft\ictrobot" />
+			<fileset dir="${basedir}\resources"/>
+      <fileset dir="${basedir}" includes="LICENSE" />
+      <fileset dir="${basedir}\temp\forge\mcp\src\minecraft" includes="mcmod.info" />
+		</jar>
+
+		<!-- Clean up the Temp source now that we are done -->
+		<antcall target="cleanlocal" />
 	</target>
 </project>
