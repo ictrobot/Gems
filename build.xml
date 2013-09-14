@@ -19,15 +19,27 @@
 		<delete dir="${basedir}\temp\" />
 	</target>
 	<target name="cleanlocal">
+    <delete file="${basedir}\forge\mcp\src\minecraft\mcmod.info" />
 		<delete dir="${basedir}\temp\forge\mcp\src\minecraft\ictrobot" />
-    	<delete dir="${basedir}\temp\forge\mcp\reobf\minecraft" />
+    <delete dir="${basedir}\temp\forge\mcp\reobf\minecraft" />
 	</target>
   <target name="copy">
 		<copy todir="${basedir}\temp\forge\mcp\src\minecraft">
 			<fileset dir="${basedir}\source\"/>
 		</copy>
 	</target>
- <target name="recompile">
+  <target name="replace_tokens">
+		<replace file="${basedir}\temp\forge\mcp\src\minecraft\ictrobot\gems\Reference.java" token="@VERSION@" value="${build.build_type}_${build.build_number}" />
+		<replace file="${basedir}\temp\forge\mcp\src\minecraft\ictrobot\gems\Reference.java" token="@BUILD_NUMBER@" value="${build.build_number}" />
+    <replace file="${basedir}\temp\forge\mcp\src\minecraft\mcmod.info" token="@VERSION@" value="${build.build_type}_${build.build_number}" />
+		<replace file="${basedir}\temp\forge\mcp\src\minecraft\mcmod.info" token="@BUILD_NUMBER@" value="${build.build_number}" />
+	</target>
+  <target name="increment_build_number">
+		<propertyfile file="${basedir}\build.properties">
+			<entry key="build_number" type="int" operation="+" default="1"/>
+		</propertyfile>
+	</target>
+  <target name="recompile">
 		<exec dir="${basedir}\temp\forge\mcp" executable="cmd" osfamily="windows">
 			<arg line="/c recompile.bat" />
 		</exec>
@@ -45,13 +57,14 @@
 	</target>
   <target name="build">
 		<!-- Prep for the build -->
+    <antcall target="increment_build_number" />	
     <antcall target="clean" />
 		<antcall target="forge" />
 		<antcall target="copy" />
+    <antcall target="replace_tokens" />
 		<antcall target="recompile" />		
 		<antcall target="reobfuscate" />
-
-		<!-- Build the jar -->
+    <!-- Build the jar -->
 		<mkdir dir="${basedir}\jars\" />
 		<jar destfile="${basedir}\jars\Gems_${build.build_type}_${build.build_number}.jar.jar">
 			<fileset dir="${basedir}\temp\forge\mcp\reobf\minecraft" />
@@ -66,11 +79,12 @@
   <target name="buildlocal">
     <!-- LOCAL BUILDS - MCP already installed -->
 		<!-- Prep for the build -->
+    <antcall target="increment_build_number" />	
     <antcall target="cleanlocal" />
 		<antcall target="copy" />
+    <antcall target="replace_tokens" />
 		<antcall target="recompile" />		
 		<antcall target="reobfuscate" />
-
 		<!-- Build the jar -->
 		<mkdir dir="${basedir}\jars\" />
 		<jar destfile="${basedir}\jars\Gems_${build.build_type}_${build.build_number}.jar">
