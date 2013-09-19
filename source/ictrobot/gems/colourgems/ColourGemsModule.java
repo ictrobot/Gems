@@ -31,6 +31,9 @@ public class ColourGemsModule {
    public static int sapphirePaxelID;
    public static int greenSapphirePaxelID;
    public static int rubyPaxelID;
+   public static int sapphireSwordID;
+   public static int greenSapphireSwordID;
+   public static int rubySwordID;
    public static int blockSapphireID;
    public static int blockGreenSapphireID;
    public static int blockRubyID;
@@ -49,6 +52,9 @@ public class ColourGemsModule {
    public static Item sapphirePaxel;
    public static Item greenSapphirePaxel;
    public static Item rubyPaxel;
+   public static Item sapphireSword;
+   public static Item greenSapphireSword;
+   public static Item rubySword;
    
    //Define World Gen - Colour Gems
    public static WorldSapphire worldSapphire = new WorldSapphire();
@@ -65,7 +71,9 @@ public class ColourGemsModule {
       sapphirePaxelID = config.get(Configuration.CATEGORY_ITEM, "SapphirePaxel", 5044).getInt();
       greenSapphirePaxelID = config.get(Configuration.CATEGORY_ITEM, "GreenSapphirePaxel", 5045).getInt();
       rubyPaxelID = config.get(Configuration.CATEGORY_ITEM, "RubyPaxel", 5046).getInt();
-      
+      sapphireSwordID = config.get(Configuration.CATEGORY_ITEM, "SapphireSword", 5047).getInt();
+      greenSapphireSwordID = config.get(Configuration.CATEGORY_ITEM, "GreenSapphireSword", 5048).getInt();
+      rubySwordID = config.get(Configuration.CATEGORY_ITEM, "RubySword", 5049).getInt();
       //Blocks
       oreSapphireID = config.get(Configuration.CATEGORY_BLOCK, "OreSapphire", 1011).getInt();
       oreGreenSapphireID = config.get(Configuration.CATEGORY_BLOCK, "OreGreenSapphire", 1012).getInt();
@@ -93,6 +101,10 @@ public class ColourGemsModule {
       sapphirePaxel = (new ColourGemPaxel(sapphirePaxelID, 8F, colourgemToolMaterial, "Sapphire")).setUnlocalizedName("sapphirePaxel").setCreativeTab(CreativeTabs.tabTools);
       greenSapphirePaxel = (new ColourGemPaxel(greenSapphirePaxelID, 8F, colourgemToolMaterial, "GreenSapphire")).setUnlocalizedName("greenSapphirePaxel").setCreativeTab(CreativeTabs.tabTools);
       rubyPaxel = (new ColourGemPaxel(rubyPaxelID, 8F, colourgemToolMaterial, "Ruby")).setUnlocalizedName("rubyPaxel").setCreativeTab(CreativeTabs.tabTools);
+      EnumToolMaterial colourgemSwordMaterial = EnumHelper.addToolMaterial("Gem Sword", 3, 512, 8.0F, 3.0F, 10);
+      sapphireSword = (new ColourGemSword(sapphireSwordID, colourgemSwordMaterial, "Sapphire")).setUnlocalizedName("sapphireSword").setCreativeTab(CreativeTabs.tabCombat);
+      greenSapphireSword = (new ColourGemSword(greenSapphireSwordID, colourgemSwordMaterial, "GreenSapphire")).setUnlocalizedName("greenSapphireSword").setCreativeTab(CreativeTabs.tabCombat);
+      rubySword = (new ColourGemSword(rubySwordID, colourgemSwordMaterial, "Ruby")).setUnlocalizedName("rubySword").setCreativeTab(CreativeTabs.tabCombat);
    }
     
     public static void WorldGen() {
@@ -105,6 +117,9 @@ public class ColourGemsModule {
       GameRegistry.addRecipe(new ItemStack(sapphirePaxel), "lbl", " s ", " s ", 'b', new ItemStack(blockSapphire), 'l', new ItemStack(sapphire), 's', new ItemStack(Item.stick));
       GameRegistry.addRecipe(new ItemStack(greenSapphirePaxel), "lbl", " s ", " s ", 'b', new ItemStack(blockGreenSapphire), 'l', new ItemStack(greenSapphire), 's', new ItemStack(Item.stick));
       GameRegistry.addRecipe(new ItemStack(rubyPaxel), "lbl", " s ", " s ", 'b', new ItemStack(blockRuby), 'l', new ItemStack(ruby), 's', new ItemStack(Item.stick));
+      GameRegistry.addRecipe(new ItemStack(sapphireSword), " g ", " g ", " s ", 'g', new ItemStack(sapphire), 's', new ItemStack(Item.stick));
+      GameRegistry.addRecipe(new ItemStack(greenSapphireSword), " g ", " g ", " s ", 'g', new ItemStack(greenSapphire), 's', new ItemStack(Item.stick));
+      GameRegistry.addRecipe(new ItemStack(rubySword), " g ", " g ", " s ", 'g', new ItemStack(ruby), 's', new ItemStack(Item.stick));
       GameRegistry.addRecipe(new ItemStack(blockSapphire), "ggg", "ggg", "ggg", 'g', new ItemStack(sapphire));
       GameRegistry.addRecipe(new ItemStack(blockGreenSapphire), "ggg", "ggg", "ggg", 'g', new ItemStack(greenSapphire));
       GameRegistry.addRecipe(new ItemStack(blockRuby), "ggg", "ggg", "ggg", 'g', new ItemStack(ruby));
@@ -143,5 +158,11 @@ public class ColourGemsModule {
       GameRegistry.registerItem(greenSapphirePaxel, "greenSapphirePaxel");
       LanguageRegistry.addName(rubyPaxel, "Ruby Paxel");
       GameRegistry.registerItem(rubyPaxel, "rubyPaxel");
+      LanguageRegistry.addName(sapphireSword, "Sapphire Sword");
+      GameRegistry.registerItem(sapphireSword, "sapphireSword");
+      LanguageRegistry.addName(greenSapphireSword, "Green Sapphire Sword");
+      GameRegistry.registerItem(greenSapphireSword, "greenSapphireSword");
+      LanguageRegistry.addName(rubySword, "Ruby Sword");
+      GameRegistry.registerItem(rubySword, "rubySword");
     }
 }
