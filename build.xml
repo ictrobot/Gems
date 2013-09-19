@@ -97,4 +97,8 @@
 		<!-- Clean up the Temp source now that we are done -->
 		<antcall target="cleanlocal" />
 	</target>
+  <target name="SetupForge">
+    <antcall target="clean" />
+		<antcall target="forge" />
+  </target>
 </project>
