@@ -2,7 +2,7 @@ package ictrobot.gems.colourgems.world;
 
 import java.util.Random;
 
-import ictrobot.gems.colourgems.ColourGemsModule;
+import ictrobot.gems.module.ColourGemsModule;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;

@@ -1,9 +1,10 @@
-package ictrobot.gems.colourgems;
+package ictrobot.gems.module;
 
-import ictrobot.gems.colourgems.block.*;
+import ictrobot.core.helper.tool.*;
+import ictrobot.core.item.*;
+import ictrobot.core.tool.*;
+import ictrobot.core.block.*;
 import ictrobot.gems.colourgems.world.*;
-import ictrobot.gems.colourgems.items.*;
-import ictrobot.gems.colourgems.tools.*;
 
 import java.io.File;
 
@@ -12,12 +13,11 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
-import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class ColourGemsModule {
     
@@ -86,25 +86,23 @@ public class ColourGemsModule {
 
     public static void Settings() {
       //Blocks - Colour Gems
-      oreSapphire = (new OreSapphire(oreSapphireID, Material.rock)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("oreSapphire").setCreativeTab(CreativeTabs.tabBlock);
-      oreGreenSapphire = (new OreGreenSapphire(oreGreenSapphireID, Material.rock)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("oreGreenSapphire").setCreativeTab(CreativeTabs.tabBlock);
-      oreRuby = (new OreRuby(oreRubyID, Material.rock)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("oreRuby").setCreativeTab(CreativeTabs.tabBlock);
-      blockSapphire = (new BlockGem(blockSapphireID, "BlockSapphire")).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("blockSapphire").setCreativeTab(CreativeTabs.tabBlock);
-      blockGreenSapphire = (new BlockGem(blockGreenSapphireID, "BlockGreenSapphire")).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("blockGreenSapphire").setCreativeTab(CreativeTabs.tabBlock);
-      blockRuby = (new BlockGem(blockRubyID, "BlockRuby")).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("blockRuby").setCreativeTab(CreativeTabs.tabBlock);
+      oreSapphire = (new Ore(oreSapphireID, "Sapphire", sapphireID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("oreSapphire").setCreativeTab(CreativeTabs.tabBlock);
+      oreGreenSapphire = (new Ore(oreGreenSapphireID, "GreenSapphire", greenSapphireID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("oreGreenSapphire").setCreativeTab(CreativeTabs.tabBlock);
+      oreRuby = (new Ore(oreRubyID, "Ruby", rubyID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("oreRuby").setCreativeTab(CreativeTabs.tabBlock);
+      blockSapphire = (new BasicBlock(blockSapphireID, "Sapphireblock", Material.iron)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("blockSapphire").setCreativeTab(CreativeTabs.tabBlock);
+      blockGreenSapphire = (new BasicBlock(blockGreenSapphireID, "GreenSapphireblock", Material.iron)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("blockGreenSapphire").setCreativeTab(CreativeTabs.tabBlock);
+      blockRuby = (new BasicBlock(blockRubyID, "Rubyblock", Material.iron)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("blockRuby").setCreativeTab(CreativeTabs.tabBlock);
       //Items - Colour Gems
-      sapphire = (new Gem(sapphireID, "GemSapphire")).setUnlocalizedName("Sapphire").setCreativeTab(CreativeTabs.tabMaterials);
-      greenSapphire = (new Gem(greenSapphireID, "GemGreenSapphire")).setUnlocalizedName("GreenSapphire").setCreativeTab(CreativeTabs.tabMaterials);
-      ruby = (new Gem(rubyID, "GemRuby")).setUnlocalizedName("Ruby").setCreativeTab(CreativeTabs.tabMaterials);
+      sapphire = (new Gem(sapphireID, "Sapphire"));
+      greenSapphire = (new Gem(greenSapphireID, "GreenSapphire"));
+      ruby = (new Gem(rubyID, "Ruby"));
       //Tools - Colour Gems
-      EnumToolMaterial colourgemToolMaterial = EnumHelper.addToolMaterial("Gem Tool", 3, 512, 8.0F, -3.0F, 10);
-      sapphirePaxel = (new ColourGemPaxel(sapphirePaxelID, 8F, colourgemToolMaterial, "Sapphire")).setUnlocalizedName("sapphirePaxel").setCreativeTab(CreativeTabs.tabTools);
-      greenSapphirePaxel = (new ColourGemPaxel(greenSapphirePaxelID, 8F, colourgemToolMaterial, "GreenSapphire")).setUnlocalizedName("greenSapphirePaxel").setCreativeTab(CreativeTabs.tabTools);
-      rubyPaxel = (new ColourGemPaxel(rubyPaxelID, 8F, colourgemToolMaterial, "Ruby")).setUnlocalizedName("rubyPaxel").setCreativeTab(CreativeTabs.tabTools);
-      EnumToolMaterial colourgemSwordMaterial = EnumHelper.addToolMaterial("Gem Sword", 3, 512, 8.0F, 3.0F, 10);
-      sapphireSword = (new ColourGemSword(sapphireSwordID, colourgemSwordMaterial, "Sapphire")).setUnlocalizedName("sapphireSword").setCreativeTab(CreativeTabs.tabCombat);
-      greenSapphireSword = (new ColourGemSword(greenSapphireSwordID, colourgemSwordMaterial, "GreenSapphire")).setUnlocalizedName("greenSapphireSword").setCreativeTab(CreativeTabs.tabCombat);
-      rubySword = (new ColourGemSword(rubySwordID, colourgemSwordMaterial, "Ruby")).setUnlocalizedName("rubySword").setCreativeTab(CreativeTabs.tabCombat);
+      sapphirePaxel = (new Paxel(sapphirePaxelID, ToolMaterials.Sapphire));
+      greenSapphirePaxel = (new Paxel(greenSapphirePaxelID,  ToolMaterials.GreenSapphire));
+      rubyPaxel = (new Paxel(rubyPaxelID,  ToolMaterials.Ruby));
+      sapphireSword = (new Sword(sapphireSwordID, ToolMaterials.Sapphire));
+      greenSapphireSword = (new Sword(greenSapphireSwordID, ToolMaterials.GreenSapphire));
+      rubySword = (new Sword(rubySwordID, ToolMaterials.Ruby));
    }
     
     public static void WorldGen() {
@@ -148,10 +146,13 @@ public class ColourGemsModule {
       //Items - Coloured Gems
       LanguageRegistry.addName(sapphire, "Sapphire");
       GameRegistry.registerItem(sapphire, "sapphire");
+      OreDictionary.registerOre("gemSapphire", sapphire);
       LanguageRegistry.addName(greenSapphire, "Green Sapphire");
       GameRegistry.registerItem(greenSapphire, "greenSapphire");
+      OreDictionary.registerOre("gemGreenSapphire", greenSapphire);
       LanguageRegistry.addName(ruby, "Ruby");
       GameRegistry.registerItem(ruby, "ruby");
+      OreDictionary.registerOre("gemRuby", ruby);
       LanguageRegistry.addName(sapphirePaxel, "Sapphire Paxel");
       GameRegistry.registerItem(sapphirePaxel, "sapphirePaxel");
       LanguageRegistry.addName(greenSapphirePaxel, "Green Sapphire Paxel");

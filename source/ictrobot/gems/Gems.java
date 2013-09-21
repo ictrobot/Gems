@@ -1,10 +1,10 @@
 package ictrobot.gems;
 
 import net.minecraftforge.common.Configuration;
-import ictrobot.gems.proxy.*;
-import ictrobot.gems.vanillapaxel.VanillaPaxelModule;
-import ictrobot.gems.lapisgem.LapisGemModule;
-import ictrobot.gems.colourgems.ColourGemsModule;
+import ictrobot.core.proxy.*;
+import ictrobot.gems.module.ColourGemsModule;
+import ictrobot.gems.module.LapisGemModule;
+import ictrobot.gems.module.VanillaPaxelModule;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -24,7 +24,7 @@ public class Gems {
   public boolean VanillaPaxelEnable;
   public boolean ColouredGemsEnable;
   
-  @SidedProxy(clientSide = "ictrobot.gems.proxy.ClientProxy", serverSide = "ictrobot.gems.proxy.CommonProxy")
+  @SidedProxy(clientSide = "ictrobot.core.proxy.ClientProxy", serverSide = "ictrobot.core.proxy.CommonProxy")
   public static CommonProxy proxy;
 
   @EventHandler

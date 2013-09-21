@@ -1,27 +1,23 @@
-package ictrobot.gems.lapisgem;
+package ictrobot.gems.module;
 
 import java.io.File;
 
+import ictrobot.core.helper.tool.ToolMaterials;
+import ictrobot.core.item.*;
+import ictrobot.core.tool.*;
+import ictrobot.core.block.*;
 import ictrobot.gems.Gems;
-import ictrobot.gems.lapisgem.armor.LapisGemBoots;
-import ictrobot.gems.lapisgem.armor.LapisGemChestplate;
-import ictrobot.gems.lapisgem.armor.LapisGemHelmet;
-import ictrobot.gems.lapisgem.armor.LapisGemLeggings;
-import ictrobot.gems.lapisgem.block.BlockLapisGem;
-import ictrobot.gems.lapisgem.items.ChargedLapisGem;
-import ictrobot.gems.lapisgem.items.LapisGem;
-import ictrobot.gems.lapisgem.tools.LapisGemPaxel;
-import ictrobot.gems.lapisgem.tools.LapisGemSword;
+import ictrobot.gems.lapisgem.armor.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumArmorMaterial;
-import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -70,14 +66,12 @@ public class LapisGemModule {
   
   public static void Settings() {
     //Items - Lapis Gem
-    lapisGem = (new LapisGem(lapisGemID)).setMaxStackSize(64).setUnlocalizedName("LapisGem").setCreativeTab(CreativeTabs.tabMaterials);
-    chargedLapisGem = (new ChargedLapisGem(chargedLapisGemID)).setMaxStackSize(16).setUnlocalizedName("ChargedLapisGem").setCreativeTab(CreativeTabs.tabMaterials);
+    lapisGem = (new Gem(lapisGemID, "Lapis")).setMaxStackSize(64);
+    chargedLapisGem = (new Gem(chargedLapisGemID, "ChargedLapis")).setMaxStackSize(16);
     //Tools - Lapis Gem
-    EnumToolMaterial lapisGemPaxelMaterial = EnumHelper.addToolMaterial("Lapis Gem Tool", 4, 2048, 10F, -3F, 50);
-    lapisGemPaxel = (new LapisGemPaxel(lapisGemPaxelID, 10F, lapisGemPaxelMaterial)).setUnlocalizedName("lapisGemPaxel").setCreativeTab(CreativeTabs.tabTools);
+    lapisGemPaxel = (new Paxel(lapisGemPaxelID, ToolMaterials.ChargedLapisGem));
     //Swords - Lapis Gem
-    EnumToolMaterial lapisGemSwordMaterial = EnumHelper.addToolMaterial("Lapis Gem Sword", 4, 2048, 10F, lapisGemSwordDamage, 50);
-    lapisGemSword = (new LapisGemSword(lapisGemSwordID, lapisGemSwordMaterial).setUnlocalizedName("LapisGemSword").setCreativeTab(CreativeTabs.tabCombat));
+    lapisGemSword = (new Sword(lapisGemSwordID, ToolMaterials.ChargedLapisGem));
     //Armor - Lapis Gem
     EnumArmorMaterial lapisGemArmorMaterial = EnumHelper.addArmorMaterial("Lapis Gem Armor", 40, new int[] { 4, 9, 7, 4 }, 50);
     lapisGemHelmet = new LapisGemHelmet(lapisGemHelmetID, lapisGemArmorMaterial, Gems.proxy.addArmor("LapisGem"), 0).setUnlocalizedName("LapisGemHelmet").setCreativeTab(CreativeTabs.tabCombat);
@@ -85,7 +79,7 @@ public class LapisGemModule {
     lapisGemLeggings = new LapisGemLeggings(lapisGemLeggingsID, lapisGemArmorMaterial, Gems.proxy.addArmor("LapisGem"), 2).setUnlocalizedName("LapisGemLeggings").setCreativeTab(CreativeTabs.tabCombat);
     lapisGemBoots = new LapisGemBoots(lapisGemBootsID, lapisGemArmorMaterial, Gems.proxy.addArmor("LapisGem"), 3).setUnlocalizedName("LapisGemBoots").setCreativeTab(CreativeTabs.tabCombat);
     //Blocks - Lapis Gem
-    blockLapisGem = new BlockLapisGem(blockLapisGemID, Material.rock).setHardness(4.0F).setResistance(7.5F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BlockLapisGem").setCreativeTab(CreativeTabs.tabBlock);
+    blockLapisGem = new BasicBlock(blockLapisGemID, "LapisGemblock",Material.rock).setHardness(4.0F).setResistance(7.5F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BlockLapisGem").setCreativeTab(CreativeTabs.tabBlock);
     // Register Recipes - Lapis Gem
     GameRegistry.addRecipe(new ItemStack(lapisGem, 1), "lll", "ldl", "lll", 'l', new ItemStack(Item.dyePowder, 1, 4), 'd', new ItemStack(Item.diamond));
     GameRegistry.addSmelting(lapisGemID + 256, new ItemStack(chargedLapisGem), 1);
@@ -103,8 +97,10 @@ public class LapisGemModule {
     //Items - Lapis Gem
     LanguageRegistry.addName(lapisGem, "Lapis Gem");
     GameRegistry.registerItem(lapisGem, "lapisGem");
+    OreDictionary.registerOre("gemLapis", lapisGem);
     LanguageRegistry.addName(chargedLapisGem, "Lapis Gem");
     GameRegistry.registerItem(chargedLapisGem, "chargedLapisGem");
+    OreDictionary.registerOre("gemChargedLapis", chargedLapisGem);
     LanguageRegistry.addName(lapisGemHelmet, "Lapis Gem Helmet");
     GameRegistry.registerItem(lapisGemHelmet, "lapisGemHelmet");
     LanguageRegistry.addName(lapisGemChestplate, "Lapis Gem Chestplate");
