@@ -4,20 +4,18 @@ import ictrobot.core.helper.tool.*;
 import ictrobot.core.item.*;
 import ictrobot.core.tool.*;
 import ictrobot.core.block.*;
+import ictrobot.core.helper.register.Register;
 import ictrobot.gems.colourgems.world.*;
 
 import java.io.File;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class ColourGemsModule {
     
@@ -37,6 +35,7 @@ public class ColourGemsModule {
    public static int blockSapphireID;
    public static int blockGreenSapphireID;
    public static int blockRubyID;
+
    //Define Blocks - Colour Gems
    public static Block oreSapphire;
    public static Block oreGreenSapphire;
@@ -56,6 +55,26 @@ public class ColourGemsModule {
    public static Item greenSapphireSword;
    public static Item rubySword;
    
+   public static int sapphirePickaxeID;
+   public static int greenSapphirePickaxeID;
+   public static int rubyPickaxeID;
+   public static int sapphireAxeID;
+   public static int greenSapphireAxeID;
+   public static int rubyAxeID;
+   public static int sapphireShovelID;
+   public static int greenSapphireShovelID;
+   public static int rubyShovelID;
+
+   public static Item sapphirePickaxe;
+   public static Item greenSapphirePickaxe;
+   public static Item rubyPickaxe;
+   public static Item sapphireAxe;
+   public static Item greenSapphireAxe;
+   public static Item rubyAxe;
+   public static Item sapphireShovel;
+   public static Item greenSapphireShovel;
+   public static Item rubyShovel;
+   
    //Define World Gen - Colour Gems
    public static WorldSapphire worldSapphire = new WorldSapphire();
    public static WorldGreenSapphire worldGreenSapphire = new WorldGreenSapphire();
@@ -74,6 +93,16 @@ public class ColourGemsModule {
       sapphireSwordID = config.get(Configuration.CATEGORY_ITEM, "SapphireSword", 5047).getInt();
       greenSapphireSwordID = config.get(Configuration.CATEGORY_ITEM, "GreenSapphireSword", 5048).getInt();
       rubySwordID = config.get(Configuration.CATEGORY_ITEM, "RubySword", 5049).getInt();
+
+      sapphirePickaxeID = config.get(Configuration.CATEGORY_ITEM, "SapphirePickaxe", 5050).getInt();
+      greenSapphirePickaxeID = config.get(Configuration.CATEGORY_ITEM, "GreenSapphirePickaxe", 5051).getInt();
+      rubyPickaxeID = config.get(Configuration.CATEGORY_ITEM, "RubyPickaxe", 5052).getInt();
+      sapphireAxeID = config.get(Configuration.CATEGORY_ITEM, "SapphireAxe", 5053).getInt();
+      greenSapphireAxeID = config.get(Configuration.CATEGORY_ITEM, "GreenSapphireAxe", 5054).getInt();
+      rubyAxeID = config.get(Configuration.CATEGORY_ITEM, "RubyAxe", 5055).getInt();
+      sapphireShovelID = config.get(Configuration.CATEGORY_ITEM, "SapphireShovel", 5056).getInt();
+      greenSapphireShovelID = config.get(Configuration.CATEGORY_ITEM, "GreenSapphireShovel", 5057).getInt();
+      rubyShovelID = config.get(Configuration.CATEGORY_ITEM, "RubyShovel", 5058).getInt();
       //Blocks
       oreSapphireID = config.get(Configuration.CATEGORY_BLOCK, "OreSapphire", 1011).getInt();
       oreGreenSapphireID = config.get(Configuration.CATEGORY_BLOCK, "OreGreenSapphire", 1012).getInt();
@@ -85,24 +114,38 @@ public class ColourGemsModule {
     }
 
     public static void Settings() {
-      //Blocks - Colour Gems
+      //Ore
       oreSapphire = (new Ore(oreSapphireID, "Sapphire", sapphireID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("oreSapphire").setCreativeTab(CreativeTabs.tabBlock);
       oreGreenSapphire = (new Ore(oreGreenSapphireID, "GreenSapphire", greenSapphireID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("oreGreenSapphire").setCreativeTab(CreativeTabs.tabBlock);
       oreRuby = (new Ore(oreRubyID, "Ruby", rubyID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("oreRuby").setCreativeTab(CreativeTabs.tabBlock);
+      //Gem Blocks
       blockSapphire = (new BasicBlock(blockSapphireID, "Sapphireblock", Material.iron)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("blockSapphire").setCreativeTab(CreativeTabs.tabBlock);
       blockGreenSapphire = (new BasicBlock(blockGreenSapphireID, "GreenSapphireblock", Material.iron)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("blockGreenSapphire").setCreativeTab(CreativeTabs.tabBlock);
       blockRuby = (new BasicBlock(blockRubyID, "Rubyblock", Material.iron)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("blockRuby").setCreativeTab(CreativeTabs.tabBlock);
-      //Items - Colour Gems
+      //Gems
       sapphire = (new Gem(sapphireID, "Sapphire"));
       greenSapphire = (new Gem(greenSapphireID, "GreenSapphire"));
       ruby = (new Gem(rubyID, "Ruby"));
-      //Tools - Colour Gems
+      //Paxel
       sapphirePaxel = (new Paxel(sapphirePaxelID, ToolMaterials.Sapphire));
       greenSapphirePaxel = (new Paxel(greenSapphirePaxelID,  ToolMaterials.GreenSapphire));
       rubyPaxel = (new Paxel(rubyPaxelID,  ToolMaterials.Ruby));
+      //Sword
       sapphireSword = (new Sword(sapphireSwordID, ToolMaterials.Sapphire));
       greenSapphireSword = (new Sword(greenSapphireSwordID, ToolMaterials.GreenSapphire));
       rubySword = (new Sword(rubySwordID, ToolMaterials.Ruby));
+      //Pickaxe
+      sapphirePickaxe = (new Pickaxe(sapphirePickaxeID, ToolMaterials.Sapphire));
+      greenSapphirePickaxe = (new Pickaxe(greenSapphirePickaxeID, ToolMaterials.GreenSapphire));
+      rubyPickaxe = (new Pickaxe(rubyPickaxeID, ToolMaterials.Ruby));
+      //Axe
+      sapphireAxe = (new Axe(sapphireAxeID, ToolMaterials.Sapphire));
+      greenSapphireAxe = (new Axe(greenSapphireAxeID, ToolMaterials.GreenSapphire));
+      rubyAxe = (new Axe(rubyAxeID, ToolMaterials.Ruby));
+      //Shovel
+      sapphireShovel = (new Shovel(sapphireShovelID, ToolMaterials.Sapphire));
+      greenSapphireShovel = (new Shovel(greenSapphireShovelID, ToolMaterials.GreenSapphire));
+      rubyShovel = (new Shovel(rubyShovelID, ToolMaterials.Ruby));
    }
     
     public static void WorldGen() {
@@ -115,6 +158,15 @@ public class ColourGemsModule {
       GameRegistry.addRecipe(new ItemStack(sapphirePaxel), "lbl", " s ", " s ", 'b', new ItemStack(blockSapphire), 'l', new ItemStack(sapphire), 's', new ItemStack(Item.stick));
       GameRegistry.addRecipe(new ItemStack(greenSapphirePaxel), "lbl", " s ", " s ", 'b', new ItemStack(blockGreenSapphire), 'l', new ItemStack(greenSapphire), 's', new ItemStack(Item.stick));
       GameRegistry.addRecipe(new ItemStack(rubyPaxel), "lbl", " s ", " s ", 'b', new ItemStack(blockRuby), 'l', new ItemStack(ruby), 's', new ItemStack(Item.stick));
+      GameRegistry.addRecipe(new ItemStack(sapphirePickaxe), "ggg", " s ", " s ", 'g', new ItemStack(sapphire), 's', new ItemStack(Item.stick));
+      GameRegistry.addRecipe(new ItemStack(greenSapphirePickaxe), "ggg", " s ", " s ", 'g', new ItemStack(greenSapphire), 's', new ItemStack(Item.stick));
+      GameRegistry.addRecipe(new ItemStack(rubyPickaxe), "ggg", " s ", " s ", 'g', new ItemStack(ruby), 's', new ItemStack(Item.stick));
+      GameRegistry.addRecipe(new ItemStack(sapphireAxe), "gg ", "gs ", " s ", 'g', new ItemStack(sapphire), 's', new ItemStack(Item.stick));
+      GameRegistry.addRecipe(new ItemStack(greenSapphireAxe), "gg ", "gs ", " s ", 'g', new ItemStack(greenSapphire), 's', new ItemStack(Item.stick));
+      GameRegistry.addRecipe(new ItemStack(rubyAxe), "gg ", "gs ", " s ", 'g', new ItemStack(ruby), 's', new ItemStack(Item.stick));
+      GameRegistry.addRecipe(new ItemStack(sapphireShovel), " g ", " s ", " s ", 'g', new ItemStack(sapphire), 's', new ItemStack(Item.stick));
+      GameRegistry.addRecipe(new ItemStack(greenSapphireShovel), " g ", " s ", " s ", 'g', new ItemStack(greenSapphire), 's', new ItemStack(Item.stick));
+      GameRegistry.addRecipe(new ItemStack(rubyShovel), " g ", " s ", " s ", 'g', new ItemStack(ruby), 's', new ItemStack(Item.stick));
       GameRegistry.addRecipe(new ItemStack(sapphireSword), " g ", " g ", " s ", 'g', new ItemStack(sapphire), 's', new ItemStack(Item.stick));
       GameRegistry.addRecipe(new ItemStack(greenSapphireSword), " g ", " g ", " s ", 'g', new ItemStack(greenSapphire), 's', new ItemStack(Item.stick));
       GameRegistry.addRecipe(new ItemStack(rubySword), " g ", " g ", " s ", 'g', new ItemStack(ruby), 's', new ItemStack(Item.stick));
@@ -125,45 +177,35 @@ public class ColourGemsModule {
       GameRegistry.addShapelessRecipe(new ItemStack(greenSapphire, 9), new ItemStack(blockGreenSapphire));
       GameRegistry.addShapelessRecipe(new ItemStack(ruby, 9), new ItemStack(blockRuby));
       //Blocks - Coloured Gems
-      LanguageRegistry.addName(oreSapphire, "Sapphire Ore");
-      GameRegistry.registerBlock(oreSapphire, "oreSapphire");
-      MinecraftForge.setBlockHarvestLevel(oreSapphire, "pickaxe", 2);
-      LanguageRegistry.addName(oreGreenSapphire, "Green Sapphire Ore");
-      GameRegistry.registerBlock(oreGreenSapphire, "oreGreenSapphire");
-      MinecraftForge.setBlockHarvestLevel(oreGreenSapphire, "pickaxe", 2);
-      LanguageRegistry.addName(oreRuby, "Ruby Ore");
-      GameRegistry.registerBlock(oreRuby, "oreRuby");
-      MinecraftForge.setBlockHarvestLevel(oreRuby, "pickaxe", 2);
-      LanguageRegistry.addName(blockSapphire, "Block of Sapphire");
-      GameRegistry.registerBlock(blockSapphire, "blockSapphire");
-      MinecraftForge.setBlockHarvestLevel(blockSapphire, "pickaxe", 2);
-      LanguageRegistry.addName(blockGreenSapphire, "Block of Green Sapphire");
-      GameRegistry.registerBlock(blockGreenSapphire, "blockGreenSapphire");
-      MinecraftForge.setBlockHarvestLevel(blockGreenSapphire, "pickaxe", 2);
-      LanguageRegistry.addName(blockRuby, "Block of Ruby");
-      GameRegistry.registerBlock(blockRuby, "blockRuby");
-      MinecraftForge.setBlockHarvestLevel(blockRuby, "pickaxe", 2);
+      Register.Block(oreSapphire, "Sapphire Ore", "pickaxe", 2);
+      Register.Block(oreGreenSapphire, "Green Sapphire Ore", "pickaxe", 2);
+      Register.Block(oreRuby, "Ruby Ore", "pickaxe", 2);
+      Register.Block(blockSapphire, "Sapphire Block", "pickaxe", 2);
+      Register.Block(blockGreenSapphire, "Green Sapphire Block", "pickaxe", 2);
+      Register.Block(blockRuby, "Ruby Block", "pickaxe", 2);
       //Items - Coloured Gems
-      LanguageRegistry.addName(sapphire, "Sapphire");
-      GameRegistry.registerItem(sapphire, "sapphire");
-      OreDictionary.registerOre("gemSapphire", sapphire);
-      LanguageRegistry.addName(greenSapphire, "Green Sapphire");
-      GameRegistry.registerItem(greenSapphire, "greenSapphire");
-      OreDictionary.registerOre("gemGreenSapphire", greenSapphire);
-      LanguageRegistry.addName(ruby, "Ruby");
-      GameRegistry.registerItem(ruby, "ruby");
-      OreDictionary.registerOre("gemRuby", ruby);
-      LanguageRegistry.addName(sapphirePaxel, "Sapphire Paxel");
-      GameRegistry.registerItem(sapphirePaxel, "sapphirePaxel");
-      LanguageRegistry.addName(greenSapphirePaxel, "Green Sapphire Paxel");
-      GameRegistry.registerItem(greenSapphirePaxel, "greenSapphirePaxel");
-      LanguageRegistry.addName(rubyPaxel, "Ruby Paxel");
-      GameRegistry.registerItem(rubyPaxel, "rubyPaxel");
-      LanguageRegistry.addName(sapphireSword, "Sapphire Sword");
-      GameRegistry.registerItem(sapphireSword, "sapphireSword");
-      LanguageRegistry.addName(greenSapphireSword, "Green Sapphire Sword");
-      GameRegistry.registerItem(greenSapphireSword, "greenSapphireSword");
-      LanguageRegistry.addName(rubySword, "Ruby Sword");
-      GameRegistry.registerItem(rubySword, "rubySword");
+      Register.Item(sapphire, "Sapphire");
+      Register.Item(greenSapphire, "Green Sapphire");
+      Register.Item(ruby, "Ruby");
+      Register.Item(sapphirePaxel, "Sapphire Paxel");
+      Register.Item(greenSapphirePaxel, "Green Sapphire Paxel");
+      Register.Item(rubyPaxel, "Ruby Paxel");
+      Register.Item(sapphireSword, "Sapphire Paxel");
+      Register.Item(greenSapphireSword, "Green Sapphire Paxel");
+      Register.Item(rubySword, "Ruby Paxel");
+      
+      Register.Item(sapphirePickaxe, "Sapphire Pickaxe");
+      Register.Item(greenSapphirePickaxe, "Green Sapphire Pickaxe");
+      Register.Item(rubyPickaxe, "Ruby Pickaxe");
+      Register.Item(sapphireAxe, "Sapphire Axe");
+      Register.Item(greenSapphireAxe, "Green Sapphire Axe");
+      Register.Item(rubyAxe, "Ruby Axe");
+      Register.Item(sapphireShovel, "Sapphire Shovel");
+      Register.Item(greenSapphireShovel, "Green Sapphire Shovel");
+      Register.Item(rubyShovel, "Ruby Shovel");
+      
+      Register.Ore("gemSapphire", sapphire);
+      Register.Ore("gemGreenSapphire", greenSapphire);
+      Register.Ore("gemRuby", ruby);
     }
 }

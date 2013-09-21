@@ -2,11 +2,11 @@ package ictrobot.gems.module;
 
 import ictrobot.core.helper.tool.ToolMaterials;
 import ictrobot.core.tool.Paxel;
+import ictrobot.core.helper.register.Register;
 
 import java.io.File;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
@@ -54,15 +54,10 @@ public class VanillaPaxelModule {
     
     public static void Register(){
       //Items - Vanilla Paxel
-      LanguageRegistry.addName(woodPaxel, "Wooden Paxel");
-      GameRegistry.registerItem(woodPaxel, "woodPaxel");
-      LanguageRegistry.addName(stonePaxel, "Stone paxel");
-      GameRegistry.registerItem(stonePaxel, "stonePaxel");
-      LanguageRegistry.addName(ironPaxel, "Iron Paxel");
-      GameRegistry.registerItem(ironPaxel, "ironPaxel");
-      LanguageRegistry.addName(goldPaxel, "Gold Paxel");
-      GameRegistry.registerItem(goldPaxel, "goldPaxel");
-      LanguageRegistry.addName(diamondPaxel, "Diamond Paxel");
-      GameRegistry.registerItem(diamondPaxel, "diamondPaxel");
+      Register.Item(woodPaxel, "Wooden Paxel");
+      Register.Item(stonePaxel, "Stone paxel");
+      Register.Item(ironPaxel, "Iron Paxel");
+      Register.Item(goldPaxel, "Gold Paxel");
+      Register.Item(diamondPaxel, "Diamond Paxel");
     }
 }

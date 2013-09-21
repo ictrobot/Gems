@@ -6,6 +6,7 @@ import ictrobot.core.helper.tool.ToolMaterials;
 import ictrobot.core.item.*;
 import ictrobot.core.tool.*;
 import ictrobot.core.block.*;
+import ictrobot.core.helper.register.Register;
 import ictrobot.gems.Gems;
 import ictrobot.gems.lapisgem.armor.*;
 import net.minecraft.block.Block;
@@ -16,10 +17,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class LapisGemModule {
 
@@ -95,27 +93,18 @@ public class LapisGemModule {
   
   public static void Register(){
     //Items - Lapis Gem
-    LanguageRegistry.addName(lapisGem, "Lapis Gem");
-    GameRegistry.registerItem(lapisGem, "lapisGem");
-    OreDictionary.registerOre("gemLapis", lapisGem);
-    LanguageRegistry.addName(chargedLapisGem, "Lapis Gem");
-    GameRegistry.registerItem(chargedLapisGem, "chargedLapisGem");
-    OreDictionary.registerOre("gemChargedLapis", chargedLapisGem);
-    LanguageRegistry.addName(lapisGemHelmet, "Lapis Gem Helmet");
-    GameRegistry.registerItem(lapisGemHelmet, "lapisGemHelmet");
-    LanguageRegistry.addName(lapisGemChestplate, "Lapis Gem Chestplate");
-    GameRegistry.registerItem(lapisGemChestplate, "lapisGemChestplate");
-    LanguageRegistry.addName(lapisGemLeggings, "Lapis Gem Leggings");
-    GameRegistry.registerItem(lapisGemLeggings, "lapisGemLeggings");
-    LanguageRegistry.addName(lapisGemBoots, "Lapis Gem Boots");
-    GameRegistry.registerItem(lapisGemBoots, "lapisGemBoots");
-    LanguageRegistry.addName(lapisGemPaxel, "Lapis Gem Paxel");
-    GameRegistry.registerItem(lapisGemPaxel, "lapisGemPaxel");
-    LanguageRegistry.addName(lapisGemSword, "Lapis Gem Sword");
-    GameRegistry.registerItem(lapisGemSword, "lapisGemSword");
+    Register.Item(lapisGem, "Lapis Gem");
+    Register.Item(chargedLapisGem, "Lapis Gem");
+    Register.Item(lapisGemHelmet, "Lapis Gem Helmet");
+    Register.Item(lapisGemChestplate, "Lapis Gem Chestplate");
+    Register.Item(lapisGemLeggings, "Lapis Gem Leggings");
+    Register.Item(lapisGemBoots, "Lapis Gem Boots");
+    Register.Item(lapisGemPaxel, "Lapis Gem Paxel");
+    Register.Item(lapisGemSword, "Lapis Gem Sword");
+    //Ore Dictionary
+    Register.Ore("gemLapis", lapisGem);
+    Register.Ore("gemChargedLapis", chargedLapisGem);
     //Blocks - Lapis Gem
-    LanguageRegistry.addName(blockLapisGem, "Block of Lapis Gems");
-    GameRegistry.registerBlock(blockLapisGem, "blockLapisGem");
-    MinecraftForge.setBlockHarvestLevel(blockLapisGem, "pickaxe", 4);
+    Register.Block(blockLapisGem, "Block of Lapis Gems", "pickaxe", 2);
   }
 }
