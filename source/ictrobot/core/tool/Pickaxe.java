@@ -39,7 +39,7 @@ public class Pickaxe extends ItemPickaxe {
         }
         for (Material mat : materialsEffectiveAgainst) {
             if (mat == block.blockMaterial) {
-                return true;
+              return true;
             }
         }
         return false;
