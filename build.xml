@@ -1,5 +1,5 @@
 <?xml version="1.0" ?> 
-<project name="Gems" default="build" basedir="">
+<project name="Gems" default="Build" basedir="">
 
   <property file="build.properties" prefix="build"/>
 
@@ -55,7 +55,7 @@
 			<arg line="reobfuscate_srg.sh" />
 		</exec>
 	</target>
-  <target name="build">
+  <target name="Build">
 		<!-- Prep for the build -->
     <antcall target="increment_build_number" />	
     <antcall target="clean" />
@@ -76,7 +76,7 @@
 		<!-- Clean up the Temp source now that we are done -->
 		<antcall target="clean" />
 	</target>
-  <target name="buildlocal">
+  <target name="BuildLocal">
     <!-- LOCAL BUILDS - MCP already installed -->
 		<!-- Prep for the build -->
     <antcall target="increment_build_number" />	
