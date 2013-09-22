@@ -33,5 +33,5 @@ public class LapisGemBoots extends ItemArmor {
     int k = (int) (entity.prevPosZ + (entity.posZ - entity.prevPosZ) * var4);
     world.spawnEntityInWorld(new EntityLightningBolt(world, i, j, k));
   }
-
+  
 }
