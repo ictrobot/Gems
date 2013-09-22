@@ -16,7 +16,7 @@ public class Ore extends Block {
 
   public Ore(int id, String MaterialID, int DroppedID) {
     super(id, Material.rock);
-    func_111022_d(Core.ModID + ":" + MaterialID + "ore");
+    setTextureName(Core.ModID + ":" + MaterialID + "ore");
     ItemDroppedID = DroppedID + 256;
   }
   

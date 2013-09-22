@@ -25,7 +25,7 @@ public class Shovel extends ItemSpade {
         ToolMaterialID = ToolMaterial.name();
         setUnlocalizedName(ToolMaterialID + ToolType);
         setCreativeTab(CreativeTabs.tabTools);
-        func_111206_d(Core.ModID + ":" + ToolMaterialID + ToolType);
+        setTextureName(Core.ModID + ":" + ToolMaterialID + ToolType);
     }
 
     @Override

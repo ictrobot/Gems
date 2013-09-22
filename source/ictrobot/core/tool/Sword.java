@@ -19,7 +19,7 @@ public class Sword extends ItemSword {
         ToolMaterialID = ToolMaterial.name();
         setUnlocalizedName(ToolMaterialID + ToolType);
         setCreativeTab(CreativeTabs.tabCombat);
-        func_111206_d(Core.ModID + ":" + ToolMaterialID + ToolType);
+        setTextureName(Core.ModID + ":" + ToolMaterialID + ToolType);
     }
 
     @Override

@@ -17,7 +17,7 @@ public class Gem extends Item {
   
   public Gem(int id, String MaterialID) {
     super(id);
-    func_111206_d(Core.ModID + ":" + MaterialID + ItemType);
+    setTextureName(Core.ModID + ":" + MaterialID + ItemType);
     setUnlocalizedName(ItemType + MaterialID);
     setCreativeTab(CreativeTabs.tabMaterials);
   }
