@@ -82,6 +82,6 @@ public class MagneticModule {
       //Items - Coloured Gems
       Register.Item(positive, "Positive Powder");
       Register.Item(negative, "Negative Powder");
-      Register.Item(repelPlayer, "Repel Player");
+      Register.Item(repelPlayer, "Magnetic Jump");
     }
 }
