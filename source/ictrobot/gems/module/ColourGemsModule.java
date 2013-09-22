@@ -119,9 +119,9 @@ public class ColourGemsModule {
 
     public static void Settings() {
       //Ore
-      oreSapphire = (new Ore(oreSapphireID, "Sapphire", sapphireID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("oreSapphire").setCreativeTab(CreativeTabs.tabBlock);
-      oreGreenSapphire = (new Ore(oreGreenSapphireID, "GreenSapphire", greenSapphireID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("oreGreenSapphire").setCreativeTab(CreativeTabs.tabBlock);
-      oreRuby = (new Ore(oreRubyID, "Ruby", rubyID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("oreRuby").setCreativeTab(CreativeTabs.tabBlock);
+      oreSapphire = (new Ore(oreSapphireID, "Sapphire", sapphireID)).setHardness(3.0F);
+      oreGreenSapphire = (new Ore(oreGreenSapphireID, "GreenSapphire", greenSapphireID));
+      oreRuby = (new Ore(oreRubyID, "Ruby", rubyID)).setHardness(3.0F);
       //Gem Blocks
       blockSapphire = (new BasicBlock(blockSapphireID, "Sapphireblock", Material.iron)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("blockSapphire").setCreativeTab(CreativeTabs.tabBlock);
       blockGreenSapphire = (new BasicBlock(blockGreenSapphireID, "GreenSapphireblock", Material.iron)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("blockGreenSapphire").setCreativeTab(CreativeTabs.tabBlock);

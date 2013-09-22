@@ -6,6 +6,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -18,6 +19,11 @@ public class Ore extends Block {
     super(id, Material.rock);
     setTextureName(Core.ModID + ":" + MaterialID + "ore");
     ItemDroppedID = DroppedID + 256;
+    setHardness(3.0F);
+    setResistance(5.0F);
+    setStepSound(Block.soundStoneFootstep);
+    setUnlocalizedName("ore" + MaterialID);
+    setCreativeTab(CreativeTabs.tabBlock);
   }
   
   public int idDropped(int par1, Random random, int par3) {

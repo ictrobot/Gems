@@ -2,9 +2,7 @@ package ictrobot.gems;
 
 import net.minecraftforge.common.Configuration;
 import ictrobot.core.proxy.*;
-import ictrobot.gems.module.ColourGemsModule;
-import ictrobot.gems.module.LapisGemModule;
-import ictrobot.gems.module.VanillaPaxelModule;
+import ictrobot.gems.module.*;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -23,6 +21,7 @@ public class Gems {
   public boolean LapisGemEnable;
   public boolean VanillaPaxelEnable;
   public boolean ColouredGemsEnable;
+  public boolean MagneticModuleEnable;
   
   @SidedProxy(clientSide = "ictrobot.core.proxy.ClientProxy", serverSide = "ictrobot.core.proxy.CommonProxy")
   public static CommonProxy proxy;
@@ -34,6 +33,7 @@ public class Gems {
     LapisGemEnable = config.get(Configuration.CATEGORY_GENERAL, "LapisGemEnable", true).getBoolean(true);
     VanillaPaxelEnable = config.get(Configuration.CATEGORY_GENERAL, "VanillaPaxelEnable", true).getBoolean(true);
     ColouredGemsEnable = config.get(Configuration.CATEGORY_GENERAL, "ColouredGemsEnable", true).getBoolean(true);
+    MagneticModuleEnable = config.get(Configuration.CATEGORY_GENERAL, "MagneticModuleEnable", true).getBoolean(true);
     config.save();
     
     if (LapisGemEnable==true) {
@@ -44,6 +44,9 @@ public class Gems {
     }
     if (ColouredGemsEnable==true) {
       ColourGemsModule.Config(event.getSuggestedConfigurationFile());
+    }
+    if (MagneticModuleEnable==true) {
+      MagneticModule.Config(event.getSuggestedConfigurationFile());
     }
   }
 
@@ -61,6 +64,10 @@ public class Gems {
       ColourGemsModule.Settings();
       ColourGemsModule.WorldGen();
     }
+    if (MagneticModuleEnable==true) {
+      MagneticModule.Settings();
+      MagneticModule.WorldGen();
+    }
   }
 
   @EventHandler
@@ -74,6 +81,9 @@ public class Gems {
     }
     if (ColouredGemsEnable==true) {
       ColourGemsModule.Register();
+    }
+    if (MagneticModuleEnable==true) {
+      MagneticModule.Register();
     }
   }
   
