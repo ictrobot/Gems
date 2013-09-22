@@ -5,7 +5,7 @@ import ictrobot.core.item.*;
 import ictrobot.core.tool.*;
 import ictrobot.core.block.*;
 import ictrobot.core.helper.register.Register;
-import ictrobot.gems.colourgems.world.*;
+import ictrobot.core.world.*;
 
 import java.io.File;
 
@@ -75,12 +75,11 @@ public class ColourGemsModule {
    public static Item greenSapphireShovel;
    public static Item rubyShovel;
    
-   //Define World Gen - Colour Gems
-   public static WorldSapphire worldSapphire = new WorldSapphire();
-   public static WorldGreenSapphire worldGreenSapphire = new WorldGreenSapphire();
-   public static WorldRuby worldRuby = new WorldRuby();
-  
-    public static void Config(File file) {
+   public static Dim0WorldGenerator worldSapphire;
+   public static Dim0WorldGenerator worldGreenSapphire;
+   public static Dim0WorldGenerator worldRuby;
+   
+   public static void Config(File file) {
       Configuration config = new Configuration(file);
       config.load();
       //Items
@@ -111,6 +110,11 @@ public class ColourGemsModule {
       blockGreenSapphireID = config.get(Configuration.CATEGORY_BLOCK, "BlockGreenSapphire", 1015).getInt();
       blockRubyID = config.get(Configuration.CATEGORY_BLOCK, "BlockRuby", 1016).getInt();
       config.save();
+      
+      //Define World Gen - Colour Gems
+      worldSapphire = new Dim0WorldGenerator(oreSapphireID, 40, 5, 7, 8);
+      worldGreenSapphire = new Dim0WorldGenerator(oreGreenSapphireID, 40, 5, 7, 8);
+      worldRuby = new Dim0WorldGenerator(oreRubyID, 40, 5, 7, 8);
     }
 
     public static void Settings() {
