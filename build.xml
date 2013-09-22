@@ -6,7 +6,7 @@
   <target name="forge">
     <delete dir="${basedir}/temp/" />
     <mkdir dir="${basedir}/temp/"/>
-    <get src="http://files.minecraftforge.net/minecraftforge/minecraftforge-src-1.6.2-9.10.0.804.zip" dest="${basedir}/temp/forge.zip" usetimestamp="True" />
+    <get src="http://files.minecraftforge.net/minecraftforge/minecraftforge-src-1.6.4-9.11.0.883.zip" dest="${basedir}/temp/forge.zip" usetimestamp="True" />
     <unzip src="${basedir}/temp/forge.zip" dest="${basedir}/temp/" failOnEmptyArchive="true" />
     <exec dir="${basedir}\temp\forge\" executable="cmd" osfamily="windows">
 			<arg line="/c install.cmd" />
