@@ -7,6 +7,7 @@ Currently 3 Modules:
 * Vanilla Paxel
 * Colour Gems
 * Lapis Gem
+* Magnetic
 
 [![Build Status](https://travis-ci.org/ictrobot/Gems.png?branch=master)](https://travis-ci.org/ictrobot/Gems)
 
