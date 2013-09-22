@@ -15,8 +15,9 @@ public class Gem extends Item {
   public String MaterialID;
   public String ItemType = "gem";
   
-  public Gem(int id, String MaterialID) {
+  public Gem(int id, String Material) {
     super(id);
+    MaterialID = Material;
     setTextureName(Core.ModID + ":" + MaterialID + ItemType);
     setUnlocalizedName(ItemType + MaterialID);
     setCreativeTab(CreativeTabs.tabMaterials);
