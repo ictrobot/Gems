@@ -3,7 +3,7 @@ Gems
 
 Gems Minecraft Mod
 
-Currently 3 Modules:
+Currently 4 Modules:
 * Vanilla Paxel
 * Colour Gems
 * Lapis Gem
