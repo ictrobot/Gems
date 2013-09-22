@@ -190,9 +190,9 @@ public class ColourGemsModule {
       Register.Item(sapphirePaxel, "Sapphire Paxel");
       Register.Item(greenSapphirePaxel, "Green Sapphire Paxel");
       Register.Item(rubyPaxel, "Ruby Paxel");
-      Register.Item(sapphireSword, "Sapphire Paxel");
-      Register.Item(greenSapphireSword, "Green Sapphire Paxel");
-      Register.Item(rubySword, "Ruby Paxel");
+      Register.Item(sapphireSword, "Sapphire Sword");
+      Register.Item(greenSapphireSword, "Green Sapphire Sword");
+      Register.Item(rubySword, "Ruby Sword");
       
       Register.Item(sapphirePickaxe, "Sapphire Pickaxe");
       Register.Item(greenSapphirePickaxe, "Green Sapphire Pickaxe");
