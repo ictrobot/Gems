@@ -84,6 +84,11 @@ public class MagneticModule {
     	
       GameRegistry.addRecipe(new ItemStack(repelPlayer), "n n", "p p", "mim", 'm', new ItemStack(Block.pistonBase), 'p', new ItemStack(positive), 'n', new ItemStack(negative), 'i', new ItemStack(Block.blockIron));
       GameRegistry.addRecipe(new ItemStack(repelPlayer), "p p", "n n", "mim", 'm', new ItemStack(Block.pistonBase), 'p', new ItemStack(positive), 'n', new ItemStack(negative), 'i', new ItemStack(Block.blockIron));
+      GameRegistry.addRecipe(new ItemStack(blockPositive), "ddd", "ddd", "ddd", 'd', new ItemStack(positive));
+      GameRegistry.addRecipe(new ItemStack(blockNegative), "ddd", "ddd", "ddd", 'd', new ItemStack(negative));
+      GameRegistry.addShapelessRecipe(new ItemStack(positive, 9), new ItemStack(blockPositive));
+      GameRegistry.addShapelessRecipe(new ItemStack(negative, 9), new ItemStack(blockNegative));
+  
       
       //Blocks - Coloured Gems
       Register.Block(orePositive, "Positive Ore", "pickaxe", 3);
