@@ -23,7 +23,7 @@ public class Gems {
   public boolean VanillaPaxelEnable;
   public boolean ColouredGemsEnable;
   public boolean MagneticModuleEnable;
-  public boolean GenericOreEnable;
+  public boolean CompatOreEnable;
   
   @SidedProxy(clientSide = "ictrobot.core.proxy.ClientProxy", serverSide = "ictrobot.core.proxy.CommonProxy")
   public static CommonProxy proxy;
@@ -36,7 +36,7 @@ public class Gems {
     VanillaPaxelEnable = config.get("Modules", "VanillaPaxel", true).getBoolean(true);
     ColouredGemsEnable = config.get("Modules", "ColouredGems", true).getBoolean(true);
     MagneticModuleEnable = config.get("Modules", "MagneticModule", true).getBoolean(true);
-    GenericOreEnable = config.get("Modules", "GenericOre", false).getBoolean(false);
+    CompatOreEnable = config.get("Modules", "CompatOre", false).getBoolean(false);
     config.save();
     
     if (LapisGemEnable==true) {
@@ -51,8 +51,8 @@ public class Gems {
     if (MagneticModuleEnable==true) {
       MagneticModule.Config(event.getSuggestedConfigurationFile());
     }
-    if (GenericOreEnable==true) {
-      GenericOreModule.Config(event.getSuggestedConfigurationFile());
+    if (CompatOreEnable==true) {
+      CompatOreModule.Config(event.getSuggestedConfigurationFile());
     }
   }
 
@@ -74,9 +74,9 @@ public class Gems {
       MagneticModule.Settings();
       MagneticModule.WorldGen();
     }
-    if (GenericOreEnable==true) {
-      GenericOreModule.Settings();
-      GenericOreModule.WorldGen();
+    if (CompatOreEnable==true) {
+      CompatOreModule.Settings();
+      CompatOreModule.WorldGen();
     }
   }
 
@@ -95,8 +95,8 @@ public class Gems {
     if (MagneticModuleEnable==true) {
       MagneticModule.Register();
     }
-    if (GenericOreEnable==true) {
-      GenericOreModule.Register();
+    if (CompatOreEnable==true) {
+      CompatOreModule.Register();
     }
   }
   

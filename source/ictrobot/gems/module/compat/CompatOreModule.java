@@ -19,13 +19,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 
 @SuppressWarnings("unused")
-public class GenericOreModule {
+public class CompatOreModule {
     
    //Define IDs - Colour Gems
    public static int oreCopperID;
    public static int oreTinID;
    public static int oreSilverID;
    public static int oreLeadID;
+   
+   public static int copperID;
+   public static int tinID;
+   public static int silverID;
+   public static int leadID;
 
    //Define Blocks - Colour Gems
    public static Block oreCopper;
@@ -33,6 +38,11 @@ public class GenericOreModule {
    public static Block oreSilver;
    public static Block oreLead;
 
+   public static Item copper;
+   public static Item tin;
+   public static Item silver;
+   public static Item lead;
+   
    public static Dim0WorldGenerator worldCopper;
    public static Dim0WorldGenerator worldTin;
    public static Dim0WorldGenerator worldSilver;
@@ -46,6 +56,11 @@ public class GenericOreModule {
       oreTinID = config.get(Configuration.CATEGORY_BLOCK, "oreTinID", 702).getInt();
       oreSilverID = config.get(Configuration.CATEGORY_BLOCK, "oreSilverID", 703).getInt();
       oreLeadID = config.get(Configuration.CATEGORY_BLOCK, "oreLeadID", 704).getInt();
+      
+      copperID = config.get(Configuration.CATEGORY_ITEM, "copperID", 3001).getInt();
+      tinID = config.get(Configuration.CATEGORY_ITEM, "tinID", 3002).getInt();
+      silverID = config.get(Configuration.CATEGORY_ITEM, "silverID", 3003).getInt();
+      leadID = config.get(Configuration.CATEGORY_ITEM, "leadID", 3004).getInt();
       
       int CMaxH = config.get("Copper Ore", "MaxH", 80).getInt();
       int CMinH = config.get("Copper Ore", "MinH", 5).getInt();
@@ -82,6 +97,13 @@ public class GenericOreModule {
       oreTin = (new Ore(oreTinID, "Tin", oreTinID));
       oreSilver = (new Ore(oreSilverID, "Silver", oreSilverID));
       oreLead = (new Ore(oreLeadID, "Lead", oreLeadID));
+      
+      copper = (new Ingot(copperID, "Copper"));
+      tin = (new Ingot(tinID, "Tin"));
+      silver = (new Ingot(silverID, "Silver"));
+      lead = (new Ingot(leadID, "Lead"));
+      
+      
    }
     
     public static void WorldGen() {
@@ -96,6 +118,11 @@ public class GenericOreModule {
       Register.Block(oreTin, "Tin Ore", "pickaxe", 1);
       Register.Block(oreSilver, "Silver Ore", "pickaxe", 1);
       Register.Block(oreLead, "Lead Ore", "pickaxe", 1);
+      
+      Register.Item(copper, "Copper Ingot");
+      Register.Item(tin, "Tin Ingot");
+      Register.Item(silver, "Silver Ingot");
+      Register.Item(lead, "Lead Ingot");
       
       Register.Ore("oreCopper", oreCopper);
       Register.Ore("oreTin", oreTin);
