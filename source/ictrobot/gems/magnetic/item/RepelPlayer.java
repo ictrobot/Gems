@@ -17,7 +17,7 @@ public class RepelPlayer extends ItemTool{
   
   public RepelPlayer(int par1, EnumToolMaterial par2EnumToolMaterial, int TmpLevel) {
     super(par1, 0, par2EnumToolMaterial, Block.blocksList);
-    setMaxDamage((12*Level)-1);
+    setMaxDamage((12*TmpLevel)-1);
     setUnlocalizedName("RepelPlayerLvl" + TmpLevel);
     setCreativeTab(CreativeTabs.tabTools);
     setTextureName(Core.ModID + ":RepelPlayer");
