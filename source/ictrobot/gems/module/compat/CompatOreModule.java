@@ -114,6 +114,10 @@ public class CompatOreModule {
     }
     
     public static void Register(){
+      GameRegistry.addSmelting(oreCopperID, new ItemStack(copper), 1);
+      GameRegistry.addSmelting(oreTinID, new ItemStack(tin), 1);
+      GameRegistry.addSmelting(oreSilverID, new ItemStack(silver), 1);
+      GameRegistry.addSmelting(oreLeadID, new ItemStack(lead), 1);
       Register.Block(oreCopper, "Copper Ore", "pickaxe", 1);
       Register.Block(oreTin, "Tin Ore", "pickaxe", 1);
       Register.Block(oreSilver, "Silver Ore", "pickaxe", 1);
@@ -128,5 +132,10 @@ public class CompatOreModule {
       Register.Ore("oreTin", oreTin);
       Register.Ore("oreSilver", oreSilver);
       Register.Ore("oreLead", oreLead);
+      
+      Register.Ore("ingotCopper", copper);
+      Register.Ore("ingotTin", tin);
+      Register.Ore("ingotSilver", silver);
+      Register.Ore("ingotLead", lead);
     }
 }
