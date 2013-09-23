@@ -118,6 +118,7 @@ public class CompatOreModule {
       GameRegistry.addSmelting(oreTinID, new ItemStack(tin), 1);
       GameRegistry.addSmelting(oreSilverID, new ItemStack(silver), 1);
       GameRegistry.addSmelting(oreLeadID, new ItemStack(lead), 1);
+      
       Register.Block(oreCopper, "Copper Ore", "pickaxe", 1);
       Register.Block(oreTin, "Tin Ore", "pickaxe", 1);
       Register.Block(oreSilver, "Silver Ore", "pickaxe", 1);
