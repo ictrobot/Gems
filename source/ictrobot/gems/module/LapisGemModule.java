@@ -44,6 +44,7 @@ public class LapisGemModule {
   public static Block blockLapisGem;
   //Define Blocks
   public static int lapisGemSwordDamage;
+  
   public static void Config(File file) {
     Configuration config = new Configuration(file);
     config.load();

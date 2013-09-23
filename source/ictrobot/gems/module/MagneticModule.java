@@ -1,24 +1,24 @@
 package ictrobot.gems.module;
 
-import ictrobot.core.helper.tool.*;
-import ictrobot.core.item.*;
-import ictrobot.core.tool.*;
-import ictrobot.core.block.*;
+import ictrobot.core.block.BasicBlock;
+import ictrobot.core.block.Ore;
 import ictrobot.core.helper.register.Register;
-import ictrobot.core.world.*;
-import ictrobot.gems.magnetic.item.*;
+import ictrobot.core.helper.tool.ToolMaterials;
+import ictrobot.core.item.Powder;
+import ictrobot.core.world.Dim0WorldGenerator;
+import ictrobot.gems.magnetic.item.RepelPlayer;
 
 import java.io.File;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
+import cpw.mods.fml.common.registry.GameRegistry;
 
-@SuppressWarnings("unused")
+
 public class MagneticModule {
     
    //Define IDs - Colour Gems
@@ -27,10 +27,14 @@ public class MagneticModule {
    public static int orePositiveID;
    public static int oreNegativeID;
    public static int repelPlayerID;
+   public static int blockPositiveID;
+   public static int blockNegativeID;
 
    //Define Blocks - Colour Gems
    public static Block orePositive;
    public static Block oreNegative;
+   public static Block blockPositive;
+   public static Block blockNegative;
    
    //Define Items - Colour Gems
    public static Item positive;
@@ -46,9 +50,11 @@ public class MagneticModule {
       //Items
       positiveID = config.get(Configuration.CATEGORY_ITEM, "positiveID", 6041).getInt();
       negativeID = config.get(Configuration.CATEGORY_ITEM, "negativeID", 6042).getInt();
-      orePositiveID = config.get(Configuration.CATEGORY_ITEM, "orePositiveID", 801).getInt();
-      oreNegativeID = config.get(Configuration.CATEGORY_ITEM, "oreNegativeID", 802).getInt();
+      orePositiveID = config.get(Configuration.CATEGORY_BLOCK, "orePositiveID", 801).getInt();
+      oreNegativeID = config.get(Configuration.CATEGORY_BLOCK, "oreNegativeID", 802).getInt();
       repelPlayerID = config.get(Configuration.CATEGORY_ITEM, "repelPlayerID", 6043).getInt();
+      blockPositiveID = config.get(Configuration.CATEGORY_BLOCK, "blockPositiveID", 803).getInt();
+      blockNegativeID = config.get(Configuration.CATEGORY_BLOCK, "blockNegativeID", 804).getInt();
       config.save();
       
       //Define World Gen
@@ -64,6 +70,9 @@ public class MagneticModule {
       positive = (new Powder(positiveID, "Positive"));
       negative = (new Powder(negativeID, "Negative"));
       repelPlayer = (new RepelPlayer(repelPlayerID, ToolMaterials.Magnetic));
+      //StorageBlocks
+      blockPositive = (new BasicBlock(blockPositiveID, "Positiveblock", Material.rock)).setHardness(4.0F).setResistance(7.5F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BlockPositive").setCreativeTab(CreativeTabs.tabBlock);
+      blockNegative = (new BasicBlock(blockNegativeID, "Negativeblock", Material.rock)).setHardness(4.0F).setResistance(7.5F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BlockNegative").setCreativeTab(CreativeTabs.tabBlock);
    }
     
     public static void WorldGen() {
@@ -72,12 +81,15 @@ public class MagneticModule {
     }
     
     public static void Register(){
+    	
       GameRegistry.addRecipe(new ItemStack(repelPlayer), "n n", "p p", "mim", 'm', new ItemStack(Block.pistonBase), 'p', new ItemStack(positive), 'n', new ItemStack(negative), 'i', new ItemStack(Block.blockIron));
       GameRegistry.addRecipe(new ItemStack(repelPlayer), "p p", "n n", "mim", 'm', new ItemStack(Block.pistonBase), 'p', new ItemStack(positive), 'n', new ItemStack(negative), 'i', new ItemStack(Block.blockIron));
       
       //Blocks - Coloured Gems
       Register.Block(orePositive, "Positive Ore", "pickaxe", 3);
       Register.Block(oreNegative, "Negative Ore", "pickaxe", 3);
+      Register.Block(blockPositive, "Positive Block", "pickaxe" , 3);
+      Register.Block(blockNegative, "Negative Block", "pickaxe", 3);
       //Items - Coloured Gems
       Register.Item(positive, "Positive Powder");
       Register.Item(negative, "Negative Powder");
