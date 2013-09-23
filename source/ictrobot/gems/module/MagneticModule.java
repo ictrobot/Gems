@@ -26,7 +26,9 @@ public class MagneticModule {
    public static int negativeID;
    public static int orePositiveID;
    public static int oreNegativeID;
-   public static int repelPlayerID;
+   public static int repelPlayerLvl1ID;
+   public static int repelPlayerLvl2ID;
+   public static int repelPlayerLvl3ID;
    public static int blockPositiveID;
    public static int blockNegativeID;
 
@@ -39,7 +41,9 @@ public class MagneticModule {
    //Define Items - Colour Gems
    public static Item positive;
    public static Item negative;
-   public static Item repelPlayer;
+   public static Item repelPlayerLvl1;
+   public static Item repelPlayerLvl2;
+   public static Item repelPlayerLvl3;
 
    public static Dim0WorldGenerator worldPositive;
    public static Dim0WorldGenerator worldNegative;
@@ -52,7 +56,9 @@ public class MagneticModule {
       negativeID = config.get(Configuration.CATEGORY_ITEM, "negativeID", 6042).getInt();
       orePositiveID = config.get(Configuration.CATEGORY_BLOCK, "orePositiveID", 801).getInt();
       oreNegativeID = config.get(Configuration.CATEGORY_BLOCK, "oreNegativeID", 802).getInt();
-      repelPlayerID = config.get(Configuration.CATEGORY_ITEM, "repelPlayerID", 6043).getInt();
+      repelPlayerLvl1ID = config.get(Configuration.CATEGORY_ITEM, "repelPlayerLvl1ID", 6043).getInt();
+      repelPlayerLvl2ID = config.get(Configuration.CATEGORY_ITEM, "repelPlayerLvl2ID", 6044).getInt();
+      repelPlayerLvl3ID = config.get(Configuration.CATEGORY_ITEM, "repelPlayerLvl3ID", 6045).getInt();
       blockPositiveID = config.get(Configuration.CATEGORY_BLOCK, "blockPositiveID", 803).getInt();
       blockNegativeID = config.get(Configuration.CATEGORY_BLOCK, "blockNegativeID", 804).getInt();
       config.save();
@@ -69,7 +75,9 @@ public class MagneticModule {
       //Items
       positive = (new Powder(positiveID, "Positive"));
       negative = (new Powder(negativeID, "Negative"));
-      repelPlayer = (new RepelPlayer(repelPlayerID, ToolMaterials.Magnetic));
+      repelPlayerLvl1 = (new RepelPlayer(repelPlayerLvl1ID, ToolMaterials.Magnetic, 1));
+      repelPlayerLvl2 = (new RepelPlayer(repelPlayerLvl2ID, ToolMaterials.Magnetic, 2));
+      repelPlayerLvl3 = (new RepelPlayer(repelPlayerLvl3ID, ToolMaterials.Magnetic, 3));
       //StorageBlocks
       blockPositive = (new BasicBlock(blockPositiveID, "Positiveblock", Material.rock)).setHardness(4.0F).setResistance(7.5F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BlockPositive").setCreativeTab(CreativeTabs.tabBlock);
       blockNegative = (new BasicBlock(blockNegativeID, "Negativeblock", Material.rock)).setHardness(4.0F).setResistance(7.5F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BlockNegative").setCreativeTab(CreativeTabs.tabBlock);
@@ -82,8 +90,10 @@ public class MagneticModule {
     
     public static void Register(){
     	
-      GameRegistry.addRecipe(new ItemStack(repelPlayer), "n n", "p p", "mim", 'm', new ItemStack(Block.pistonBase), 'p', new ItemStack(positive), 'n', new ItemStack(negative), 'i', new ItemStack(Block.blockIron));
-      GameRegistry.addRecipe(new ItemStack(repelPlayer), "p p", "n n", "mim", 'm', new ItemStack(Block.pistonBase), 'p', new ItemStack(positive), 'n', new ItemStack(negative), 'i', new ItemStack(Block.blockIron));
+      GameRegistry.addRecipe(new ItemStack(repelPlayerLvl1), "n n", "p p", "m m", 'm', new ItemStack(Block.pistonBase), 'p', new ItemStack(positive), 'n', new ItemStack(negative));
+      GameRegistry.addRecipe(new ItemStack(repelPlayerLvl1), "p p", "n n", "m m", 'm', new ItemStack(Block.pistonBase), 'p', new ItemStack(positive), 'n', new ItemStack(negative));
+      GameRegistry.addRecipe(new ItemStack(repelPlayerLvl2), "   ", "m m", "pip", 'p', new ItemStack(Block.pistonBase), 'm', new ItemStack(repelPlayerLvl1), 'i', new ItemStack(Block.blockIron));
+      GameRegistry.addRecipe(new ItemStack(repelPlayerLvl3), "   ", "m m", "pip", 'p', new ItemStack(Block.pistonBase), 'm', new ItemStack(repelPlayerLvl2), 'i', new ItemStack(Block.blockIron));
       GameRegistry.addRecipe(new ItemStack(blockPositive), "ddd", "ddd", "ddd", 'd', new ItemStack(positive));
       GameRegistry.addRecipe(new ItemStack(blockNegative), "ddd", "ddd", "ddd", 'd', new ItemStack(negative));
       GameRegistry.addShapelessRecipe(new ItemStack(positive, 9), new ItemStack(blockPositive));
@@ -98,6 +108,8 @@ public class MagneticModule {
       //Items - Coloured Gems
       Register.Item(positive, "Positive Powder");
       Register.Item(negative, "Negative Powder");
-      Register.Item(repelPlayer, "Magnetic Jump");
+      Register.Item(repelPlayerLvl1, "Magnetic Jump");
+      Register.Item(repelPlayerLvl2, "Magnetic Jump");
+      Register.Item(repelPlayerLvl3, "Magnetic Jump");
     }
 }
