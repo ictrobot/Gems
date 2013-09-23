@@ -42,7 +42,7 @@ public class RepelPlayer extends ItemTool{
 
   @Override
   public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
-    player.motionY = (0.6*Level); 
+    player.motionY = (0.75*(Level*0.75)); 
     //itemStack.setItemDamage(itemStack.getItemDamage() - 1);
     itemStack.damageItem(1, player);
     return itemStack;
