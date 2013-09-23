@@ -3,6 +3,7 @@ package ictrobot.gems;
 import net.minecraftforge.common.Configuration;
 import ictrobot.core.proxy.*;
 import ictrobot.gems.module.*;
+import ictrobot.gems.module.compat.*;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -22,6 +23,7 @@ public class Gems {
   public boolean VanillaPaxelEnable;
   public boolean ColouredGemsEnable;
   public boolean MagneticModuleEnable;
+  public boolean GenericOreEnable;
   
   @SidedProxy(clientSide = "ictrobot.core.proxy.ClientProxy", serverSide = "ictrobot.core.proxy.CommonProxy")
   public static CommonProxy proxy;
@@ -30,10 +32,11 @@ public class Gems {
   public void preInit(FMLPreInitializationEvent event) {
     Configuration config = new Configuration(event.getSuggestedConfigurationFile());
     config.load();
-    LapisGemEnable = config.get(Configuration.CATEGORY_GENERAL, "LapisGemEnable", true).getBoolean(true);
-    VanillaPaxelEnable = config.get(Configuration.CATEGORY_GENERAL, "VanillaPaxelEnable", true).getBoolean(true);
-    ColouredGemsEnable = config.get(Configuration.CATEGORY_GENERAL, "ColouredGemsEnable", true).getBoolean(true);
-    MagneticModuleEnable = config.get(Configuration.CATEGORY_GENERAL, "MagneticModuleEnable", true).getBoolean(true);
+    LapisGemEnable = config.get("Modules", "LapisGem", true).getBoolean(true);
+    VanillaPaxelEnable = config.get("Modules", "VanillaPaxel", true).getBoolean(true);
+    ColouredGemsEnable = config.get("Modules", "ColouredGems", true).getBoolean(true);
+    MagneticModuleEnable = config.get("Modules", "MagneticModule", true).getBoolean(true);
+    GenericOreEnable = config.get("Modules", "GenericOre", false).getBoolean(false);
     config.save();
     
     if (LapisGemEnable==true) {
@@ -47,6 +50,9 @@ public class Gems {
     }
     if (MagneticModuleEnable==true) {
       MagneticModule.Config(event.getSuggestedConfigurationFile());
+    }
+    if (GenericOreEnable==true) {
+      GenericOreModule.Config(event.getSuggestedConfigurationFile());
     }
   }
 
@@ -68,6 +74,10 @@ public class Gems {
       MagneticModule.Settings();
       MagneticModule.WorldGen();
     }
+    if (GenericOreEnable==true) {
+      GenericOreModule.Settings();
+      GenericOreModule.WorldGen();
+    }
   }
 
   @EventHandler
@@ -84,6 +94,9 @@ public class Gems {
     }
     if (MagneticModuleEnable==true) {
       MagneticModule.Register();
+    }
+    if (GenericOreEnable==true) {
+      GenericOreModule.Register();
     }
   }
   

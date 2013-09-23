@@ -21,12 +21,12 @@ public class Dim0WorldGenerator implements IWorldGenerator {
    * Veins
    * OreinVein
    */
-  public Dim0WorldGenerator(int par1, int par2, int par3, int par4, int par5) {
-    OreID = par1;
-    MaxHeight = par2;
-    MinHeight = par3;
-    Veins = par4;
-    OreinVein = par5;
+  public Dim0WorldGenerator(int OreBlockID, int MaxH, int MinH, int numOFviens, int numINviens) {
+    OreID = OreBlockID;
+    MaxHeight = MaxH;
+    MinHeight = MinH;
+    Veins = numOFviens;
+    OreinVein = numINviens;
   }
 
   @Override
