@@ -4,6 +4,7 @@ import ictrobot.core.block.BasicBlock;
 import ictrobot.core.block.Ore;
 import ictrobot.core.helper.register.Register;
 import ictrobot.core.helper.tool.ToolMaterials;
+import ictrobot.core.helper.config.ConfigHelper;
 import ictrobot.core.item.*;
 import ictrobot.core.world.Dim0WorldGenerator;
 import ictrobot.gems.magnetic.item.RepelPlayer;
@@ -15,7 +16,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.Configuration;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 
@@ -57,23 +57,22 @@ public class MagneticModule {
    public static Dim0WorldGenerator worldNegative;
    
    public static void Config(File file) {
-      Configuration config = new Configuration(file);
-      config.load();
+      ConfigHelper.file(file, "MagneticModule");
       //Items
-      positiveID = config.get(Configuration.CATEGORY_ITEM, "positiveID", 6041).getInt();
-      negativeID = config.get(Configuration.CATEGORY_ITEM, "negativeID", 6042).getInt();
-      orePositiveID = config.get(Configuration.CATEGORY_BLOCK, "orePositiveID", 801).getInt();
-      oreNegativeID = config.get(Configuration.CATEGORY_BLOCK, "oreNegativeID", 802).getInt();
-      repelPlayerLvl1ID = config.get(Configuration.CATEGORY_ITEM, "repelPlayerLvl1ID", 6043).getInt();
-      repelPlayerLvl2ID = config.get(Configuration.CATEGORY_ITEM, "repelPlayerLvl2ID", 6044).getInt();
-      repelPlayerLvl3ID = config.get(Configuration.CATEGORY_ITEM, "repelPlayerLvl3ID", 6045).getInt();
-      repelPlayerLvl4ID = config.get(Configuration.CATEGORY_ITEM, "repelPlayerLvl4ID", 6046).getInt();
-      repelPlayerLvl5ID = config.get(Configuration.CATEGORY_ITEM, "repelPlayerLvl5ID", 6047).getInt();
-      magneticPowderID = config.get(Configuration.CATEGORY_ITEM, "magneticpowderID", 6048).getInt();
-      magneticIngotID = config.get(Configuration.CATEGORY_ITEM, "magneticingotID", 6049).getInt();
-      blockPositiveID = config.get(Configuration.CATEGORY_BLOCK, "blockPositiveID", 803).getInt();
-      blockNegativeID = config.get(Configuration.CATEGORY_BLOCK, "blockNegativeID", 804).getInt();
-      config.save();
+      positiveID = ConfigHelper.item("positiveID");
+      negativeID = ConfigHelper.item("negativeID");
+      repelPlayerLvl1ID = ConfigHelper.item("repelPlayerLvl1ID");
+      repelPlayerLvl2ID = ConfigHelper.item("repelPlayerLvl2ID");
+      repelPlayerLvl3ID = ConfigHelper.item("repelPlayerLvl3ID");
+      repelPlayerLvl4ID = ConfigHelper.item("repelPlayerLvl4ID");
+      repelPlayerLvl5ID = ConfigHelper.item("repelPlayerLvl5ID");
+      magneticPowderID = ConfigHelper.item("magneticPowderID");
+      magneticIngotID = ConfigHelper.item("magneticIngotID");
+      
+      blockPositiveID = ConfigHelper.block("blockPositiveID");
+      blockNegativeID = ConfigHelper.block("blockNegativeID");
+      orePositiveID = ConfigHelper.block("orePositiveID");
+      oreNegativeID = ConfigHelper.block("oreNegativeID");
       
       //Define World Gen
       worldPositive = new Dim0WorldGenerator(orePositiveID, 40, 5, 4, 8);

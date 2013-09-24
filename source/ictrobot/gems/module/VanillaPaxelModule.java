@@ -2,6 +2,7 @@ package ictrobot.gems.module;
 
 import ictrobot.core.helper.tool.ToolMaterials;
 import ictrobot.core.tool.Paxel;
+import ictrobot.core.helper.config.ConfigHelper;
 import ictrobot.core.helper.register.Register;
 
 import java.io.File;
@@ -9,7 +10,6 @@ import java.io.File;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.Configuration;
 
 public class VanillaPaxelModule {
   
@@ -27,14 +27,12 @@ public class VanillaPaxelModule {
   public static Item diamondPaxel;
     
     public static void Config(File file) {
-      Configuration config = new Configuration(file);
-      config.load();
-      woodPaxelID = config.get(Configuration.CATEGORY_ITEM, "woodPaxel", 5031).getInt();
-      stonePaxelID = config.get(Configuration.CATEGORY_ITEM, "stonePaxel", 5032).getInt();
-      ironPaxelID = config.get(Configuration.CATEGORY_ITEM, "ironPaxel", 5033).getInt();
-      goldPaxelID = config.get(Configuration.CATEGORY_ITEM, "goldPaxel", 5034).getInt();
-      diamondPaxelID = config.get(Configuration.CATEGORY_ITEM, "diamondPaxel", 5035).getInt();
-      config.save();
+      ConfigHelper.file(file, "VanillaPaxel");
+      woodPaxelID = ConfigHelper.item("woodPaxelID");
+      stonePaxelID = ConfigHelper.item("stonePaxelID");
+      ironPaxelID = ConfigHelper.item("ironPaxelID");
+      goldPaxelID = ConfigHelper.item("goldPaxelID");
+      diamondPaxelID = ConfigHelper.item("diamondPaxelID");
     }
 
     public static void Settings() {

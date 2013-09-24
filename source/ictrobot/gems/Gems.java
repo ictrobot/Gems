@@ -25,6 +25,9 @@ public class Gems {
   public boolean MagneticModuleEnable;
   public boolean CompatOreEnable;
   
+  public static int ItemsRegistered = 0;
+  public static int BlocksRegistered = 0;
+  
   @SidedProxy(clientSide = "ictrobot.core.proxy.ClientProxy", serverSide = "ictrobot.core.proxy.CommonProxy")
   public static CommonProxy proxy;
 
@@ -38,7 +41,7 @@ public class Gems {
     MagneticModuleEnable = config.get("Modules", "MagneticModule", true).getBoolean(true);
     CompatOreEnable = config.get("Modules", "CompatOre", false).getBoolean(false);
     config.save();
-    
+      
     if (LapisGemEnable==true) {
       LapisGemModule.Config(event.getSuggestedConfigurationFile());
     }

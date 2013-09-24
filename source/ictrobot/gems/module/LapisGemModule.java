@@ -6,6 +6,7 @@ import ictrobot.core.helper.tool.ToolMaterials;
 import ictrobot.core.item.*;
 import ictrobot.core.tool.*;
 import ictrobot.core.block.*;
+import ictrobot.core.helper.config.ConfigHelper;
 import ictrobot.core.helper.register.Register;
 import ictrobot.gems.Gems;
 import ictrobot.gems.lapisgem.armor.*;
@@ -15,7 +16,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -46,19 +46,17 @@ public class LapisGemModule {
   public static int lapisGemSwordDamage;
   
   public static void Config(File file) {
-    Configuration config = new Configuration(file);
-    config.load();
-    lapisGemID = config.get(Configuration.CATEGORY_ITEM, "LapisGem", 5001).getInt();
-    chargedLapisGemID = config.get(Configuration.CATEGORY_ITEM, "ChargedLapisGem", 5002).getInt();
-    lapisGemHelmetID = config.get(Configuration.CATEGORY_ITEM, "LapisGemHelmet", 5011).getInt();
-    lapisGemChestplateID = config.get(Configuration.CATEGORY_ITEM, "LapisChestplate", 5012).getInt();
-    lapisGemLeggingsID = config.get(Configuration.CATEGORY_ITEM, "LapisGemLeggings", 5013).getInt();
-    lapisGemBootsID = config.get(Configuration.CATEGORY_ITEM, "LapisGemBoots", 5014).getInt();
-    lapisGemPaxelID = config.get(Configuration.CATEGORY_ITEM, "lapisGemPaxel", 5021).getInt();
-    lapisGemSwordID = config.get(Configuration.CATEGORY_ITEM, "LapisGemSword", 5022).getInt();
-    lapisGemSwordDamage = config.get(Configuration.CATEGORY_GENERAL, "lapisGemSwordDamage", 10).getInt();
-    blockLapisGemID = config.get(Configuration.CATEGORY_BLOCK, "BlockLapisGem", 1001).getInt();
-    config.save();
+    ConfigHelper.file(file, "LapisGem");
+    lapisGemID = ConfigHelper.item("lapisGemID");
+    chargedLapisGemID = ConfigHelper.item("chargedLapisGemID");
+    lapisGemHelmetID = ConfigHelper.item("lapisGemHelmetID");
+    lapisGemChestplateID = ConfigHelper.item("lapisGemChestplateID");
+    lapisGemLeggingsID = ConfigHelper.item("lapisGemLeggingsID");
+    lapisGemBootsID = ConfigHelper.item("lapisGemBootsID");
+    lapisGemPaxelID = ConfigHelper.item("lapisGemPaxelID");
+    lapisGemSwordID = ConfigHelper.item("lapisGemSwordID");
+    blockLapisGemID = ConfigHelper.block("blockLapisGemID");
+    lapisGemSwordDamage = ConfigHelper.other("lapisGemSwordDamage", 10);
     
     lapisGemSwordDamage = lapisGemSwordDamage - 4;
   }

@@ -4,6 +4,7 @@ import ictrobot.core.helper.tool.*;
 import ictrobot.core.item.*;
 import ictrobot.core.tool.*;
 import ictrobot.core.block.*;
+import ictrobot.core.helper.config.ConfigHelper;
 import ictrobot.core.helper.register.Register;
 import ictrobot.core.world.*;
 
@@ -15,7 +16,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.Configuration;
 
 public class ColourGemsModule {
     
@@ -80,36 +80,34 @@ public class ColourGemsModule {
    public static Dim0WorldGenerator worldRuby;
    
    public static void Config(File file) {
-      Configuration config = new Configuration(file);
-      config.load();
+      ConfigHelper.file(file, "ColourGems");
       //Items
-      sapphireID = config.get(Configuration.CATEGORY_ITEM, "Sapphire", 5041).getInt();
-      greenSapphireID = config.get(Configuration.CATEGORY_ITEM, "GreenSapphire", 5042).getInt();
-      rubyID = config.get(Configuration.CATEGORY_ITEM, "Ruby", 5043).getInt();
-      sapphirePaxelID = config.get(Configuration.CATEGORY_ITEM, "SapphirePaxel", 5044).getInt();
-      greenSapphirePaxelID = config.get(Configuration.CATEGORY_ITEM, "GreenSapphirePaxel", 5045).getInt();
-      rubyPaxelID = config.get(Configuration.CATEGORY_ITEM, "RubyPaxel", 5046).getInt();
-      sapphireSwordID = config.get(Configuration.CATEGORY_ITEM, "SapphireSword", 5047).getInt();
-      greenSapphireSwordID = config.get(Configuration.CATEGORY_ITEM, "GreenSapphireSword", 5048).getInt();
-      rubySwordID = config.get(Configuration.CATEGORY_ITEM, "RubySword", 5049).getInt();
+      sapphireID = ConfigHelper.item("sapphireID");
+      greenSapphireID = ConfigHelper.item("greenSapphireID");
+      rubyID = ConfigHelper.item("rubyID");
+      sapphirePaxelID = ConfigHelper.item("sapphirePaxelID");
+      greenSapphirePaxelID = ConfigHelper.item("greenSapphirePaxelID");
+      rubyPaxelID = ConfigHelper.item("rubyPaxelID");
+      sapphireSwordID = ConfigHelper.item("sapphireSwordID");
+      greenSapphireSwordID = ConfigHelper.item("greenSapphireSwordID");
+      rubySwordID = ConfigHelper.item("rubySwordID");
 
-      sapphirePickaxeID = config.get(Configuration.CATEGORY_ITEM, "SapphirePickaxe", 5050).getInt();
-      greenSapphirePickaxeID = config.get(Configuration.CATEGORY_ITEM, "GreenSapphirePickaxe", 5051).getInt();
-      rubyPickaxeID = config.get(Configuration.CATEGORY_ITEM, "RubyPickaxe", 5052).getInt();
-      sapphireAxeID = config.get(Configuration.CATEGORY_ITEM, "SapphireAxe", 5053).getInt();
-      greenSapphireAxeID = config.get(Configuration.CATEGORY_ITEM, "GreenSapphireAxe", 5054).getInt();
-      rubyAxeID = config.get(Configuration.CATEGORY_ITEM, "RubyAxe", 5055).getInt();
-      sapphireShovelID = config.get(Configuration.CATEGORY_ITEM, "SapphireShovel", 5056).getInt();
-      greenSapphireShovelID = config.get(Configuration.CATEGORY_ITEM, "GreenSapphireShovel", 5057).getInt();
-      rubyShovelID = config.get(Configuration.CATEGORY_ITEM, "RubyShovel", 5058).getInt();
+      sapphirePickaxeID = ConfigHelper.item("sapphirePickaxeID");
+      greenSapphirePickaxeID = ConfigHelper.item("greenSapphirePickaxeID");
+      rubyPickaxeID = ConfigHelper.item("rubyPickaxeID");
+      sapphireAxeID = ConfigHelper.item("sapphireAxeID");
+      greenSapphireAxeID = ConfigHelper.item("greenSapphireAxeID");
+      rubyAxeID = ConfigHelper.item("rubyAxeID");
+      sapphireShovelID = ConfigHelper.item("sapphireShovelID");
+      greenSapphireShovelID = ConfigHelper.item("greenSapphireShovelID");
+      rubyShovelID = ConfigHelper.item("rubyShovelID");
       //Blocks
-      oreSapphireID = config.get(Configuration.CATEGORY_BLOCK, "OreSapphire", 1011).getInt();
-      oreGreenSapphireID = config.get(Configuration.CATEGORY_BLOCK, "OreGreenSapphire", 1012).getInt();
-      oreRubyID = config.get(Configuration.CATEGORY_BLOCK, "OreRuby", 1013).getInt();
-      blockSapphireID = config.get(Configuration.CATEGORY_BLOCK, "BlockSapphire", 1014).getInt();
-      blockGreenSapphireID = config.get(Configuration.CATEGORY_BLOCK, "BlockGreenSapphire", 1015).getInt();
-      blockRubyID = config.get(Configuration.CATEGORY_BLOCK, "BlockRuby", 1016).getInt();
-      config.save();
+      oreSapphireID = ConfigHelper.block("oreSapphireID");
+      oreGreenSapphireID = ConfigHelper.block("oreGreenSapphireID");
+      oreRubyID = ConfigHelper.block("oreRubyID");
+      blockSapphireID = ConfigHelper.block("blockSapphireID");
+      blockGreenSapphireID = ConfigHelper.block("blockGreenSapphireID");
+      blockRubyID = ConfigHelper.block("blockRubyID");
       
       //Define World Gen - Colour Gems
       worldSapphire = new Dim0WorldGenerator(oreSapphireID, 40, 5, 7, 8);
