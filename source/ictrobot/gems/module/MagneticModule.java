@@ -4,7 +4,7 @@ import ictrobot.core.block.BasicBlock;
 import ictrobot.core.block.Ore;
 import ictrobot.core.helper.register.Register;
 import ictrobot.core.helper.tool.ToolMaterials;
-import ictrobot.core.item.Powder;
+import ictrobot.core.item.*;
 import ictrobot.core.world.Dim0WorldGenerator;
 import ictrobot.gems.magnetic.item.RepelPlayer;
 
@@ -24,6 +24,8 @@ public class MagneticModule {
    //Define IDs - Colour Gems
    public static int positiveID;
    public static int negativeID;
+   public static int magneticPowderID;
+   public static int magneticIngotID;
    public static int orePositiveID;
    public static int oreNegativeID;
    public static int repelPlayerLvl1ID;
@@ -48,6 +50,8 @@ public class MagneticModule {
    public static Item repelPlayerLvl3;
    public static Item repelPlayerLvl4;
    public static Item repelPlayerLvl5;
+   public static Item magneticPowder;
+   public static Item magneticIngot;
 
    public static Dim0WorldGenerator worldPositive;
    public static Dim0WorldGenerator worldNegative;
@@ -65,6 +69,8 @@ public class MagneticModule {
       repelPlayerLvl3ID = config.get(Configuration.CATEGORY_ITEM, "repelPlayerLvl3ID", 6045).getInt();
       repelPlayerLvl4ID = config.get(Configuration.CATEGORY_ITEM, "repelPlayerLvl4ID", 6046).getInt();
       repelPlayerLvl5ID = config.get(Configuration.CATEGORY_ITEM, "repelPlayerLvl5ID", 6047).getInt();
+      magneticPowderID = config.get(Configuration.CATEGORY_ITEM, "magneticpowderID", 6048).getInt();
+      magneticIngotID = config.get(Configuration.CATEGORY_ITEM, "magneticingotID", 6049).getInt();
       blockPositiveID = config.get(Configuration.CATEGORY_BLOCK, "blockPositiveID", 803).getInt();
       blockNegativeID = config.get(Configuration.CATEGORY_BLOCK, "blockNegativeID", 804).getInt();
       config.save();
@@ -81,11 +87,13 @@ public class MagneticModule {
       //Items
       positive = (new Powder(positiveID, "Positive"));
       negative = (new Powder(negativeID, "Negative"));
+      magneticPowder = (new Powder(magneticPowderID, "Magnetic"));
       repelPlayerLvl1 = (new RepelPlayer(repelPlayerLvl1ID, ToolMaterials.Magnetic, 1));
       repelPlayerLvl2 = (new RepelPlayer(repelPlayerLvl2ID, ToolMaterials.Magnetic, 2));
       repelPlayerLvl3 = (new RepelPlayer(repelPlayerLvl3ID, ToolMaterials.Magnetic, 3));
       repelPlayerLvl4 = (new RepelPlayer(repelPlayerLvl4ID, ToolMaterials.Magnetic, 4));
       repelPlayerLvl5 = (new RepelPlayer(repelPlayerLvl5ID, ToolMaterials.Magnetic, 5));
+      magneticIngot = (new Ingot(magneticIngotID, "Magnetic"));
       //StorageBlocks
       blockPositive = (new BasicBlock(blockPositiveID, "Positiveblock", Material.rock)).setHardness(4.0F).setResistance(7.5F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BlockPositive").setCreativeTab(CreativeTabs.tabBlock);
       blockNegative = (new BasicBlock(blockNegativeID, "Negativeblock", Material.rock)).setHardness(4.0F).setResistance(7.5F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BlockNegative").setCreativeTab(CreativeTabs.tabBlock);
@@ -108,6 +116,8 @@ public class MagneticModule {
       GameRegistry.addRecipe(new ItemStack(blockNegative), "ddd", "ddd", "ddd", 'd', new ItemStack(negative));
       GameRegistry.addShapelessRecipe(new ItemStack(positive, 9), new ItemStack(blockPositive));
       GameRegistry.addShapelessRecipe(new ItemStack(negative, 9), new ItemStack(blockNegative));
+      GameRegistry.addShapelessRecipe(new ItemStack(magneticPowder), new ItemStack(positive), new ItemStack(negative));
+      GameRegistry.addSmelting(magneticPowderID + 256, new ItemStack(magneticIngot), 1);
   
       
       //Blocks - Coloured Gems
@@ -118,6 +128,8 @@ public class MagneticModule {
       //Items - Coloured Gems
       Register.Item(positive, "Positive Powder");
       Register.Item(negative, "Negative Powder");
+      Register.Item(magneticPowder, "Magnetic Powder");
+      Register.Item(magneticIngot, "Magnetic Ingot");
       Register.Item(repelPlayerLvl1, "Magnetic Jump");
       Register.Item(repelPlayerLvl2, "Magnetic Jump");
       Register.Item(repelPlayerLvl3, "Magnetic Jump");
