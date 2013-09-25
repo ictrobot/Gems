@@ -7,28 +7,39 @@ import net.minecraftforge.common.Configuration;
 public class ConfigHelper {
   
   static int BaseBlockID = 1000;
-  static int BaseItemID = 20000;
+  static int BaseItemID = 20000 - 256;
+  
+  static int ItemsRegistered = 0;
+  static int BlocksRegistered = 0;
+  
+  static int ModulesItems = 100;
+  static int ModulesBlocks = 10;
   
   static String Module;
   static Configuration config;
 
   public static void file(File file, String ModuleName) {
     Module = ModuleName;
+    Gems.ModulesRegistered = Gems.ModulesRegistered + 1;
     config = new Configuration(file);
+    BaseBlockID = BaseBlockID + (Gems.ModulesRegistered * ModulesBlocks);
+    BaseItemID = BaseItemID + (Gems.ModulesRegistered * ModulesItems);
+    ItemsRegistered = 0;
+    BlocksRegistered = 0;
   }
   
   public static int item(String Name) {
     config.load();
-    int id = config.get(Module + " - Item", Name, BaseItemID+Gems.ItemsRegistered).getInt();
-    Gems.ItemsRegistered = Gems.ItemsRegistered + 1;
+    int id = config.get(Module + " - Item", Name, BaseItemID+ItemsRegistered).getInt();
+    ItemsRegistered = ItemsRegistered + 1;
     config.save();
     return id;
   }
   
   public static int block(String Name) {
     config.load();
-    int id = config.get(Module + " - Block", Name, BaseBlockID+Gems.BlocksRegistered).getInt();
-    Gems.BlocksRegistered = Gems.BlocksRegistered + 1;
+    int id = config.get(Module + " - Block", Name, BaseBlockID + BlocksRegistered).getInt();
+    BlocksRegistered = BlocksRegistered + 1;
     config.save();
     return id;
   }

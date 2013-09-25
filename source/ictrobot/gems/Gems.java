@@ -25,8 +25,8 @@ public class Gems {
   public boolean MagneticModuleEnable;
   public boolean CompatOreEnable;
   
-  public static int ItemsRegistered = 0;
-  public static int BlocksRegistered = 0;
+  //FOR CONFIG HELPER
+  public static int ModulesRegistered = -1;
   
   @SidedProxy(clientSide = "ictrobot.core.proxy.ClientProxy", serverSide = "ictrobot.core.proxy.CommonProxy")
   public static CommonProxy proxy;
