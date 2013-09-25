@@ -7,9 +7,6 @@ import ictrobot.core.block.*;
 import ictrobot.core.helper.config.ConfigHelper;
 import ictrobot.core.helper.register.Register;
 import ictrobot.core.world.*;
-
-import java.io.File;
-
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -79,8 +76,8 @@ public class ColourGemsModule {
    public static Dim0WorldGenerator worldGreenSapphire;
    public static Dim0WorldGenerator worldRuby;
    
-   public static void Config(File file) {
-      ConfigHelper.file(file, "ColourGems");
+   public static void Config() {
+      ConfigHelper.file("ColourGems");
       //Items
       sapphireID = ConfigHelper.item("sapphireID");
       greenSapphireID = ConfigHelper.item("greenSapphireID");
@@ -108,6 +105,8 @@ public class ColourGemsModule {
       blockSapphireID = ConfigHelper.block("blockSapphireID");
       blockGreenSapphireID = ConfigHelper.block("blockGreenSapphireID");
       blockRubyID = ConfigHelper.block("blockRubyID");
+      
+      ConfigHelper.save();
       
       //Define World Gen - Colour Gems
       worldSapphire = new Dim0WorldGenerator(oreSapphireID, 40, 5, 7, 8);

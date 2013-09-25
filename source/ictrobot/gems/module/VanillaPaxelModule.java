@@ -4,9 +4,6 @@ import ictrobot.core.helper.tool.ToolMaterials;
 import ictrobot.core.tool.Paxel;
 import ictrobot.core.helper.config.ConfigHelper;
 import ictrobot.core.helper.register.Register;
-
-import java.io.File;
-
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -26,13 +23,15 @@ public class VanillaPaxelModule {
   public static Item goldPaxel;
   public static Item diamondPaxel;
     
-    public static void Config(File file) {
-      ConfigHelper.file(file, "VanillaPaxel");
+    public static void Config() {
+      ConfigHelper.file("VanillaPaxel");
       woodPaxelID = ConfigHelper.item("woodPaxelID");
       stonePaxelID = ConfigHelper.item("stonePaxelID");
       ironPaxelID = ConfigHelper.item("ironPaxelID");
       goldPaxelID = ConfigHelper.item("goldPaxelID");
       diamondPaxelID = ConfigHelper.item("diamondPaxelID");
+      
+      ConfigHelper.save();
     }
 
     public static void Settings() {

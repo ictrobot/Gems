@@ -1,7 +1,5 @@
 package ictrobot.gems.module;
 
-import java.io.File;
-
 import ictrobot.core.helper.tool.ToolMaterials;
 import ictrobot.core.item.*;
 import ictrobot.core.tool.*;
@@ -45,8 +43,8 @@ public class LapisGemModule {
   //Define Blocks
   public static int lapisGemSwordDamage;
   
-  public static void Config(File file) {
-    ConfigHelper.file(file, "LapisGem");
+  public static void Config() {
+    ConfigHelper.file("LapisGem");
     lapisGemID = ConfigHelper.item("lapisGemID");
     chargedLapisGemID = ConfigHelper.item("chargedLapisGemID");
     lapisGemHelmetID = ConfigHelper.item("lapisGemHelmetID");
@@ -57,6 +55,8 @@ public class LapisGemModule {
     lapisGemSwordID = ConfigHelper.item("lapisGemSwordID");
     blockLapisGemID = ConfigHelper.block("blockLapisGemID");
     lapisGemSwordDamage = ConfigHelper.other("lapisGemSwordDamage", 10);
+    
+    ConfigHelper.save();
     
     lapisGemSwordDamage = lapisGemSwordDamage - 4;
   }

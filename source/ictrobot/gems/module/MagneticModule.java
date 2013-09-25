@@ -8,9 +8,6 @@ import ictrobot.core.helper.config.ConfigHelper;
 import ictrobot.core.item.*;
 import ictrobot.core.world.Dim0WorldGenerator;
 import ictrobot.gems.magnetic.item.RepelPlayer;
-
-import java.io.File;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -56,8 +53,8 @@ public class MagneticModule {
    public static Dim0WorldGenerator worldPositive;
    public static Dim0WorldGenerator worldNegative;
    
-   public static void Config(File file) {
-      ConfigHelper.file(file, "MagneticModule");
+   public static void Config() {
+      ConfigHelper.file("MagneticModule");
       //Items
       positiveID = ConfigHelper.item("positiveID");
       negativeID = ConfigHelper.item("negativeID");
@@ -73,6 +70,8 @@ public class MagneticModule {
       blockNegativeID = ConfigHelper.block("blockNegativeID");
       orePositiveID = ConfigHelper.block("orePositiveID");
       oreNegativeID = ConfigHelper.block("oreNegativeID");
+      
+      ConfigHelper.save();
       
       //Define World Gen
       worldPositive = new Dim0WorldGenerator(orePositiveID, 40, 5, 4, 8);

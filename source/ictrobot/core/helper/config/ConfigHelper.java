@@ -5,9 +5,12 @@ import ictrobot.gems.Gems;
 import net.minecraftforge.common.Configuration;
 
 public class ConfigHelper {
+  //Starting BLock + Item IDs
+  static int BlockID = 1000;
+  static int ItemID = 20000 - 256;
   
-  static int BaseBlockID = 1000;
-  static int BaseItemID = 20000 - 256;
+  static int BaseBlockID = BlockID;
+  static int BaseItemID = ItemID;
   
   static int ItemsRegistered = 0;
   static int BlocksRegistered = 0;
@@ -18,57 +21,60 @@ public class ConfigHelper {
   static String Module;
   static Configuration config;
 
-  public static void file(File file, String ModuleName) {
+  public static void file(String ModuleName) {
     Module = ModuleName;
     Gems.ModulesRegistered = Gems.ModulesRegistered + 1;
-    config = new Configuration(file);
-    BaseBlockID = BaseBlockID + (Gems.ModulesRegistered * ModulesBlocks);
-    BaseItemID = BaseItemID + (Gems.ModulesRegistered * ModulesItems);
+    
+    File configfile = new File(Gems.configdir, "Gems/" + ModuleName + ".cfg");
+    
+    config = new Configuration(configfile);
+    config.load();
+    
+    BaseBlockID = BlockID + (Gems.ModulesRegistered * ModulesBlocks);
+    BaseItemID = ItemID + (Gems.ModulesRegistered * ModulesItems);
+    
     ItemsRegistered = 0;
     BlocksRegistered = 0;
   }
   
-  public static int item(String Name) {
-    config.load();
-    int id = config.get(Module + " - Item", Name, BaseItemID+ItemsRegistered).getInt();
-    ItemsRegistered = ItemsRegistered + 1;
+  public static void save() {
     config.save();
+  }
+  
+  public static int item(String Name) {
+    int id = config.get("Item", Name, BaseItemID+ItemsRegistered).getInt();
+    ItemsRegistered = ItemsRegistered + 1;
     return id;
   }
   
   public static int block(String Name) {
-    config.load();
-    int id = config.get(Module + " - Block", Name, BaseBlockID + BlocksRegistered).getInt();
+    int id = config.get("Block", Name, BaseBlockID + BlocksRegistered).getInt();
     BlocksRegistered = BlocksRegistered + 1;
-    config.save();
     return id;
   }
   
   public static String other(String Name, String normal) {
-    config.load();
-    String str = config.get(Module + " - Other", Name, normal).getString();
-    config.save();
+    String str = config.get("Other", Name, normal).getString();
     return str;
   }
   
   public static int other(String Name, int normal) {
-    config.load();
-    int num = config.get(Module + " - Other", Name, normal).getInt();
-    config.save();
+    int num = config.get("Other", Name, normal).getInt();
     return num;
   }
   
   public static String other(String Subname, String Name, String normal) {
-    config.load();
-    String str = config.get(Module + " - " + Subname, Name, normal).getString();
-    config.save();
+    String str = config.get(Subname, Name, normal).getString();
     return str;
   }
   
   public static int other(String Subname, String Name, int normal) {
-    config.load();
-    int num = config.get(Module + " - " + Subname, Name, normal).getInt();
-    config.save();
+    int num = config.get(Subname, Name, normal).getInt();
     return num;
+  }
+  
+  public static boolean module(String Name, boolean normal) {
+    boolean enabled = config.get("Module", Name, normal).getBoolean(normal);
+    return enabled;
   }
 }

@@ -1,6 +1,8 @@
 package ictrobot.gems;
 
-import net.minecraftforge.common.Configuration;
+import java.io.File;
+
+import ictrobot.core.helper.config.ConfigHelper;
 import ictrobot.core.proxy.*;
 import ictrobot.gems.module.*;
 import ictrobot.gems.module.compat.*;
@@ -27,35 +29,41 @@ public class Gems {
   
   //FOR CONFIG HELPER
   public static int ModulesRegistered = -1;
+  public static File configfile;
+  public static File configdir;
   
   @SidedProxy(clientSide = "ictrobot.core.proxy.ClientProxy", serverSide = "ictrobot.core.proxy.CommonProxy")
   public static CommonProxy proxy;
 
   @EventHandler
   public void preInit(FMLPreInitializationEvent event) {
-    Configuration config = new Configuration(event.getSuggestedConfigurationFile());
-    config.load();
-    LapisGemEnable = config.get("Modules", "LapisGem", true).getBoolean(true);
-    VanillaPaxelEnable = config.get("Modules", "VanillaPaxel", true).getBoolean(true);
-    ColouredGemsEnable = config.get("Modules", "ColouredGems", true).getBoolean(true);
-    MagneticModuleEnable = config.get("Modules", "MagneticModule", true).getBoolean(true);
-    CompatOreEnable = config.get("Modules", "CompatOre", false).getBoolean(false);
-    config.save();
+    configfile = event.getSuggestedConfigurationFile();
+    configdir = event.getModConfigurationDirectory() ;
+    
+    ConfigHelper.file("Main");
+    
+    LapisGemEnable = ConfigHelper.module("LapisGemEnable", true);
+    VanillaPaxelEnable = ConfigHelper.module("VanillaPaxelEnable", true);
+    ColouredGemsEnable = ConfigHelper.module("ColouredGemsEnable", true);
+    MagneticModuleEnable = ConfigHelper.module("MagneticModuleEnable", true);
+    CompatOreEnable = ConfigHelper.module("CompatOreEnable", false);
+
+    ConfigHelper.save();
       
     if (LapisGemEnable==true) {
-      LapisGemModule.Config(event.getSuggestedConfigurationFile());
+      LapisGemModule.Config();
     }
     if (VanillaPaxelEnable==true) {
-      VanillaPaxelModule.Config(event.getSuggestedConfigurationFile());
+      VanillaPaxelModule.Config();
     }
     if (ColouredGemsEnable==true) {
-      ColourGemsModule.Config(event.getSuggestedConfigurationFile());
+      ColourGemsModule.Config();
     }
     if (MagneticModuleEnable==true) {
-      MagneticModule.Config(event.getSuggestedConfigurationFile());
+      MagneticModule.Config();
     }
     if (CompatOreEnable==true) {
-      CompatOreModule.Config(event.getSuggestedConfigurationFile());
+      CompatOreModule.Config();
     }
   }
 
