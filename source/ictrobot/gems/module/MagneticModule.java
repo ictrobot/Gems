@@ -87,11 +87,11 @@ public class MagneticModule {
       positive = (new Powder(positiveID, "Positive"));
       negative = (new Powder(negativeID, "Negative"));
       magneticPowder = (new Powder(magneticPowderID, "Magnetic"));
-      repelPlayerLvl1 = (new RepelPlayer(repelPlayerLvl1ID, ToolMaterials.Magnetic, 1));
-      repelPlayerLvl2 = (new RepelPlayer(repelPlayerLvl2ID, ToolMaterials.Magnetic, 2));
-      repelPlayerLvl3 = (new RepelPlayer(repelPlayerLvl3ID, ToolMaterials.Magnetic, 3));
-      repelPlayerLvl4 = (new RepelPlayer(repelPlayerLvl4ID, ToolMaterials.Magnetic, 4));
-      repelPlayerLvl5 = (new RepelPlayer(repelPlayerLvl5ID, ToolMaterials.Magnetic, 5));
+      repelPlayerLvl1 = (new RepelPlayer(repelPlayerLvl1ID, ToolMaterials.RepelPlayer, 1));
+      repelPlayerLvl2 = (new RepelPlayer(repelPlayerLvl2ID, ToolMaterials.RepelPlayer, 2));
+      repelPlayerLvl3 = (new RepelPlayer(repelPlayerLvl3ID, ToolMaterials.RepelPlayer, 3));
+      repelPlayerLvl4 = (new RepelPlayer(repelPlayerLvl4ID, ToolMaterials.RepelPlayer, 4));
+      repelPlayerLvl5 = (new RepelPlayer(repelPlayerLvl5ID, ToolMaterials.RepelPlayer, 5));
       magneticIngot = (new Ingot(magneticIngotID, "Magnetic"));
       //StorageBlocks
       blockPositive = (new BasicBlock(blockPositiveID, "Positiveblock", Material.rock)).setHardness(4.0F).setResistance(7.5F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BlockPositive").setCreativeTab(CreativeTabs.tabBlock);

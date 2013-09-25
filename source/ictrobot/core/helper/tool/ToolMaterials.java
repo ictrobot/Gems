@@ -17,5 +17,5 @@ public class ToolMaterials {
   public static EnumToolMaterial Ruby = EnumHelper.addToolMaterial("Ruby", 3, 512, 8.0F, 3.0F, 10);
   public static EnumToolMaterial ChargedLapisGem = EnumHelper.addToolMaterial("LapisGem", 4, 2048, 10F, 10F, 50);
   
-  public static EnumToolMaterial Magnetic = EnumHelper.addToolMaterial("Magnetic", 0, 10, 0, 0, 0);
+  public static EnumToolMaterial RepelPlayer = EnumHelper.addToolMaterial("RepelPlayer", 0, 10, 0, 0, 0);
 }

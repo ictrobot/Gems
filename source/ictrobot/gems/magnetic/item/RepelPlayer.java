@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 public class RepelPlayer extends ItemTool{
 
   public int Level;
+  public EnumToolMaterial ToolMaterial;
   
   public RepelPlayer(int par1, EnumToolMaterial par2EnumToolMaterial, int TmpLevel) {
     super(par1, 0, par2EnumToolMaterial, Block.blocksList);
@@ -23,6 +24,7 @@ public class RepelPlayer extends ItemTool{
     setTextureName(Core.ModID + ":RepelPlayer");
     setMaxStackSize(1);
     Level = TmpLevel;
+    ToolMaterial = par2EnumToolMaterial;
   }
   
   @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -38,6 +40,11 @@ public class RepelPlayer extends ItemTool{
   @Override
   public float getStrVsBlock(ItemStack is, Block block, int meta) {
     return 0F;
+  }
+  
+  @Override
+  public boolean getIsRepairable(ItemStack toolIS, ItemStack repairIS) {
+      return false; //ToolMaterialsHelper.isRepairable(ToolMaterial, repairIS);
   }
 
   @Override

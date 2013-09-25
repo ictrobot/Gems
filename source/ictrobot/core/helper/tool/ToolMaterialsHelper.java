@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import ictrobot.gems.module.*;
 
 public class ToolMaterialsHelper {  
   
@@ -27,6 +28,8 @@ public class ToolMaterialsHelper {
       return repairIS.itemID == Item.ingotGold.itemID;
     } else if (material.name() == "Diamond") {
       return repairIS.itemID == Item.diamond.itemID;
+    } else if (material.name() == "RepelPlayer") {
+      return repairIS.itemID == MagneticModule.magneticIngotID + 256;
     } else {
       return false;
     }
