@@ -19,7 +19,7 @@
 		<delete dir="${basedir}\temp\" />
 	</target>
 	<target name="cleanlocal">
-    <delete file="${basedir}\forge\mcp\src\minecraft\mcmod.info" />
+    <delete file="${basedir}\temp\forge\mcp\src\minecraft\mcmod.info" />
 		<delete dir="${basedir}\temp\forge\mcp\src\minecraft\ictrobot" />
     <delete dir="${basedir}\temp\forge\mcp\reobf\minecraft" />
 	</target>
