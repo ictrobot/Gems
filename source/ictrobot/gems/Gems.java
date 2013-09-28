@@ -70,7 +70,7 @@ public class Gems {
       MagneticModule.Config();
     }
     if (CompatOreEnable==true) {
-      CompatOreModule.Config(configfile);
+      CompatOreModule.Config();
     }
   }
 
