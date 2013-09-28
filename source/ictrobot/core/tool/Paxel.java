@@ -22,7 +22,6 @@ public class Paxel extends ItemPickaxe {
     
     public Paxel(int itemId, EnumToolMaterial Material) {
         super(itemId, Material);
-        this.setMaxDamage(this.getMaxDamage()*3); 
         ToolMaterial = Material;
         ToolMaterialID = ToolMaterial.name();
         setUnlocalizedName(ToolMaterialID + ToolType);
@@ -47,27 +46,31 @@ public class Paxel extends ItemPickaxe {
       }
     return false;
     }
-
-    @Override
-    public float getStrVsBlock(ItemStack is, Block block, int meta) {
-      boolean harvest = false;
-      int toolLevel = toolMaterial.getHarvestLevel();
-      int pickaxeLevel = MinecraftForge.getBlockHarvestLevel(block, meta, "pickaxe");
-      int axeLevel = MinecraftForge.getBlockHarvestLevel(block, meta, "axe");
-      int shovelLevel = MinecraftForge.getBlockHarvestLevel(block, meta, "shovel");
-      if (toolLevel >= pickaxeLevel && pickaxeLevel != -1){
-        harvest = true;
-      }
-      if (toolLevel >= axeLevel && axeLevel != -1){
-        harvest = true;
-      }
-      if (toolLevel >= shovelLevel && shovelLevel != -1){
-        harvest = true;
-      }
-      if (harvest) {
-        return toolMaterial.getEfficiencyOnProperMaterial();
-      } else {
-        return 0.5F;
+      
+      @Override
+      public float getStrVsBlock(ItemStack is, Block block, int meta) {
+          for (Material mat : materialsEffectiveAgainst) {
+              if (mat == block.blockMaterial) {
+                boolean harvest = false;
+                int toolLevel = toolMaterial.getHarvestLevel();
+                int pickaxeLevel = MinecraftForge.getBlockHarvestLevel(block, meta, "pickaxe");
+                int axeLevel = MinecraftForge.getBlockHarvestLevel(block, meta, "axe");
+                int shovelLevel = MinecraftForge.getBlockHarvestLevel(block, meta, "shovel");
+                System.out.println(toolLevel + " " + pickaxeLevel +  " " + axeLevel +  " " + shovelLevel);
+                if (toolLevel >= pickaxeLevel && pickaxeLevel != -1){
+                  harvest = true;
+                }
+                if (toolLevel >= axeLevel && axeLevel != -1){
+                  harvest = true;
+                }
+                if (toolLevel >= shovelLevel && shovelLevel != -1){
+                  harvest = true;
+                }
+                if (harvest) {
+                  return toolMaterial.getEfficiencyOnProperMaterial();
+                }
+              }
+          }
+          return super.getStrVsBlock(is, block, meta);
       }
   }
-}
