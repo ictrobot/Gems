@@ -28,6 +28,7 @@ public class Gems {
   public boolean ColouredGemsEnable;
   public boolean MagneticModuleEnable;
   public boolean CompatOreEnable;
+  public boolean OtherIngotsEnable;
   
   //FOR CONFIG HELPER
   public static int ModulesRegistered = -1;
@@ -49,11 +50,15 @@ public class Gems {
     ColouredGemsEnable = ConfigHelper.module("ColouredGemsEnable", true);
     MagneticModuleEnable = ConfigHelper.module("MagneticModuleEnable", true);
     CompatOreEnable = ConfigHelper.module("CompatOreEnable", false);
+    OtherIngotsEnable = ConfigHelper.module("OtherIngotsEnable", true);
 
     ConfigHelper.save();
       
     if (LapisGemEnable==true) {
       LapisGemModule.Config();
+    }
+    if (OtherIngotsEnable==true) {
+    	OtherIngotsModule.Config(configfile);
     }
     if (VanillaPaxelEnable==true) {
       VanillaPaxelModule.Config();
@@ -65,7 +70,7 @@ public class Gems {
       MagneticModule.Config();
     }
     if (CompatOreEnable==true) {
-      CompatOreModule.Config();
+      CompatOreModule.Config(configfile);
     }
   }
 
@@ -76,8 +81,11 @@ public class Gems {
     if (LapisGemEnable==true) {
       LapisGemModule.Settings();
     }
+    if (OtherIngotsEnable==true) {
+    	OtherIngotsModule.Settings();
+    }
     if (VanillaPaxelEnable==true) {
-      VanillaPaxelModule.Settings();
+        VanillaPaxelModule.Settings();
     }
     if (ColouredGemsEnable==true) {
       ColourGemsModule.Settings();
@@ -98,6 +106,9 @@ public class Gems {
 
     if (LapisGemEnable==true) {
       LapisGemModule.Register();
+    }
+    if (OtherIngotsEnable==true) {
+    	OtherIngotsModule.Register();
     }
     if (VanillaPaxelEnable==true) {
       VanillaPaxelModule.Register();

@@ -1,7 +1,6 @@
 package ictrobot.gems.module.compat;
 
 import ictrobot.core.helper.tool.*;
-import ictrobot.core.helper.config.*;
 import ictrobot.core.item.*;
 import ictrobot.core.tool.*;
 import ictrobot.core.block.*;
@@ -19,7 +18,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 
-@SuppressWarnings("unused")
+
 public class CompatOreModule {
     
    //Define IDs - Colour Gems
@@ -49,40 +48,41 @@ public class CompatOreModule {
    public static Dim0WorldGenerator worldSilver;
    public static Dim0WorldGenerator worldLead;
    
-   public static void Config() {
-      ConfigHelper.file("CompatOre");
+   public static void Config(File file) {
+      Configuration config = new Configuration(file);
+      config.load();
       //Items
-      oreCopperID = ConfigHelper.block("oreCopperID");
-      oreTinID = ConfigHelper.block("oreTinID");
-      oreSilverID = ConfigHelper.block("oreSilverID");
-      oreLeadID = ConfigHelper.block("oreLeadID");
+      oreCopperID = config.get(Configuration.CATEGORY_BLOCK, "oreCopperID", 701).getInt();
+      oreTinID = config.get(Configuration.CATEGORY_BLOCK, "oreTinID", 702).getInt();
+      oreSilverID = config.get(Configuration.CATEGORY_BLOCK, "oreSilverID", 703).getInt();
+      oreLeadID = config.get(Configuration.CATEGORY_BLOCK, "oreLeadID", 704).getInt();
       
-      copperID = ConfigHelper.item("copperID");
-      tinID = ConfigHelper.item("tinID");
-      silverID = ConfigHelper.item("silverID");
-      leadID = ConfigHelper.item("leadID");
+      copperID = config.get(Configuration.CATEGORY_ITEM, "copperID", 3001).getInt();
+      tinID = config.get(Configuration.CATEGORY_ITEM, "tinID", 3002).getInt();
+      silverID = config.get(Configuration.CATEGORY_ITEM, "silverID", 3003).getInt();
+      leadID = config.get(Configuration.CATEGORY_ITEM, "leadID", 3004).getInt();
       
-      int CMaxH = ConfigHelper.other("Copper", "MaxH", 80);
-      int CMinH = ConfigHelper.other("Copper", "MinH", 5);
-      int CNumberOfVeins = ConfigHelper.other("Copper", "NumberOfVeins", 10);
-      int CNumberInVeins = ConfigHelper.other("Copper", "NumberInVeins", 8);
+      int CMaxH = config.get("Copper Ore", "MaxH", 80).getInt();
+      int CMinH = config.get("Copper Ore", "MinH", 5).getInt();
+      int CNumberOfVeins = config.get("Copper Ore", "NumberOfVeins", 10).getInt();
+      int CNumberInVeins = config.get("Copper Ore", "NumberInVeins", 8).getInt();
       
-      int TMaxH = ConfigHelper.other("Tin", "MaxH", 80);
-      int TMinH = ConfigHelper.other("Tin", "MinH", 5);
-      int TNumberOfVeins = ConfigHelper.other("Tin", "NumberOfVeins", 10);
-      int TNumberInVeins = ConfigHelper.other("Tin", "NumberInVeins", 8);
+      int TMaxH = config.get("Tin Ore", "MaxH", 80).getInt();
+      int TMinH = config.get("Tin Ore", "MinH", 5).getInt();
+      int TNumberOfVeins = config.get("Tin Ore", "NumberOfVeins", 10).getInt();
+      int TNumberInVeins = config.get("Tin Ore", "NumberInVeins", 8).getInt();
       
-      int SMaxH = ConfigHelper.other("Silver", "MaxH", 40);
-      int SMinH = ConfigHelper.other("Silver", "MinH", 5);
-      int SNumberOfVeins = ConfigHelper.other("Silver", "NumberOfVeins", 5);
-      int SNumberInVeins = ConfigHelper.other("Silver", "NumberInVeins", 8);
+      int SMaxH = config.get("Silver Ore", "MaxH", 40).getInt();
+      int SMinH = config.get("Silver Ore", "MinH", 5).getInt();
+      int SNumberOfVeins = config.get("Silver Ore", "NumberOfVeins", 5).getInt();
+      int SNumberInVeins = config.get("Silver Ore", "NumberInVeins", 8).getInt();
       
-      int LMaxH = ConfigHelper.other("Silver", "MaxH", 40);
-      int LMinH = ConfigHelper.other("Silver", "MinH", 5);
-      int LNumberOfVeins = ConfigHelper.other("Silver", "NumberOfVeins", 5);
-      int LNumberInVeins = ConfigHelper.other("Silver", "NumberInVeins", 8);
+      int LMaxH = config.get("Lead Ore", "MaxH", 40).getInt();
+      int LMinH = config.get("Lead Ore", "MinH", 5).getInt();
+      int LNumberOfVeins = config.get("Lead Ore", "NumberOfVeins", 5).getInt();
+      int LNumberInVeins = config.get("Lead Ore", "NumberInVeins", 8).getInt();
       
-      ConfigHelper.save();
+      config.save();
       
       //Define World Gen
       worldCopper = new Dim0WorldGenerator(oreCopperID, CMaxH, CMinH, CNumberOfVeins, CNumberInVeins);
