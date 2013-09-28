@@ -7,7 +7,8 @@ import ictrobot.core.helper.tool.ToolMaterials;
 import ictrobot.core.helper.config.ConfigHelper;
 import ictrobot.core.item.*;
 import ictrobot.core.world.Dim0WorldGenerator;
-import ictrobot.gems.magnetic.item.RepelPlayer;
+import ictrobot.gems.magnetic.item.*;
+import ictrobot.gems.magnetic.block.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -32,12 +33,15 @@ public class MagneticModule {
    public static int repelPlayerLvl5ID;
    public static int blockPositiveID;
    public static int blockNegativeID;
+   public static int magneticBlockID;
+   public static int magnetID;
 
    //Define Blocks - Colour Gems
    public static Block orePositive;
    public static Block oreNegative;
    public static Block blockPositive;
    public static Block blockNegative;
+   public static Block magneticBlock;
    
    //Define Items - Colour Gems
    public static Item positive;
@@ -49,6 +53,7 @@ public class MagneticModule {
    public static Item repelPlayerLvl5;
    public static Item magneticPowder;
    public static Item magneticIngot;
+   public static Item magnet;
 
    public static Dim0WorldGenerator worldPositive;
    public static Dim0WorldGenerator worldNegative;
@@ -65,11 +70,13 @@ public class MagneticModule {
       repelPlayerLvl5ID = ConfigHelper.item("repelPlayerLvl5ID");
       magneticPowderID = ConfigHelper.item("magneticPowderID");
       magneticIngotID = ConfigHelper.item("magneticIngotID");
+      magnetID = ConfigHelper.item("magnetID");
       
       blockPositiveID = ConfigHelper.block("blockPositiveID");
       blockNegativeID = ConfigHelper.block("blockNegativeID");
       orePositiveID = ConfigHelper.block("orePositiveID");
       oreNegativeID = ConfigHelper.block("oreNegativeID");
+      magneticBlockID = ConfigHelper.block("magneticBlockID");
       
       ConfigHelper.save();
       
@@ -92,6 +99,9 @@ public class MagneticModule {
       repelPlayerLvl4 = (new RepelPlayer(repelPlayerLvl4ID, ToolMaterials.RepelPlayer, 4));
       repelPlayerLvl5 = (new RepelPlayer(repelPlayerLvl5ID, ToolMaterials.RepelPlayer, 5));
       magneticIngot = (new Ingot(magneticIngotID, "Magnetic"));
+      magnet = (new BasicItem(magnetID, "Magnet"));
+      //Function Blocks
+      magneticBlock = (new MagneticBlock(magneticBlockID, "MagneticBlock", Material.iron));   
       //StorageBlocks
       blockPositive = (new BasicBlock(blockPositiveID, "Positiveblock", Material.rock)).setHardness(4.0F).setResistance(7.5F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BlockPositive").setCreativeTab(CreativeTabs.tabBlock);
       blockNegative = (new BasicBlock(blockNegativeID, "Negativeblock", Material.rock)).setHardness(4.0F).setResistance(7.5F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BlockNegative").setCreativeTab(CreativeTabs.tabBlock);
@@ -112,6 +122,9 @@ public class MagneticModule {
       GameRegistry.addRecipe(new ItemStack(repelPlayerLvl5), "   ", "mdm", "pip", 'p', new ItemStack(Block.pistonBase), 'm', new ItemStack(repelPlayerLvl4), 'i', new ItemStack(Block.blockIron), 'd', new ItemStack(Block.blockDiamond));
       GameRegistry.addRecipe(new ItemStack(blockPositive), "ddd", "ddd", "ddd", 'd', new ItemStack(positive));
       GameRegistry.addRecipe(new ItemStack(blockNegative), "ddd", "ddd", "ddd", 'd', new ItemStack(negative));
+      GameRegistry.addRecipe(new ItemStack(magnet), "p n", "d d", "d d", 'd', new ItemStack(negative), 'p', new ItemStack(positive), 'n', new ItemStack(negative));
+      GameRegistry.addRecipe(new ItemStack(magnet), "n p", "d d", "d d", 'd', new ItemStack(negative), 'p', new ItemStack(positive), 'n', new ItemStack(negative));
+      GameRegistry.addRecipe(new ItemStack(magneticBlock), "ddd", "ddd", "ddd", 'd', new ItemStack(magneticIngot));
       GameRegistry.addShapelessRecipe(new ItemStack(positive, 9), new ItemStack(blockPositive));
       GameRegistry.addShapelessRecipe(new ItemStack(negative, 9), new ItemStack(blockNegative));
       GameRegistry.addShapelessRecipe(new ItemStack(magneticPowder), new ItemStack(positive), new ItemStack(negative));
@@ -123,6 +136,7 @@ public class MagneticModule {
       Register.Block(oreNegative, "Negative Ore", "pickaxe", 3);
       Register.Block(blockPositive, "Positive Block", "pickaxe" , 3);
       Register.Block(blockNegative, "Negative Block", "pickaxe", 3);
+      Register.Block(magneticBlock, "Magnetic Block", "pickaxe", 3);
       //Items - Coloured Gems
       Register.Item(positive, "Positive Powder");
       Register.Item(negative, "Negative Powder");
@@ -133,5 +147,6 @@ public class MagneticModule {
       Register.Item(repelPlayerLvl3, "Magnetic Jump");
       Register.Item(repelPlayerLvl4, "Magnetic Jump");
       Register.Item(repelPlayerLvl5, "Magnetic Jump");
+      Register.Item(magnet, "Magnet");
     }
 }
