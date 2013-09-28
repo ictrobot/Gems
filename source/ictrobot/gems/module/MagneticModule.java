@@ -99,7 +99,7 @@ public class MagneticModule {
       repelPlayerLvl4 = (new RepelPlayer(repelPlayerLvl4ID, ToolMaterials.RepelPlayer, 4));
       repelPlayerLvl5 = (new RepelPlayer(repelPlayerLvl5ID, ToolMaterials.RepelPlayer, 5));
       magneticIngot = (new Ingot(magneticIngotID, "Magnetic"));
-      magnet = (new BasicItem(magnetID, "Magnet"));
+      magnet = (new BasicItem(magnetID, "Magnet")).setMaxStackSize(1);
       //Function Blocks
       magneticBlock = (new MagneticBlock(magneticBlockID, "MagneticBlock", Material.iron));   
       //StorageBlocks
