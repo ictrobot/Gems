@@ -1,7 +1,5 @@
 package ictrobot.gems;
 
-import ictrobot.gems.magnetic.armor.Jetpack;
-
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -12,6 +10,8 @@ import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 public class GemsPacketHandler implements IPacketHandler {
 
+  static public boolean Flight = false;
+  
   @Override
   public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player playerEntity) {
     if (packet.channel.equals("GemsJetpack")) {
@@ -31,9 +31,9 @@ public class GemsPacketHandler implements IPacketHandler {
             return;
     }
    if (state==1) {
-     Jetpack.upPressed = true;
+     Flight = true;
    } else if (state==0) {
-     Jetpack.upPressed = false;
+     Flight = false;
    }
   }
 }

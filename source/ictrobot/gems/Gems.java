@@ -5,7 +5,6 @@ import java.io.File;
 import ictrobot.core.helper.config.ConfigHelper;
 import ictrobot.core.proxy.*;
 import ictrobot.gems.module.*;
-import ictrobot.gems.*;
 import ictrobot.gems.module.compat.*;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -20,6 +19,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels={"GemsJetpack"}, packetHandler = GemsPacketHandler.class)
 public class Gems {
+
   @Instance(Reference.MOD_ID)
   public static Gems instance;
 

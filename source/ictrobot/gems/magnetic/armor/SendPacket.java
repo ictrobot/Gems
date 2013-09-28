@@ -37,7 +37,6 @@ public class SendPacket {
     if (side == Side.CLIENT) {
       EntityClientPlayerMP player = (EntityClientPlayerMP) tmpplayer;
       player.sendQueue.addToSendQueue(packet);
-      
     }
   }
 }

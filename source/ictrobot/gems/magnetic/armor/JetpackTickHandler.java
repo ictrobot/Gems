@@ -41,7 +41,7 @@ public class JetpackTickHandler implements ITickHandler {
   
   public static void playerTick(EntityPlayer player)
   {
-           if(JetpackKeybind.keyPressed!=tmp) {
+          if(JetpackKeybind.keyPressed!=tmp) {
              tmp = JetpackKeybind.keyPressed;
              if(JetpackKeybind.keyPressed) {
                SendPacket.keydown(player);

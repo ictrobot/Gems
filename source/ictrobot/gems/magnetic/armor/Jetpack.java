@@ -1,5 +1,7 @@
 package ictrobot.gems.magnetic.armor;
 
+import ictrobot.gems.Gems;
+import ictrobot.gems.GemsPacketHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -13,10 +15,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumHelper;
 
 public class Jetpack extends ItemArmor {
-
-  static EnumArmorMaterial armor = EnumHelper.addArmorMaterial("Jetpack", 0, new int[] { 0, 0, 0, 0 }, 0);
-  public static boolean upPressed = false;
   
+  static EnumArmorMaterial armor = EnumHelper.addArmorMaterial("Jetpack", 0, new int[] { 0, 0, 0, 0 }, 0);
   
   public Jetpack(int par1, int par2) {
     super(par1, armor, par2, 1);
@@ -35,9 +35,11 @@ public class Jetpack extends ItemArmor {
   public void onArmorTickUpdate (World world, EntityPlayer player, ItemStack itemStack)  {
     Side side = FMLCommonHandler.instance().getEffectiveSide();
     if (!side.isClient()); {
-      if (upPressed) {
+      if (GemsPacketHandler.Flight) {
         player.addVelocity(0, 0.1, 0);
         player.fallDistance = 0.0F;
+        player.distanceWalkedModified = 0.0F;
+        Gems.proxy.resetPlayerInAirTime(player);
       }
     }
   }

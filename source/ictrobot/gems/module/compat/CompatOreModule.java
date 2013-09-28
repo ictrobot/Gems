@@ -1,23 +1,14 @@
 package ictrobot.gems.module.compat;
 
-import ictrobot.core.helper.tool.*;
 import ictrobot.core.helper.config.*;
 import ictrobot.core.item.*;
-import ictrobot.core.tool.*;
 import ictrobot.core.block.*;
 import ictrobot.core.helper.register.Register;
 import ictrobot.core.world.*;
-import ictrobot.gems.magnetic.item.*;
-
-import java.io.File;
-
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.Configuration;
 
 
 public class CompatOreModule {

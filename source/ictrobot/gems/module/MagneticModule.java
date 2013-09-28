@@ -108,7 +108,9 @@ public class MagneticModule {
       //Define World Gen
       worldPositive = new Dim0WorldGenerator(orePositiveID, 40, 5, 4, 8);
       worldNegative = new Dim0WorldGenerator(oreNegativeID, 40, 5, 4, 8);
-     
+      
+      
+      //For Jetpack
       Side side = FMLCommonHandler.instance().getEffectiveSide();
       if (side == Side.CLIENT) {
         KeyBinding[] up = {new KeyBinding("Jetpack Up", Keyboard.KEY_Z)};
