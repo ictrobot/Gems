@@ -49,8 +49,8 @@ public class CompatOreModule {
    public static Dim0WorldGenerator worldSilver;
    public static Dim0WorldGenerator worldLead;
    
-   public static void Config() {
-      ConfigHelper.file("CompatOre");
+   public static void Config(int ID) {
+      ConfigHelper.file("CompatOre", ID);
       //Items
       oreCopperID = ConfigHelper.block("oreCopperID");
       oreTinID = ConfigHelper.block("oreTinID");

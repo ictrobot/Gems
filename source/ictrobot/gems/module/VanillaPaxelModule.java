@@ -23,8 +23,8 @@ public class VanillaPaxelModule {
   public static Item goldPaxel;
   public static Item diamondPaxel;
     
-    public static void Config() {
-      ConfigHelper.file("VanillaPaxel");
+    public static void Config(int ID) {
+      ConfigHelper.file("VanillaPaxel", ID);
       woodPaxelID = ConfigHelper.item("woodPaxelID");
       stonePaxelID = ConfigHelper.item("stonePaxelID");
       ironPaxelID = ConfigHelper.item("ironPaxelID");

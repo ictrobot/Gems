@@ -11,7 +11,7 @@ public class ConfigHelper {
   
   static int BaseBlockID = BlockID;
   static int BaseItemID = ItemID;
-  
+ 
   static int ItemsRegistered = 0;
   static int BlocksRegistered = 0;
   
@@ -21,17 +21,16 @@ public class ConfigHelper {
   static String Module;
   static Configuration config;
 
-  public static void file(String ModuleName) {
+  public static void file(String ModuleName, int ID) {
     Module = ModuleName;
-    Gems.ModulesRegistered = Gems.ModulesRegistered + 1;
     
     File configfile = new File(Gems.configdir, "Gems/" + ModuleName + ".cfg");
     
     config = new Configuration(configfile);
     config.load();
     
-    BaseBlockID = BlockID + (Gems.ModulesRegistered * ModulesBlocks);
-    BaseItemID = ItemID + (Gems.ModulesRegistered * ModulesItems);
+    BaseBlockID = BlockID + (ID * ModulesBlocks);
+    BaseItemID = ItemID + (ID * ModulesItems);
     
     ItemsRegistered = 0;
     BlocksRegistered = 0;

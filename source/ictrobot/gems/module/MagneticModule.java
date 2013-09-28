@@ -72,8 +72,8 @@ public class MagneticModule {
    public static Dim0WorldGenerator worldPositive;
    public static Dim0WorldGenerator worldNegative;
    
-   public static void Config() {
-      ConfigHelper.file("MagneticModule");
+   public static void Config(int ID) {
+      ConfigHelper.file("MagneticModule", ID);
       //Items
       positiveID = ConfigHelper.item("positiveID");
       negativeID = ConfigHelper.item("negativeID");

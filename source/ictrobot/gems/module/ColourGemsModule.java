@@ -76,8 +76,8 @@ public class ColourGemsModule {
    public static Dim0WorldGenerator worldGreenSapphire;
    public static Dim0WorldGenerator worldRuby;
    
-   public static void Config() {
-      ConfigHelper.file("ColourGems");
+   public static void Config(int ID) {
+      ConfigHelper.file("ColourGems", ID);
       //Items
       sapphireID = ConfigHelper.item("sapphireID");
       greenSapphireID = ConfigHelper.item("greenSapphireID");

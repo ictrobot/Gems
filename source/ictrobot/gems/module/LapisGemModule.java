@@ -43,8 +43,8 @@ public class LapisGemModule {
   //Define Blocks
   public static int lapisGemSwordDamage;
   
-  public static void Config() {
-    ConfigHelper.file("LapisGem");
+  public static void Config(int ID) {
+    ConfigHelper.file("LapisGem", ID);
     lapisGemID = ConfigHelper.item("lapisGemID");
     chargedLapisGemID = ConfigHelper.item("chargedLapisGemID");
     lapisGemHelmetID = ConfigHelper.item("lapisGemHelmetID");

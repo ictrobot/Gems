@@ -17,7 +17,7 @@ public static EnumToolMaterial Wood = EnumHelper.addToolMaterial("Wood", 0, 59, 
   public static EnumToolMaterial GreenSapphire = EnumHelper.addToolMaterial("GreenSapphire", 3, 512, 8.0F, 3.0F, 10);
   public static EnumToolMaterial Ruby = EnumHelper.addToolMaterial("Ruby", 3, 512, 8.0F, 3.0F, 10);
   public static EnumToolMaterial ChargedLapisGem = EnumHelper.addToolMaterial("LapisGem", 4, 2048, 10F, 10F, 50);
-  public static final EnumToolMaterial Obsidian = EnumHelper.addToolMaterial("Obsidian", 20, 8192, 15F, 15F, 100);
+  public static EnumToolMaterial Obsidian = EnumHelper.addToolMaterial("Obsidian", 20, 8192, 15F, 15F, 100);
   
   public static EnumToolMaterial RepelPlayer = EnumHelper.addToolMaterial("RepelPlayer", 0, 10, 0, 0, 0);
 }

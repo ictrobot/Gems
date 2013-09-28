@@ -7,7 +7,6 @@ import ictrobot.core.helper.tool.ToolMaterials;
 import ictrobot.core.item.Ingot;
 import ictrobot.core.tool.Paxel;
 import ictrobot.core.tool.Sword;
-import java.io.File;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -32,8 +31,8 @@ public class OtherIngotsModule {
    public static Item obsidianSword;
    
    
-   public static void Config(File file) {
-      ConfigHelper.file("OtherIngots");
+   public static void Config(int ID) {
+      ConfigHelper.file("OtherIngots", ID);
       //Items
       obsidianIngotID = ConfigHelper.item("obsidianIngot");
       refinedObsidianID = ConfigHelper.block("refinedObsidian");
@@ -47,7 +46,7 @@ public class OtherIngotsModule {
       //Ingots
       obsidianIngot = (new Ingot(obsidianIngotID, "Obsidian"));
       //Blocks
-      refinedObsidian = (new BasicBlock(refinedObsidianID, "refinedObsidian", Material.rock)).setHardness(100.0F).setResistance(18000000.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("refinedObsidian").setCreativeTab(CreativeTabs.tabBlock);
+      refinedObsidian = (new BasicBlock(refinedObsidianID, "refinedObsidian", Material.rock)).setHardness(75.0F).setResistance(3000.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("refinedObsidian").setCreativeTab(CreativeTabs.tabBlock);
       
       //Paxel
       obsidianPaxel = (new Paxel(obsidianPaxelID,  ToolMaterials.Obsidian));
