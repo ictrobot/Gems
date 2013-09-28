@@ -1,5 +1,9 @@
 package ictrobot.gems.module;
 
+import java.util.EnumSet;
+
+import org.lwjgl.input.Keyboard;
+
 import ictrobot.core.block.BasicBlock;
 import ictrobot.core.block.Ore;
 import ictrobot.core.helper.register.Register;
@@ -7,18 +11,26 @@ import ictrobot.core.helper.tool.ToolMaterials;
 import ictrobot.core.helper.config.ConfigHelper;
 import ictrobot.core.item.*;
 import ictrobot.core.world.Dim0WorldGenerator;
+import ictrobot.gems.Gems;
 import ictrobot.gems.magnetic.item.*;
+import ictrobot.gems.magnetic.armor.*;
 import ictrobot.gems.magnetic.block.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.TickType;
 
 
 public class MagneticModule {
-    
+  
    //Define IDs - Colour Gems
    public static int positiveID;
    public static int negativeID;
@@ -35,6 +47,7 @@ public class MagneticModule {
    public static int blockNegativeID;
    public static int magneticBlockID;
    public static int magnetID;
+   public static int jetpackID;
 
    //Define Blocks - Colour Gems
    public static Block orePositive;
@@ -54,6 +67,7 @@ public class MagneticModule {
    public static Item magneticPowder;
    public static Item magneticIngot;
    public static Item magnet;
+   public static Item jetpack;
 
    public static Dim0WorldGenerator worldPositive;
    public static Dim0WorldGenerator worldNegative;
@@ -71,6 +85,7 @@ public class MagneticModule {
       magneticPowderID = ConfigHelper.item("magneticPowderID");
       magneticIngotID = ConfigHelper.item("magneticIngotID");
       magnetID = ConfigHelper.item("magnetID");
+      jetpackID = ConfigHelper.item("jetpackID");
       
       blockPositiveID = ConfigHelper.block("blockPositiveID");
       blockNegativeID = ConfigHelper.block("blockNegativeID");
@@ -83,6 +98,14 @@ public class MagneticModule {
       //Define World Gen
       worldPositive = new Dim0WorldGenerator(orePositiveID, 40, 5, 4, 8);
       worldNegative = new Dim0WorldGenerator(oreNegativeID, 40, 5, 4, 8);
+     
+      Side side = FMLCommonHandler.instance().getEffectiveSide();
+      if (side == Side.CLIENT) {
+        KeyBinding[] up = {new KeyBinding("Jetpack Up", Keyboard.KEY_Z)};
+        boolean[] repeat = {false};
+        KeyBindingRegistry.registerKeyBinding(new JetpackKeybind(up, repeat));
+        TickRegistry.registerTickHandler(new JetpackTickHandler(EnumSet.of(TickType.PLAYER)), Side.CLIENT);
+      }
     }
 
     public static void Settings() {
@@ -100,6 +123,7 @@ public class MagneticModule {
       repelPlayerLvl5 = (new RepelPlayer(repelPlayerLvl5ID, ToolMaterials.RepelPlayer, 5));
       magneticIngot = (new Ingot(magneticIngotID, "Magnetic"));
       magnet = (new BasicItem(magnetID, "Magnet")).setMaxStackSize(1);
+      jetpack = (new Jetpack(jetpackID, Gems.proxy.addArmor("Jetpack")));
       //Function Blocks
       magneticBlock = (new MagneticBlock(magneticBlockID, "MagneticBlock", Material.iron));   
       //StorageBlocks
@@ -122,8 +146,8 @@ public class MagneticModule {
       GameRegistry.addRecipe(new ItemStack(repelPlayerLvl5), "   ", "mdm", "pip", 'p', new ItemStack(Block.pistonBase), 'm', new ItemStack(repelPlayerLvl4), 'i', new ItemStack(Block.blockIron), 'd', new ItemStack(Block.blockDiamond));
       GameRegistry.addRecipe(new ItemStack(blockPositive), "ddd", "ddd", "ddd", 'd', new ItemStack(positive));
       GameRegistry.addRecipe(new ItemStack(blockNegative), "ddd", "ddd", "ddd", 'd', new ItemStack(negative));
-      GameRegistry.addRecipe(new ItemStack(magnet), "p n", "d d", "d d", 'd', new ItemStack(negative), 'p', new ItemStack(positive), 'n', new ItemStack(negative));
-      GameRegistry.addRecipe(new ItemStack(magnet), "n p", "d d", "d d", 'd', new ItemStack(negative), 'p', new ItemStack(positive), 'n', new ItemStack(negative));
+      GameRegistry.addRecipe(new ItemStack(magnet), "p n", "d d", "d d", 'd', new ItemStack(magneticIngot), 'p', new ItemStack(positive), 'n', new ItemStack(negative));
+      GameRegistry.addRecipe(new ItemStack(magnet), "n p", "d d", "d d", 'd', new ItemStack(magneticIngot), 'p', new ItemStack(positive), 'n', new ItemStack(negative));
       GameRegistry.addRecipe(new ItemStack(magneticBlock), "ddd", "ddd", "ddd", 'd', new ItemStack(magneticIngot));
       GameRegistry.addShapelessRecipe(new ItemStack(positive, 9), new ItemStack(blockPositive));
       GameRegistry.addShapelessRecipe(new ItemStack(negative, 9), new ItemStack(blockNegative));
@@ -148,5 +172,6 @@ public class MagneticModule {
       Register.Item(repelPlayerLvl4, "Magnetic Jump");
       Register.Item(repelPlayerLvl5, "Magnetic Jump");
       Register.Item(magnet, "Magnet");
+      Register.Item(jetpack, "Jetpack");
     }
 }
