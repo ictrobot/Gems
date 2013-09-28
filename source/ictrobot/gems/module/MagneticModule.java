@@ -1,32 +1,39 @@
 package ictrobot.gems.module;
 
-import java.util.EnumSet;
-
-import org.lwjgl.input.Keyboard;
-
 import ictrobot.core.block.BasicBlock;
 import ictrobot.core.block.Ore;
+import ictrobot.core.helper.config.ConfigHelper;
 import ictrobot.core.helper.register.Register;
 import ictrobot.core.helper.tool.ToolMaterials;
-import ictrobot.core.helper.config.ConfigHelper;
-import ictrobot.core.item.*;
+import ictrobot.core.item.BasicItem;
+import ictrobot.core.item.Ingot;
+import ictrobot.core.item.Powder;
 import ictrobot.core.world.Dim0WorldGenerator;
 import ictrobot.gems.Gems;
-import ictrobot.gems.magnetic.item.*;
-import ictrobot.gems.magnetic.armor.*;
-import ictrobot.gems.magnetic.block.*;
+import ictrobot.gems.magnetic.armor.CreativeJetpack;
+import ictrobot.gems.magnetic.armor.Jetpack;
+import ictrobot.gems.magnetic.armor.JetpackKeybind;
+import ictrobot.gems.magnetic.armor.JetpackTickHandler;
+import ictrobot.gems.magnetic.block.MagneticBlock;
+import ictrobot.gems.magnetic.item.RepelPlayer;
+
+import java.util.EnumSet;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
+import org.lwjgl.input.Keyboard;
+
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.TickType;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.TickType;
 
 
 public class MagneticModule {
@@ -48,6 +55,7 @@ public class MagneticModule {
    public static int magneticBlockID;
    public static int magnetID;
    public static int jetpackID;
+   public static int creativeJetpackID;
 
    //Define Blocks - Colour Gems
    public static Block orePositive;
@@ -68,6 +76,7 @@ public class MagneticModule {
    public static Item magneticIngot;
    public static Item magnet;
    public static Item jetpack;
+   public static Item creativeJetpack;
 
    public static Dim0WorldGenerator worldPositive;
    public static Dim0WorldGenerator worldNegative;
@@ -86,6 +95,7 @@ public class MagneticModule {
       magneticIngotID = ConfigHelper.item("magneticIngotID");
       magnetID = ConfigHelper.item("magnetID");
       jetpackID = ConfigHelper.item("jetpackID");
+      creativeJetpackID = ConfigHelper.item("creativeJetpackID");
       
       blockPositiveID = ConfigHelper.block("blockPositiveID");
       blockNegativeID = ConfigHelper.block("blockNegativeID");
@@ -124,6 +134,7 @@ public class MagneticModule {
       magneticIngot = (new Ingot(magneticIngotID, "Magnetic"));
       magnet = (new BasicItem(magnetID, "Magnet")).setMaxStackSize(1);
       jetpack = (new Jetpack(jetpackID, Gems.proxy.addArmor("Jetpack")));
+      creativeJetpack = (new CreativeJetpack(creativeJetpackID, Gems.proxy.addArmor("creativeJetpack")));
       //Function Blocks
       magneticBlock = (new MagneticBlock(magneticBlockID, "MagneticBlock", Material.iron));   
       //StorageBlocks
@@ -173,5 +184,6 @@ public class MagneticModule {
       Register.Item(repelPlayerLvl5, "Magnetic Jump");
       Register.Item(magnet, "Magnet");
       Register.Item(jetpack, "Jetpack");
+      Register.Item(creativeJetpack, "Creative Flight Jetpack");
     }
 }

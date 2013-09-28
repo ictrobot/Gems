@@ -19,7 +19,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 
-@SuppressWarnings("unused")
+
 public class CompatOreModule {
     
    //Define IDs - Colour Gems
