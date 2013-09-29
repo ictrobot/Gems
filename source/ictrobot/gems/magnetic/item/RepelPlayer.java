@@ -3,6 +3,7 @@ package ictrobot.gems.magnetic.item;
 import java.util.List;
 
 import ictrobot.core.Core;
+import ictrobot.gems.Gems;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -50,7 +51,7 @@ public class RepelPlayer extends ItemTool{
   @Override
   public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
     player.motionY = (0.75*(Level*0.75)); 
-    //itemStack.setItemDamage(itemStack.getItemDamage() - 1);
+    Gems.proxy.resetPlayerInAirTime(player);
     itemStack.damageItem(1, player);
     return itemStack;
   }

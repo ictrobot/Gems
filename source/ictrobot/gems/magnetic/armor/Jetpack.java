@@ -7,7 +7,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
@@ -38,6 +37,8 @@ public class Jetpack extends ItemArmor {
     if (side.isClient()) {
       if (JetpackKeybind.keyPressed) {
           player.addVelocity(0, 0.1, 0);
+          player.fallDistance = 0.0F;
+          player.distanceWalkedModified = 0.0F;
       }
     } else {
       NBTTagCompound tag = player.getEntityData();

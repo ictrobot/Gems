@@ -14,6 +14,7 @@ import ictrobot.gems.magnetic.armor.CreativeJetpack;
 import ictrobot.gems.magnetic.armor.Jetpack;
 import ictrobot.gems.magnetic.armor.JetpackKeybind;
 import ictrobot.gems.magnetic.armor.JetpackTickHandler;
+import ictrobot.gems.magnetic.armor.LongFallBoots;
 import ictrobot.gems.magnetic.block.MagneticBlock;
 import ictrobot.gems.magnetic.item.RepelPlayer;
 
@@ -56,6 +57,7 @@ public class MagneticModule {
    public static int magnetID;
    public static int jetpackID;
    public static int creativeJetpackID;
+   public static int longFallID;
 
    //Define Blocks - Colour Gems
    public static Block orePositive;
@@ -77,6 +79,7 @@ public class MagneticModule {
    public static Item magnet;
    public static Item jetpack;
    public static Item creativeJetpack;
+   public static Item longFall;
 
    public static Dim0WorldGenerator worldPositive;
    public static Dim0WorldGenerator worldNegative;
@@ -96,6 +99,7 @@ public class MagneticModule {
       magnetID = ConfigHelper.item("magnetID");
       jetpackID = ConfigHelper.item("jetpackID");
       creativeJetpackID = ConfigHelper.item("creativeJetpackID");
+      longFallID = ConfigHelper.item("longFallID");
       
       blockPositiveID = ConfigHelper.block("blockPositiveID");
       blockNegativeID = ConfigHelper.block("blockNegativeID");
@@ -135,8 +139,9 @@ public class MagneticModule {
       repelPlayerLvl5 = (new RepelPlayer(repelPlayerLvl5ID, ToolMaterials.RepelPlayer, 5));
       magneticIngot = (new Ingot(magneticIngotID, "Magnetic"));
       magnet = (new BasicItem(magnetID, "Magnet")).setMaxStackSize(1);
-      jetpack = (new Jetpack(jetpackID, Gems.proxy.addArmor("Jetpack")));
-      creativeJetpack = (new CreativeJetpack(creativeJetpackID, Gems.proxy.addArmor("creativeJetpack")));
+      jetpack = (new Jetpack(jetpackID, Gems.proxy.addArmor("Jetpack"))).setUnlocalizedName("Jetpack");
+      creativeJetpack = (new CreativeJetpack(creativeJetpackID, Gems.proxy.addArmor("creativeJetpack"))).setUnlocalizedName("CreativeJetpack");
+      longFall = (new LongFallBoots(longFallID, Gems.proxy.addArmor("LongFall"))).setUnlocalizedName("LongFall");
       //Function Blocks
       magneticBlock = (new MagneticBlock(magneticBlockID, "MagneticBlock", Material.iron));   
       //StorageBlocks
@@ -187,5 +192,6 @@ public class MagneticModule {
       Register.Item(magnet, "Magnet");
       Register.Item(jetpack, "Jetpack");
       Register.Item(creativeJetpack, "Creative Flight Jetpack");
+      Register.Item(longFall, "Long Fall Boots");
     }
 }
