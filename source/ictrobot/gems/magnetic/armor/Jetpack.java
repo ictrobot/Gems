@@ -1,16 +1,17 @@
 package ictrobot.gems.magnetic.armor;
 
 import ictrobot.gems.Gems;
-import ictrobot.gems.GemsPacketHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumHelper;
 
@@ -35,11 +36,16 @@ public class Jetpack extends ItemArmor {
   public void onArmorTickUpdate (World world, EntityPlayer player, ItemStack itemStack)  {
     Side side = FMLCommonHandler.instance().getEffectiveSide();
     if (!side.isClient()); {
-      if (GemsPacketHandler.Flight) {
-        player.addVelocity(0, 0.1, 0);
-        player.fallDistance = 0.0F;
-        player.distanceWalkedModified = 0.0F;
-        Gems.proxy.resetPlayerInAirTime(player);
+      NBTTagCompound tag = player.getEntityData();
+      System.out.println("---------------------");
+      System.out.println(tag.getInteger("GemsJetpack"));
+      System.out.println(player.toString());
+      System.out.println("---------------------");
+      if (tag.getInteger("GemsJetpack")==1 || player instanceof EntityPlayerMP) {
+          player.addVelocity(0, 0.1, 0);
+          player.fallDistance = 0.0F;
+          player.distanceWalkedModified = 0.0F;
+          Gems.proxy.resetPlayerInAirTime(player);
       }
     }
   }
