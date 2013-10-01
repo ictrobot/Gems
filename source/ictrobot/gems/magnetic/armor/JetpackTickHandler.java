@@ -1,5 +1,7 @@
 package ictrobot.gems.magnetic.armor;
 
+import ictrobot.gems.module.MagneticModule;
+
 import java.util.EnumSet;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -49,5 +51,18 @@ public class JetpackTickHandler implements ITickHandler {
                SendPacket.keyup(player);
              }
            }
+          
+          if (player.getCurrentArmor(2) != null) {
+            if (player.getCurrentArmor(2).itemID == MagneticModule.creativeJetpackID + 256) {
+              player.capabilities.allowFlying = true;
+              player.sendPlayerAbilities();
+            } else {
+              player.capabilities.allowFlying = false;
+              player.sendPlayerAbilities();
+            }
+          } else {
+            player.capabilities.allowFlying = false;
+            player.sendPlayerAbilities();
+          }
   }
 }
