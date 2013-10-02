@@ -1,10 +1,10 @@
 package ictrobot.gems.magnetic.armor;
 
+import ictrobot.core.Core;
+
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.packet.Packet250CustomPayload;
@@ -33,8 +33,7 @@ public class SendPacket {
     packet.data = bos.toByteArray();
     packet.length = bos.size();
         
-    Side side = FMLCommonHandler.instance().getEffectiveSide();
-    if (side == Side.CLIENT) {
+    if (Core.isClient()) {
       EntityClientPlayerMP player = (EntityClientPlayerMP) tmpplayer;
       player.sendQueue.addToSendQueue(packet);
     }

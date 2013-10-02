@@ -1,5 +1,6 @@
 package ictrobot.gems.module;
 
+import ictrobot.core.Core;
 import ictrobot.core.block.BasicBlock;
 import ictrobot.core.block.Ore;
 import ictrobot.core.helper.config.ConfigHelper;
@@ -30,7 +31,6 @@ import net.minecraft.item.ItemStack;
 import org.lwjgl.input.Keyboard;
 
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.TickType;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
@@ -115,8 +115,7 @@ public class MagneticModule {
       
       
       //For Jetpack
-      Side side = FMLCommonHandler.instance().getEffectiveSide();
-      if (side == Side.CLIENT) {
+      if (Core.isClient()) {
         KeyBinding[] up = {new KeyBinding("Jetpack Up", Keyboard.KEY_Z)};
         boolean[] repeat = {false};
         KeyBindingRegistry.registerKeyBinding(new JetpackKeybind(up, repeat));

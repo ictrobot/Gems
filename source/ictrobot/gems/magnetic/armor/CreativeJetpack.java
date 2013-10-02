@@ -1,6 +1,5 @@
 package ictrobot.gems.magnetic.armor;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -33,12 +32,6 @@ public class CreativeJetpack extends ItemArmor {
   
   @Override
   public void onArmorTickUpdate (World world, EntityPlayer player, ItemStack itemStack)  {
-	player.capabilities.allowFlying = true;
-	player.sendPlayerAbilities();
 	
-	
-	
-	
-	  }
-  
+  }
 }
