@@ -78,7 +78,7 @@ public class LapisGemModule {
     //Blocks - Lapis Gem
     blockLapisGem = new BasicBlock(blockLapisGemID, "LapisGemblock",Material.rock).setHardness(4.0F).setResistance(7.5F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BlockLapisGem").setCreativeTab(CreativeTabs.tabBlock);
     // Register Recipes - Lapis Gem
-    GameRegistry.addRecipe(new ItemStack(lapisGem, 1), "lll", "ldl", "lll", 'l', new ItemStack(Item.dyePowder, 1, 4), 'd', new ItemStack(Item.diamond));
+    GameRegistry.addRecipe(new ItemStack(lapisGem, 1), "ldl", "ddd", "ldl", 'l', new ItemStack(Item.dyePowder, 1, 4), 'd', new ItemStack(Item.diamond));
     GameRegistry.addSmelting(lapisGemID + 256, new ItemStack(chargedLapisGem), 1);
     GameRegistry.addRecipe(new ItemStack(lapisGemHelmet), "lll", "l l", "   ", 'l', new ItemStack(chargedLapisGem));
     GameRegistry.addRecipe(new ItemStack(lapisGemChestplate), "l l", "lll", "lll", 'l', new ItemStack(chargedLapisGem));
