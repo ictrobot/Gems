@@ -52,7 +52,7 @@ public class VanillaPaxelModule {
     public static void Register(){
       //Items - Vanilla Paxel
       Register.Item(woodPaxel, "Wooden Paxel");
-      Register.Item(stonePaxel, "Stone paxel");
+      Register.Item(stonePaxel, "Stone Paxel");
       Register.Item(ironPaxel, "Iron Paxel");
       Register.Item(goldPaxel, "Gold Paxel");
       Register.Item(diamondPaxel, "Diamond Paxel");
