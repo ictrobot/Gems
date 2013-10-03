@@ -171,6 +171,10 @@ public class MagneticModule {
       GameRegistry.addRecipe(new ItemStack(magnet), "p n", "d d", "d d", 'd', new ItemStack(magneticIngot), 'p', new ItemStack(positive), 'n', new ItemStack(negative));
       GameRegistry.addRecipe(new ItemStack(magnet), "n p", "d d", "d d", 'd', new ItemStack(magneticIngot), 'p', new ItemStack(positive), 'n', new ItemStack(negative));
       GameRegistry.addRecipe(new ItemStack(magneticBlock), "ddd", "ddd", "ddd", 'd', new ItemStack(magneticIngot));
+      GameRegistry.addRecipe(new ItemStack(flightRing), "dmd", "jmr", "dmd", 'm', new ItemStack(magneticBlock), 'd', new ItemStack(Item.diamond), 'j', new ItemStack(creativeJetpack), 'r', new ItemStack(repelPlayerLvl5));
+      GameRegistry.addRecipe(new ItemStack(flightRing), "dmd", "rmj", "dmd", 'm', new ItemStack(magneticBlock), 'd', new ItemStack(Item.diamond), 'j', new ItemStack(creativeJetpack), 'r', new ItemStack(repelPlayerLvl5));
+      GameRegistry.addRecipe(new ItemStack(jetpack), "mmm", "mmm", "dmd", 'm', new ItemStack(magneticBlock), 'd', new ItemStack(Block.blockDiamond));
+      GameRegistry.addRecipe(new ItemStack(creativeJetpack), "mmm", "mjm", "dmd", 'm', new ItemStack(magneticBlock), 'd', new ItemStack(Block.blockDiamond), 'j', new ItemStack(jetpack));
       GameRegistry.addShapelessRecipe(new ItemStack(positive, 9), new ItemStack(blockPositive));
       GameRegistry.addShapelessRecipe(new ItemStack(negative, 9), new ItemStack(blockNegative));
       GameRegistry.addShapelessRecipe(new ItemStack(magneticPowder), new ItemStack(positive), new ItemStack(negative));
@@ -198,5 +202,11 @@ public class MagneticModule {
       Register.Item(creativeJetpack, "Creative Flight Jetpack");
       Register.Item(longFall, "Long Fall Boots");
       Register.Item(flightRing, "Flight Ring");
+      
+      Register.Ore("itemRepelPlayer", repelPlayerLvl1);
+      Register.Ore("itemRepelPlayer", repelPlayerLvl2);
+      Register.Ore("itemRepelPlayer", repelPlayerLvl3);
+      Register.Ore("itemRepelPlayer", repelPlayerLvl4);
+      Register.Ore("itemRepelPlayer", repelPlayerLvl5);
     }
 }

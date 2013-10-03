@@ -1,12 +1,11 @@
 package ictrobot.gems.magnetic.armor;
 
 import ictrobot.gems.module.MagneticModule;
-
 import java.util.EnumSet;
-
 import net.minecraft.entity.player.EntityPlayer;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
+
 public class JetpackTickHandler implements ITickHandler {
   private final EnumSet<TickType> ticksToGet;
   
