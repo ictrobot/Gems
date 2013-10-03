@@ -11,16 +11,15 @@ public class JetpackTickHandler implements ITickHandler {
   private final EnumSet<TickType> ticksToGet;
   
   public static boolean tmp;
-  /*
-           * This Tick Handler will fire for whatever TickType's you construct and register it with.
-           */
+  public static boolean goingDown = false;
+  public static boolean r1 = false;
+  public static boolean r2 = false;
+
   public JetpackTickHandler(EnumSet<TickType> ticksToGet)
   {
            this.ticksToGet = ticksToGet;
   }
-  /*
-           * I suggest putting all your tick Logic in EITHER of these, but staying in one
-           */
+
   @Override
   public void tickStart(EnumSet<TickType> type, Object... tickData)
   {
@@ -43,26 +42,61 @@ public class JetpackTickHandler implements ITickHandler {
   
   public static void playerTick(EntityPlayer player)
   {
-          if(JetpackKeybind.keyPressed!=tmp) {
-             tmp = JetpackKeybind.keyPressed;
-             if(JetpackKeybind.keyPressed) {
-               SendPacket.keydown(player);
-             } else {
-               SendPacket.keyup(player);
-             }
-           }
-          
-          if (player.getCurrentArmor(2) != null) {
-            if (player.getCurrentArmor(2).itemID == MagneticModule.creativeJetpackID + 256) {
-              player.capabilities.allowFlying = true;
-              player.sendPlayerAbilities();
-            } else {
-              player.capabilities.allowFlying = false;
-              player.sendPlayerAbilities();
-            }
-          } else {
-            player.capabilities.allowFlying = false;
-            player.sendPlayerAbilities();
-          }
+    if(JetpackKeybind.keyPressed!=tmp) {
+      tmp = JetpackKeybind.keyPressed;
+      if(JetpackKeybind.keyPressed) {
+        SendPacket.keydown(player);
+      } else {
+        SendPacket.keyup(player);
+      }
+    }
+    
+    boolean WearingArmor = player.getCurrentArmor(2) != null;
+    boolean HasRing = player.inventory.hasItem(MagneticModule.flightRingID + 256);
+    
+    boolean ShouldFly = false;
+    
+    if (WearingArmor) {
+      if (player.getCurrentArmor(2).itemID == MagneticModule.creativeJetpackID + 256) {
+        ShouldFly = true;
+      }
+    }
+    if (HasRing) {
+      ShouldFly = true;
+    }
+    
+    if (ShouldFly) {
+      allowFlight(player);
+    } else {
+      disallowFlight(player);
+    }
+        
+    if (goingDown) {
+      if (!player.onGround) {
+        player.motionY = -2;
+      } else {
+         goingDown = false;
+      }
+    }
+  }
+  
+  public static void allowFlight(EntityPlayer player) {
+    if (r1) {
+      player.capabilities.allowFlying = true;
+      player.sendPlayerAbilities();
+      goingDown = false;
+    }
+    r1 = true;
+    r2 = false;
+  }
+  
+  public static void disallowFlight(EntityPlayer player) {
+    if (!r2) {
+      player.capabilities.allowFlying = false;
+      player.sendPlayerAbilities();
+      goingDown = true;
+    }
+    r2 = true;
+    r1 = false;
   }
 }
