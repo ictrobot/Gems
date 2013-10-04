@@ -178,12 +178,14 @@ public class MagneticModule {
       GameRegistry.addRecipe(new ItemStack(magneticBlock), "ddd", "ddd", "ddd", 'd', new ItemStack(magneticIngot));
       GameRegistry.addRecipe(new ItemStack(flightRing), "dmd", "jmr", "dmd", 'm', new ItemStack(magneticBlock), 'd', new ItemStack(Item.diamond), 'j', new ItemStack(creativeJetpack), 'r', new ItemStack(repelPlayerLvl5));
       GameRegistry.addRecipe(new ItemStack(flightRing), "dmd", "rmj", "dmd", 'm', new ItemStack(magneticBlock), 'd', new ItemStack(Item.diamond), 'j', new ItemStack(creativeJetpack), 'r', new ItemStack(repelPlayerLvl5));
+      GameRegistry.addRecipe(new ItemStack(explosionRing), "dtd", "ftf", "dtd", 't', new ItemStack(Block.tnt), 'd', new ItemStack(Item.diamond), 'f', new ItemStack(Block.fire));
       GameRegistry.addRecipe(new ItemStack(jetpack), "mmm", "mmm", "dmd", 'm', new ItemStack(magneticBlock), 'd', new ItemStack(Block.blockDiamond));
       GameRegistry.addRecipe(new ItemStack(creativeJetpack), "mmm", "mjm", "dmd", 'm', new ItemStack(magneticBlock), 'd', new ItemStack(Block.blockDiamond), 'j', new ItemStack(jetpack));
       GameRegistry.addShapelessRecipe(new ItemStack(positive, 9), new ItemStack(blockPositive));
       GameRegistry.addShapelessRecipe(new ItemStack(negative, 9), new ItemStack(blockNegative));
       GameRegistry.addShapelessRecipe(new ItemStack(magneticPowder), new ItemStack(positive), new ItemStack(negative));
       GameRegistry.addSmelting(magneticPowderID + 256, new ItemStack(magneticIngot), 1);
+      GameRegistry.addSmelting(Block.tnt.blockID, new ItemStack(Block.fire), 1);
   
       
       //Blocks - Coloured Gems
