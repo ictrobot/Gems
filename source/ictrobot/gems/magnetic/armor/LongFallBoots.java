@@ -1,7 +1,5 @@
 package ictrobot.gems.magnetic.armor;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,11 +8,18 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumHelper;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
+
+
 
 public class LongFallBoots extends ItemArmor {
   
-  static EnumArmorMaterial armor = EnumHelper.addArmorMaterial("Jetpack", 0, new int[] { 3, 8, 6, 3 }, 10);
-  public LongFallBoots(int par1, int par2) {
+	public static EnumArmorMaterial armor = EnumHelper.addArmorMaterial("Magnetic", 0, new int[] { 3, 8, 6, 3 }, 10);
+
+
+public LongFallBoots(int par1, int par2) {
     super(par1, armor, par2, 3);
   }
 

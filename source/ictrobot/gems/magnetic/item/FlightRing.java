@@ -45,7 +45,7 @@ public class FlightRing extends Item {
           level=1;
         }
         tag.setInteger("RPLevel", level);
-        player.addChatMessage("\u00A7lFlight Ring:\u00A7r\u00A77 Magnetic Jump Level " + level);
+        player.addChatMessage("\u00A73\u00A7lFlight Ring:\u00A7r\u00A77 Magnetic Jump Level " + level);
       }
     }
     return itemStack;
@@ -55,7 +55,7 @@ public class FlightRing extends Item {
   public void addInformation(ItemStack itemStack, EntityPlayer player, List par3List, boolean par4) {
     if( itemStack.getTagCompound() != null ) {
       NBTTagCompound tag = itemStack.getTagCompound();
-      par3List.add("\u00A77Repel Player Level " + tag.getInteger("RPLevel"));
+      par3List.add("\u00A77Magnetic Jump Level " + tag.getInteger("RPLevel"));
     }
   }
 }
