@@ -17,7 +17,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER)
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels={"GemsJetpack"}, packetHandler = GemsPacketHandler.class)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels={"Gems"}, packetHandler = GemsPacketHandler.class)
 public class Gems {
 
   @Instance(Reference.MOD_ID)

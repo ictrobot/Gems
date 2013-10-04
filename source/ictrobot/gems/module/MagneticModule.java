@@ -14,11 +14,12 @@ import ictrobot.gems.Gems;
 import ictrobot.gems.magnetic.armor.CreativeJetpack;
 import ictrobot.gems.magnetic.armor.Jetpack;
 import ictrobot.gems.magnetic.armor.JetpackKeybind;
-import ictrobot.gems.magnetic.armor.JetpackTickHandler;
 import ictrobot.gems.magnetic.armor.LongFallBoots;
 import ictrobot.gems.magnetic.block.MagneticBlock;
+import ictrobot.gems.magnetic.item.ExplosionRing;
 import ictrobot.gems.magnetic.item.FlightRing;
 import ictrobot.gems.magnetic.item.RepelPlayer;
+import ictrobot.gems.magnetic.tickhandlers.JetpackTickHandler;
 
 import java.util.EnumSet;
 
@@ -60,6 +61,7 @@ public class MagneticModule {
    public static int creativeJetpackID;
    public static int longFallID;
    public static int flightRingID;
+   public static int explosionRingID;
 
    //Define Blocks - Colour Gems
    public static Block orePositive;
@@ -83,6 +85,7 @@ public class MagneticModule {
    public static Item creativeJetpack;
    public static Item longFall;
    public static Item flightRing;
+   public static Item explosionRing;
 
    public static Dim0WorldGenerator worldPositive;
    public static Dim0WorldGenerator worldNegative;
@@ -104,6 +107,7 @@ public class MagneticModule {
       creativeJetpackID = ConfigHelper.item("creativeJetpackID");
       longFallID = ConfigHelper.item("longFallID");
       flightRingID = ConfigHelper.item("flightRingID");
+      explosionRingID = ConfigHelper.item("explosionRingID");
       
       blockPositiveID = ConfigHelper.block("blockPositiveID");
       blockNegativeID = ConfigHelper.block("blockNegativeID");
@@ -146,6 +150,7 @@ public class MagneticModule {
       creativeJetpack = (new CreativeJetpack(creativeJetpackID, Gems.proxy.addArmor("creativeJetpack"))).setUnlocalizedName("CreativeJetpack");
       longFall = (new LongFallBoots(longFallID, Gems.proxy.addArmor("LongFall"))).setUnlocalizedName("LongFall");
       flightRing = (new FlightRing(flightRingID));
+      explosionRing =(new ExplosionRing(explosionRingID));
       //Function Blocks
       magneticBlock = (new MagneticBlock(magneticBlockID, "MagneticBlock", Material.iron));   
       //StorageBlocks
@@ -202,6 +207,7 @@ public class MagneticModule {
       Register.Item(creativeJetpack, "Creative Flight Jetpack");
       Register.Item(longFall, "Long Fall Boots");
       Register.Item(flightRing, "Flight Ring");
+      Register.Item(explosionRing, "Explosion Ring");
       
       Register.Ore("itemRepelPlayer", repelPlayerLvl1);
       Register.Ore("itemRepelPlayer", repelPlayerLvl2);

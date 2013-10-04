@@ -1,8 +1,16 @@
-package ictrobot.gems.magnetic.armor;
+package ictrobot.gems.magnetic.tickhandlers;
 
+import ictrobot.core.Core;
+import ictrobot.gems.magnetic.armor.JetpackKeybind;
 import ictrobot.gems.module.MagneticModule;
+
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.util.EnumSet;
+
+import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.network.packet.Packet250CustomPayload;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 
@@ -44,9 +52,9 @@ public class JetpackTickHandler implements ITickHandler {
     if(JetpackKeybind.keyPressed!=tmp) {
       tmp = JetpackKeybind.keyPressed;
       if(JetpackKeybind.keyPressed) {
-        SendPacket.keydown(player);
+        keydown(player);
       } else {
-        SendPacket.keyup(player);
+        keyup(player);
       }
     }
     
@@ -97,5 +105,34 @@ public class JetpackTickHandler implements ITickHandler {
     }
     r2 = true;
     r1 = false;
+  }
+  
+  static public void keydown(EntityPlayer player) {
+    packet(1, player);
+  }
+  
+  static public void keyup(EntityPlayer player) {
+    packet(0, player);
+  }
+  
+  static protected void packet(int state, EntityPlayer tmpplayer) {
+    ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
+    DataOutputStream outputStream = new DataOutputStream(bos);
+    try {
+            outputStream.writeInt(1);
+            outputStream.writeInt(state);
+    } catch (Exception ex) {
+            ex.printStackTrace();
+    }
+    
+    Packet250CustomPayload packet = new Packet250CustomPayload();
+    packet.channel = "Gems";
+    packet.data = bos.toByteArray();
+    packet.length = bos.size();
+        
+    if (Core.isClient()) {
+      EntityClientPlayerMP player = (EntityClientPlayerMP) tmpplayer;
+      player.sendQueue.addToSendQueue(packet);
+    }
   }
 }

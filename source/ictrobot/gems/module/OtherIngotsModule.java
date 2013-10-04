@@ -8,7 +8,6 @@ import ictrobot.core.item.Ingot;
 import ictrobot.core.tool.Paxel;
 import ictrobot.core.tool.Sword;
 import ictrobot.gems.Gems;
-import ictrobot.gems.lapisgem.armor.LapisGemHelmet;
 import ictrobot.gems.otheringots.armor.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
