@@ -108,7 +108,8 @@ Environment:
 		<antcall target="copy" />
     <antcall target="replace_tokens" />
 		<antcall target="recompile" />		
-		<antcall target="reobfuscate" />
+  	<antcall target="reobfuscate" />
+  	<antcall target="file" />
     <!-- Build the jar -->
 		<mkdir dir="${basedir}\jars\" />
 		<jar destfile="${output.file}">
@@ -134,6 +135,8 @@ Environment:
     <antcall target="replace_tokens" />
 		<antcall target="recompile" />		
 		<antcall target="reobfuscate" />
+    <antcall target="file" />
+
 		<!-- Build the jar -->
 		<mkdir dir="${basedir}\jars\" />
 		<jar destfile="${output.file}">

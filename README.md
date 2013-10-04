@@ -3,12 +3,13 @@ Gems
 
 Gems Minecraft Mod
 
-Currently 5 Modules:
+Currently 6 Modules:
 * Vanilla Paxel
 * Colour Gems
 * Lapis Gem
 * Magnetic
 * Compat Ore
+* Other Ingots
 
 [![Build Status](https://travis-ci.org/ictrobot/Gems.png?branch=master)](https://travis-ci.org/ictrobot/Gems)
 
