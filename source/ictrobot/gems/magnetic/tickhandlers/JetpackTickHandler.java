@@ -1,6 +1,7 @@
 package ictrobot.gems.magnetic.tickhandlers;
 
 import ictrobot.core.Core;
+import ictrobot.gems.Gems;
 import ictrobot.gems.magnetic.armor.JetpackKeybind;
 import ictrobot.gems.module.MagneticModule;
 
@@ -93,6 +94,7 @@ public class JetpackTickHandler implements ITickHandler {
       player.sendPlayerAbilities();
       goingDown = false;
     }
+    Gems.proxy.resetPlayerInAirTime(player);
     r1 = true;
     r2 = false;
   }

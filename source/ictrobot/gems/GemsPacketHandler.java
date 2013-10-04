@@ -3,8 +3,9 @@ package ictrobot.gems;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
-import net.minecraft.entity.item.EntityTNTPrimed;
+
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
@@ -69,10 +70,15 @@ public class GemsPacketHandler implements IPacketHandler {
             return;
     }
     World world = player.worldObj;
-    System.out.println(world.toString());
-    EntityTNTPrimed tnt = new EntityTNTPrimed(world, x, y, z, player);
-    tnt.fuse = 0;
-    world.setBlockToAir(x, y, z);
-    world.spawnEntityInWorld(tnt);
+//    EntityTNTPrimed tnt = new EntityTNTPrimed(world, x, y, z, player);
+//    tnt.fuse = 0;
+//    world.setBlockToAir(x, y, z);
+//    world.spawnEntityInWorld(tnt);
+    ItemStack held = player.getHeldItem();
+    if(held!=null) {
+      if(held.getTagCompound()!=null) {
+        world.createExplosion(player, x, y, z, held.getTagCompound().getInteger("ExplosionLevel"), true);
+      }
+    }
   }
 }

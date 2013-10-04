@@ -34,7 +34,6 @@ public class FlightRing extends Item {
       if (!player.isSneaking()) {
         player.motionY = (0.75*(tag.getInteger("RPLevel")*0.75)); 
         Gems.proxy.resetPlayerInAirTime(player);
-        itemStack.damageItem(1, player);
       }
     }
     if (Core.isServer()) {
