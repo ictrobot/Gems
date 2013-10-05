@@ -1,6 +1,7 @@
 package ictrobot.gems.magnetic.item;
 
 import java.util.List;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
@@ -33,14 +34,42 @@ public class ItemRing extends Item {
       NBTTagCompound tag = itemStack.getTagCompound();
       EntityPlayer player;
       if (tag.getBoolean("Enabled") && ((entity instanceof EntityPlayer))) {
-        float radius = 5;
+        float radius = 10;
         player = (EntityPlayer)entity;
         final List<EntityItem> list = (List<EntityItem>)world.getEntitiesWithinAABB((Class)EntityItem.class, player.boundingBox.expand(radius, radius, radius));
         for (final EntityItem e : list) {
           if (e.age >= tag.getInteger("Delay")) {
             if (Core.isServer() && player.inventory.addItemStackToInventory(e.getEntityItem())) {
               world.removeEntity(e);
+              tag.setInteger("Pnum", tag.getInteger("Pnum")+1);
+              tag.setDouble("P" + tag.getInteger("Pnum")+"x", e.posX);
+              tag.setDouble("P" + tag.getInteger("Pnum")+"y", e.posY);
+              tag.setDouble("P" + tag.getInteger("Pnum")+"z", e.posZ);
+              tag.setInteger("P" + tag.getInteger("Pnum") + "t", 1);
             }
+          }
+        }
+        //System.out.println(tag.getInteger("Pnum"));
+        for(int i=1; i<=tag.getInteger("Pnum"); i++){
+          int time = tag.getInteger("P" + i + "t");
+          time++;
+          //System.out.println("t " + tag.getInteger("P" + 1 + "t") + "x " + tag.getDouble("P" + 1 + "x") + "y " + tag.getDouble("P" + 1 + "y") + "z " + tag.getDouble("P" + 1 + "z"));
+          if (time>20) {
+            tag.removeTag("P" + i + "t");
+            tag.removeTag("P" + i + "x");
+            tag.removeTag("P" + i + "y");
+            tag.removeTag("P" + i + "z");
+          } else {
+            tag.setInteger("P" + i + "t", time);
+          }
+        }
+      }
+    } else {
+      NBTTagCompound tag = itemStack.getTagCompound();
+      if (tag!=null) {
+        if (tag.getInteger("Pnum")>0) {
+          for(int i=1; i<=tag.getInteger("Pnum"); i++){
+            world.spawnParticle("largesmoke", tag.getDouble("P" + i + "x"), tag.getDouble("P" + i + "y"), tag.getDouble("P" + i + "z"), 0, 0.1, 0);
           }
         }
       }
