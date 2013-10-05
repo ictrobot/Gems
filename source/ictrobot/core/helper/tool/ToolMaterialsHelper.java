@@ -30,7 +30,9 @@ public class ToolMaterialsHelper {
       return repairIS.itemID == Item.diamond.itemID;
     } else if (material.name() == "RepelPlayer") {
       return repairIS.itemID == MagneticModule.magneticIngotID + 256;
-    } else {
+    }else if (material.name() == "Obsidian") {
+    	return repairIS.itemID == OtherIngotsModule.obsidianIngotID + 256;
+    } else{
       return false;
     }
   }

@@ -1,5 +1,7 @@
 package ictrobot.gems.magnetic.item;
 
+import ictrobot.core.Core;
+
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.util.List;
@@ -13,11 +15,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.world.World;
-import ictrobot.core.Core;
 
 public class ExplosionRing extends Item {
 
-  int Level;
+	int Level;
   
   public ExplosionRing(int id) {
     super(id);
@@ -38,7 +39,7 @@ public class ExplosionRing extends Item {
       if (Core.isServer()) {
         int level = tag.getInteger("ExplosionLevel");
         level++;
-        if (level>8) {
+        if (level>15) {
           level=1;
         }
         tag.setInteger("ExplosionLevel", level);

@@ -85,7 +85,7 @@ public class OtherIngotsModule {
     public static void Register(){
       //Recipies
       GameRegistry.addRecipe(new ItemStack(obsidianPaxel), "lbl", " s ", " s ", 'b', new ItemStack(refinedObsidian), 'l', new ItemStack(obsidianIngot), 's', new ItemStack(Item.stick));
-      GameRegistry.addRecipe(new ItemStack(obsidianSword), " g ", " g ", " s ", 'g', new ItemStack(obsidianIngot), 's', new ItemStack(Item.stick));
+      GameRegistry.addRecipe(new ItemStack(obsidianSword), " o ", " b ", " s ", 'o', new ItemStack(obsidianIngot), 's', new ItemStack(Item.stick), 'b', new ItemStack(refinedObsidian));
       GameRegistry.addRecipe(new ItemStack(obsidianChestplate), "odo", "ooo", "ooo", 'o', new ItemStack(refinedObsidian), 'd', new ItemStack(Block.blockDiamond));
       GameRegistry.addRecipe(new ItemStack(obsidianHelmet), "ooo", "odo", "   ", 'o', new ItemStack(refinedObsidian), 'd', new ItemStack(Block.blockDiamond));
       GameRegistry.addRecipe(new ItemStack(obsidianLegs), "ooo", "odo", "o o", 'o', new ItemStack(refinedObsidian), 'd', new ItemStack(Block.blockDiamond));
