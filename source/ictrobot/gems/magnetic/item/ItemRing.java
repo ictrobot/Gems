@@ -15,9 +15,11 @@ import ictrobot.core.Core;
 public class ItemRing extends Item {
 
   int Level;
+  int Power;
   
-  public ItemRing(int id) {
+  public ItemRing(int id, int par2) {
     super(id);
+    Power = par2;
     setTextureName(Core.ModID + ":" + "ItemRing");
     setUnlocalizedName("ItemRing");
     setCreativeTab(CreativeTabs.tabTools);
@@ -34,7 +36,7 @@ public class ItemRing extends Item {
       NBTTagCompound tag = itemStack.getTagCompound();
       EntityPlayer player;
       if (tag.getBoolean("Enabled") && ((entity instanceof EntityPlayer))) {
-        float radius = 10;
+        float radius = Power;
         player = (EntityPlayer)entity;
         final List<EntityItem> list = (List<EntityItem>)world.getEntitiesWithinAABB((Class)EntityItem.class, player.boundingBox.expand(radius, radius, radius));
         for (final EntityItem e : list) {

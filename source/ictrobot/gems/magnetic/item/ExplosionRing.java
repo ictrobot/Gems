@@ -19,9 +19,11 @@ import net.minecraft.world.World;
 public class ExplosionRing extends Item {
 
 	int Level;
+	int Power;
   
-  public ExplosionRing(int id) {
+  public ExplosionRing(int id, int par2) {
     super(id);
+    Power = par2;
     setTextureName(Core.ModID + ":" + "ExplosionRing");
     setUnlocalizedName("ExplosionRing");
     setCreativeTab(CreativeTabs.tabTools);
@@ -39,7 +41,7 @@ public class ExplosionRing extends Item {
       if (Core.isServer()) {
         int level = tag.getInteger("ExplosionLevel");
         level++;
-        if (level>15) {
+        if (level>Power) {
           level=1;
         }
         tag.setInteger("ExplosionLevel", level);

@@ -10,9 +10,11 @@ import ictrobot.core.Core;
 public class TeleportRing extends Item {
 
   int Level;
+  int Power;
   
-  public TeleportRing(int id) {
+  public TeleportRing(int id, int par2) {
     super(id);
+    Power = par2;
     setTextureName(Core.ModID + ":" + "TeleportRing");
     setUnlocalizedName("TeleportRing");
     setCreativeTab(CreativeTabs.tabTools);
@@ -30,7 +32,7 @@ public class TeleportRing extends Item {
         int intZ = (int)Math.floor(z);
         int airB = 0;
         int airT = 0;
-        for(int i=1; i<11; i++){
+        for(int i=1; i<Power; i++){
           if (world.isAirBlock(intX, y+i, intZ) && world.isAirBlock(intX, y+i+1, intZ) && !(world.isAirBlock(intX, y+i-1, intZ)) && airB==0 && airT==0) {
             airB = y+i;
             airT = y+i+1;
@@ -49,7 +51,7 @@ public class TeleportRing extends Item {
        int airB = 0;
        int airT = 0;
        boolean solidBlock;
-       for(int i=1; i<11; i++){
+       for(int i=1; i<Power; i++){
          solidBlock = !world.isAirBlock(intX, y-i-1, intZ);
          if (world.isAirBlock(intX, y-i, intZ) && world.isAirBlock(intX, y-i+1, intZ) && solidBlock && airB==0 && airT==0) {
            airB = y-i;

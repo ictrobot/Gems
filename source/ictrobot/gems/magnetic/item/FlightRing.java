@@ -14,9 +14,11 @@ import ictrobot.gems.Gems;
 public class FlightRing extends Item {
 
   int Level;
+  int Power;
   
-  public FlightRing(int id) {
+  public FlightRing(int id, int par2) {
     super(id);
+    Power = par2;
     setTextureName(Core.ModID + ":" + "FlightRing");
     setUnlocalizedName("FlightRing");
     setCreativeTab(CreativeTabs.tabTools);
@@ -40,7 +42,7 @@ public class FlightRing extends Item {
       if (player.isSneaking()) {
         int level = tag.getInteger("RPLevel");
         level++;
-        if (level>5) {
+        if (level>Power) {
           level=1;
         }
         tag.setInteger("RPLevel", level);

@@ -44,6 +44,11 @@ import cpw.mods.fml.relauncher.Side;
 
 public class MagneticModule {
   
+  
+   public static int flightPower;
+   public static int explosionPower;
+   public static int teleportPower;
+   public static int itemPower;
    //Define IDs - Colour Gems
    public static int positiveID;
    public static int negativeID;
@@ -127,6 +132,11 @@ public class MagneticModule {
       oreNegativeID = ConfigHelper.block("oreNegativeID");
       magneticBlockID = ConfigHelper.block("magneticBlockID");
       TNTlvl1ID = ConfigHelper.block("TNTlvl1ID");
+      
+      flightPower = ConfigHelper.other("Flight Ring", "Max Magnetic Jump Level", 5);
+      explosionPower = ConfigHelper.other("Explosion Ring", "Max Explosion Level", 8);
+      teleportPower = ConfigHelper.other("Teleport Ring", "Range for Teleport", 10);
+      itemPower = ConfigHelper.other("Item Ring", "Range", 10);
       ConfigHelper.save();
       
       //Define World Gen
@@ -161,10 +171,10 @@ public class MagneticModule {
       jetpack = (new Jetpack(jetpackID, Gems.proxy.addArmor("Jetpack"))).setUnlocalizedName("Jetpack");
       creativeJetpack = (new CreativeJetpack(creativeJetpackID, Gems.proxy.addArmor("creativeJetpack"))).setUnlocalizedName("CreativeJetpack");
       longFall = (new LongFallBoots(longFallID, Gems.proxy.addArmor("LongFall"))).setUnlocalizedName("LongFall");
-      flightRing = (new FlightRing(flightRingID));
-      explosionRing =(new ExplosionRing(explosionRingID));
-      teleportRing = (new TeleportRing(teleportRingID));
-      itemRing = (new ItemRing(itemRingID));
+      flightRing = (new FlightRing(flightRingID, flightPower));
+      explosionRing =(new ExplosionRing(explosionRingID, explosionPower));
+      teleportRing = (new TeleportRing(teleportRingID, teleportPower));
+      itemRing = (new ItemRing(itemRingID, itemPower));
       //Function Blocks
       magneticBlock = (new MagneticBlock(magneticBlockID, "MagneticBlock", Material.iron));  
       TNTlvl1 = (new CompressedTNT(TNTlvl1ID, 1));
