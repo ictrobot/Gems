@@ -12,7 +12,7 @@ public class BasicItem extends Item {
   public BasicItem(int id, String Material) {
     super(id);
     MaterialID = Material;
-    setTextureName(Core.ModID + ":" + MaterialID + ItemType);
+    setTextureName(Core.ModID + ":" + MaterialID);
     setUnlocalizedName(ItemType + MaterialID);
     setCreativeTab(CreativeTabs.tabMaterials);
   }

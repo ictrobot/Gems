@@ -7,6 +7,7 @@ import ictrobot.core.helper.config.ConfigHelper;
 import ictrobot.core.helper.register.Register;
 import ictrobot.core.helper.tool.ToolMaterials;
 import ictrobot.core.item.BasicItem;
+import ictrobot.core.item.CraftingIngredient;
 import ictrobot.core.item.Ingot;
 import ictrobot.core.item.Powder;
 import ictrobot.core.world.Dim0WorldGenerator;
@@ -73,7 +74,7 @@ public class MagneticModule {
    public static int teleportRingID;
    public static int itemRingID;
    public static int TNTlvl1ID;
-   
+   public static int ringID;
 
    //Define Blocks - Colour Gems
    public static Block orePositive;
@@ -101,6 +102,7 @@ public class MagneticModule {
    public static Item explosionRing;
    public static Item teleportRing;
    public static Item itemRing;
+   public static Item ring;
 
    public static Dim0WorldGenerator worldPositive;
    public static Dim0WorldGenerator worldNegative;
@@ -125,6 +127,7 @@ public class MagneticModule {
       explosionRingID = ConfigHelper.item("explosionRingID");
       teleportRingID = ConfigHelper.item("teleportRingID");
       itemRingID = ConfigHelper.item("itemRingID");
+      ringID = ConfigHelper.item("ringID");
       
       blockPositiveID = ConfigHelper.block("blockPositiveID");
       blockNegativeID = ConfigHelper.block("blockNegativeID");
@@ -175,13 +178,14 @@ public class MagneticModule {
       explosionRing =(new ExplosionRing(explosionRingID, explosionPower));
       teleportRing = (new TeleportRing(teleportRingID, teleportPower));
       itemRing = (new ItemRing(itemRingID, itemPower));
+      ring =(new CraftingIngredient(ringID, "Ring"));
       //Function Blocks
       magneticBlock = (new MagneticBlock(magneticBlockID, "MagneticBlock", Material.iron));  
       TNTlvl1 = (new CompressedTNT(TNTlvl1ID, 1));
       //StorageBlocks
       blockPositive = (new BasicBlock(blockPositiveID, "Positiveblock", Material.rock)).setHardness(4.0F).setResistance(7.5F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BlockPositive").setCreativeTab(CreativeTabs.tabBlock);
       blockNegative = (new BasicBlock(blockNegativeID, "Negativeblock", Material.rock)).setHardness(4.0F).setResistance(7.5F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BlockNegative").setCreativeTab(CreativeTabs.tabBlock);
-   }
+    }
     
     public static void WorldGen() {
       GameRegistry.registerWorldGenerator(worldPositive);
@@ -201,16 +205,18 @@ public class MagneticModule {
       GameRegistry.addRecipe(new ItemStack(magnet), "p n", "d d", "d d", 'd', new ItemStack(magneticIngot), 'p', new ItemStack(positive), 'n', new ItemStack(negative));
       GameRegistry.addRecipe(new ItemStack(magnet), "n p", "d d", "d d", 'd', new ItemStack(magneticIngot), 'p', new ItemStack(positive), 'n', new ItemStack(negative));
       GameRegistry.addRecipe(new ItemStack(magneticBlock), "ddd", "ddd", "ddd", 'd', new ItemStack(magneticIngot));
-      GameRegistry.addRecipe(new ItemStack(flightRing), "dmd", "jmr", "dmd", 'm', new ItemStack(magneticBlock), 'd', new ItemStack(Item.diamond), 'j', new ItemStack(creativeJetpack), 'r', new ItemStack(repelPlayerLvl5));
-      GameRegistry.addRecipe(new ItemStack(flightRing), "dmd", "rmj", "dmd", 'm', new ItemStack(magneticBlock), 'd', new ItemStack(Item.diamond), 'j', new ItemStack(creativeJetpack), 'r', new ItemStack(repelPlayerLvl5));
-      GameRegistry.addRecipe(new ItemStack(explosionRing), "dtd", "ftf", "dtd", 't', new ItemStack(Block.tnt), 'd', new ItemStack(Item.diamond), 'f', new ItemStack(Block.fire));
+      GameRegistry.addRecipe(new ItemStack(flightRing), "dj ", "cd ", "  r", 'r', new ItemStack(ring), 'd', new ItemStack(Block.blockDiamond), 'c', new ItemStack(creativeJetpack), 'j', new ItemStack(repelPlayerLvl5));
+      GameRegistry.addRecipe(new ItemStack(flightRing), "dc ", "jd ", "  r", 'r', new ItemStack(ring), 'd', new ItemStack(Block.blockDiamond), 'c', new ItemStack(creativeJetpack), 'j', new ItemStack(repelPlayerLvl5));
+      GameRegistry.addRecipe(new ItemStack(explosionRing), "ddt", "ddt", "ttr", 't', new ItemStack(TNTlvl1), 'd', new ItemStack(Block.blockDiamond), 'r', new ItemStack(ring));
+      GameRegistry.addRecipe(new ItemStack(teleportRing), "dde", "dde", "eer", 'e', new ItemStack(Item.enderPearl), 'd', new ItemStack(Block.blockDiamond), 'r', new ItemStack(ring));
+      GameRegistry.addRecipe(new ItemStack(itemRing), "mme", "mme", "eer", 'e', new ItemStack(Item.enderPearl), 'm', new ItemStack(magneticBlock), 'r', new ItemStack(ring));
+      GameRegistry.addRecipe(new ItemStack(ring, 2), "mmm", "mrm", "mmm",'m', new ItemStack(magneticBlock), 'r', new ItemStack(ring));
       GameRegistry.addRecipe(new ItemStack(jetpack), "mmm", "mmm", "dmd", 'm', new ItemStack(magneticBlock), 'd', new ItemStack(Block.blockDiamond));
       GameRegistry.addRecipe(new ItemStack(creativeJetpack), "mmm", "mjm", "dmd", 'm', new ItemStack(magneticBlock), 'd', new ItemStack(Block.blockDiamond), 'j', new ItemStack(jetpack));
       GameRegistry.addShapelessRecipe(new ItemStack(positive, 9), new ItemStack(blockPositive));
       GameRegistry.addShapelessRecipe(new ItemStack(negative, 9), new ItemStack(blockNegative));
       GameRegistry.addShapelessRecipe(new ItemStack(magneticPowder), new ItemStack(positive), new ItemStack(negative));
       GameRegistry.addSmelting(magneticPowderID + 256, new ItemStack(magneticIngot), 1);
-      GameRegistry.addSmelting(Block.tnt.blockID, new ItemStack(Block.fire), 1);
   
       
       //Blocks - Coloured Gems
@@ -238,6 +244,7 @@ public class MagneticModule {
       Register.Item(explosionRing, "Explosion Ring");
       Register.Item(teleportRing, "Teleport Ring");
       Register.Item(itemRing, "Item Ring");
+      Register.Item(ring, "Ring");
       
       Register.Ore("itemRepelPlayer", repelPlayerLvl1);
       Register.Ore("itemRepelPlayer", repelPlayerLvl2);

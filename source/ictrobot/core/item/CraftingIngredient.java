@@ -16,13 +16,13 @@ public class CraftingIngredient extends Item{
   public CraftingIngredient(int id, String Material) {
     super(id);
     MaterialID = Material;
-    setTextureName(Core.ModID + ":" + MaterialID + ItemType);
+    setTextureName(Core.ModID + ":" + MaterialID);
     setUnlocalizedName(ItemType + MaterialID);
     setCreativeTab(CreativeTabs.tabMaterials);
   }
   
   @SuppressWarnings({ "unchecked", "rawtypes" })
   public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-      par3List.add("Crafting Ingredient");
+      par3List.add("\u00A77Crafting Ingredient");
   }
 }
