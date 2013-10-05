@@ -15,6 +15,7 @@ import ictrobot.gems.magnetic.armor.CreativeJetpack;
 import ictrobot.gems.magnetic.armor.Jetpack;
 import ictrobot.gems.magnetic.armor.JetpackKeybind;
 import ictrobot.gems.magnetic.armor.LongFallBoots;
+import ictrobot.gems.magnetic.block.CompressedTNT;
 import ictrobot.gems.magnetic.block.MagneticBlock;
 import ictrobot.gems.magnetic.item.ExplosionRing;
 import ictrobot.gems.magnetic.item.FlightRing;
@@ -66,6 +67,8 @@ public class MagneticModule {
    public static int explosionRingID;
    public static int teleportRingID;
    public static int itemRingID;
+   public static int TNTlvl1ID;
+   
 
    //Define Blocks - Colour Gems
    public static Block orePositive;
@@ -73,6 +76,7 @@ public class MagneticModule {
    public static Block blockPositive;
    public static Block blockNegative;
    public static Block magneticBlock;
+   public static Block TNTlvl1;
    
    //Define Items - Colour Gems
    public static Item positive;
@@ -122,7 +126,7 @@ public class MagneticModule {
       orePositiveID = ConfigHelper.block("orePositiveID");
       oreNegativeID = ConfigHelper.block("oreNegativeID");
       magneticBlockID = ConfigHelper.block("magneticBlockID");
-      
+      TNTlvl1ID = ConfigHelper.block("TNTlvl1ID");
       ConfigHelper.save();
       
       //Define World Gen
@@ -162,7 +166,8 @@ public class MagneticModule {
       teleportRing = (new TeleportRing(teleportRingID));
       itemRing = (new ItemRing(itemRingID));
       //Function Blocks
-      magneticBlock = (new MagneticBlock(magneticBlockID, "MagneticBlock", Material.iron));   
+      magneticBlock = (new MagneticBlock(magneticBlockID, "MagneticBlock", Material.iron));  
+      TNTlvl1 = (new CompressedTNT(TNTlvl1ID, 1));
       //StorageBlocks
       blockPositive = (new BasicBlock(blockPositiveID, "Positiveblock", Material.rock)).setHardness(4.0F).setResistance(7.5F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BlockPositive").setCreativeTab(CreativeTabs.tabBlock);
       blockNegative = (new BasicBlock(blockNegativeID, "Negativeblock", Material.rock)).setHardness(4.0F).setResistance(7.5F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BlockNegative").setCreativeTab(CreativeTabs.tabBlock);
@@ -204,6 +209,7 @@ public class MagneticModule {
       Register.Block(blockPositive, "Positive Block", "pickaxe" , 3);
       Register.Block(blockNegative, "Negative Block", "pickaxe", 3);
       Register.Block(magneticBlock, "Magnetic Block", "pickaxe", 3);
+      Register.Block(TNTlvl1, "Compressed TNT", "pickaxe", 3);
       //Items - Coloured Gems
       Register.Item(positive, "Positive Powder");
       Register.Item(negative, "Negative Powder");
