@@ -18,6 +18,7 @@ import ictrobot.gems.magnetic.armor.LongFallBoots;
 import ictrobot.gems.magnetic.block.MagneticBlock;
 import ictrobot.gems.magnetic.item.ExplosionRing;
 import ictrobot.gems.magnetic.item.FlightRing;
+import ictrobot.gems.magnetic.item.ItemRing;
 import ictrobot.gems.magnetic.item.RepelPlayer;
 import ictrobot.gems.magnetic.item.TeleportRing;
 import ictrobot.gems.magnetic.tickhandlers.JetpackTickHandler;
@@ -64,6 +65,7 @@ public class MagneticModule {
    public static int flightRingID;
    public static int explosionRingID;
    public static int teleportRingID;
+   public static int itemRingID;
 
    //Define Blocks - Colour Gems
    public static Block orePositive;
@@ -89,6 +91,7 @@ public class MagneticModule {
    public static Item flightRing;
    public static Item explosionRing;
    public static Item teleportRing;
+   public static Item itemRing;
 
    public static Dim0WorldGenerator worldPositive;
    public static Dim0WorldGenerator worldNegative;
@@ -112,6 +115,7 @@ public class MagneticModule {
       flightRingID = ConfigHelper.item("flightRingID");
       explosionRingID = ConfigHelper.item("explosionRingID");
       teleportRingID = ConfigHelper.item("teleportRingID");
+      itemRingID = ConfigHelper.item("itemRingID");
       
       blockPositiveID = ConfigHelper.block("blockPositiveID");
       blockNegativeID = ConfigHelper.block("blockNegativeID");
@@ -156,6 +160,7 @@ public class MagneticModule {
       flightRing = (new FlightRing(flightRingID));
       explosionRing =(new ExplosionRing(explosionRingID));
       teleportRing = (new TeleportRing(teleportRingID));
+      itemRing = (new ItemRing(itemRingID));
       //Function Blocks
       magneticBlock = (new MagneticBlock(magneticBlockID, "MagneticBlock", Material.iron));   
       //StorageBlocks
@@ -216,6 +221,7 @@ public class MagneticModule {
       Register.Item(flightRing, "Flight Ring");
       Register.Item(explosionRing, "Explosion Ring");
       Register.Item(teleportRing, "Teleport Ring");
+      Register.Item(itemRing, "Item Ring");
       
       Register.Ore("itemRepelPlayer", repelPlayerLvl1);
       Register.Ore("itemRepelPlayer", repelPlayerLvl2);
