@@ -52,32 +52,32 @@ public class ItemRing extends BaseRing {
           }
         }
       }
-      if (tag.getInteger("Pnum")>0) {
-        boolean shouldReset = true;
+    }
+    if (tag.getInteger("Pnum")>0) {
+      boolean shouldReset = true;
+      for(int i=1; i<=tag.getInteger("Pnum"); i++){
+        if (tag.getInteger("P" + i + "t")!=0) {
+          int time = tag.getInteger("P" + i + "t");
+          time++;
+          if (time>20) {
+            tag.removeTag("P" + i + "t");
+            tag.removeTag("P" + i + "x");
+            tag.removeTag("P" + i + "y");
+            tag.removeTag("P" + i + "z");
+            tag.setBoolean("P" + i + "e", false);
+          } else {
+            tag.setInteger("P" + i + "t", time);
+          }
+        }
+        if (tag.getBoolean("P" + i + "e")) {
+          shouldReset=false;
+        }
+      }
+      if (shouldReset) {
         for(int i=1; i<=tag.getInteger("Pnum"); i++){
-          if (tag.getInteger("P" + i + "t")!=0) {
-            int time = tag.getInteger("P" + i + "t");
-            time++;
-            if (time>20) {
-              tag.removeTag("P" + i + "t");
-              tag.removeTag("P" + i + "x");
-              tag.removeTag("P" + i + "y");
-              tag.removeTag("P" + i + "z");
-              tag.setBoolean("P" + i + "e", false);
-            } else {
-              tag.setInteger("P" + i + "t", time);
-            }
-          }
-          if (tag.getBoolean("P" + i + "e")) {
-            shouldReset=false;
-          }
+          tag.removeTag("P" + i + "e");
         }
-        if (shouldReset) {
-          for(int i=1; i<=tag.getInteger("Pnum"); i++){
-            tag.removeTag("P" + i + "e");
-          }
-          tag.setInteger("Pnum", 0);
-        }
+        tag.setInteger("Pnum", 0);
       }
     }
   }
