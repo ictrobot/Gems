@@ -18,6 +18,7 @@ import ictrobot.gems.magnetic.armor.JetpackKeybind;
 import ictrobot.gems.magnetic.armor.LongFallBoots;
 import ictrobot.gems.magnetic.block.CompressedTNT;
 import ictrobot.gems.magnetic.block.MagneticBlock;
+import ictrobot.gems.magnetic.item.ChillRing;
 import ictrobot.gems.magnetic.item.ExplosionRing;
 import ictrobot.gems.magnetic.item.FlightRing;
 import ictrobot.gems.magnetic.item.HeatRing;
@@ -52,6 +53,7 @@ public class MagneticModule {
    public static int teleportPower;
    public static int itemPower;
    public static int heatPower;
+   public static int chillPower;
    //Define IDs - Colour Gems
    public static int positiveID;
    public static int negativeID;
@@ -76,6 +78,7 @@ public class MagneticModule {
    public static int teleportRingID;
    public static int itemRingID;
    public static int heatRingID;
+   public static int chillRingID;
    public static int TNTlvl1ID;
    public static int ringID;
    
@@ -107,6 +110,7 @@ public class MagneticModule {
    public static Item itemRing;
    public static Item ring;
    public static Item heatRing;
+   public static Item chillRing;
 
    public static Dim0WorldGenerator worldPositive;
    public static Dim0WorldGenerator worldNegative;
@@ -133,6 +137,7 @@ public class MagneticModule {
       teleportRingID = ConfigHelper.item("teleportRingID");
       itemRingID = ConfigHelper.item("itemRingID");
       heatRingID = ConfigHelper.item("heatRingID");
+      chillRingID = ConfigHelper.item("chillRingID");
       
       blockPositiveID = ConfigHelper.block("blockPositiveID");
       blockNegativeID = ConfigHelper.block("blockNegativeID");
@@ -146,6 +151,7 @@ public class MagneticModule {
       teleportPower = ConfigHelper.other("Teleport Ring", "Range for Teleport", 10);
       itemPower = ConfigHelper.other("Item Ring", "Range", 10);
       heatPower = ConfigHelper.other("Heat Ring", "Range", 3);
+      chillPower = ConfigHelper.other("Chill Ring", "Range", 3);
       ConfigHelper.save();
       
       //Define World Gen
@@ -185,6 +191,7 @@ public class MagneticModule {
       teleportRing = (new TeleportRing(teleportRingID, teleportPower));
       itemRing = (new ItemRing(itemRingID, itemPower));
       heatRing = (new HeatRing(heatRingID, heatPower));
+      chillRing = (new ChillRing(chillRingID, chillPower));
       ring =(new CraftingIngredient(ringID, "Ring"));
       //Function Blocks
       magneticBlock = (new MagneticBlock(magneticBlockID, "MagneticBlock", Material.iron));  
@@ -252,6 +259,7 @@ public class MagneticModule {
       Register.Item(teleportRing, "Teleport Ring");
       Register.Item(itemRing, "Item Ring");
       Register.Item(heatRing, "Heat Ring");
+      Register.Item(chillRing, "Chill Ring");
       Register.Item(ring, "Ring");
       
       Register.Ore("itemRepelPlayer", repelPlayerLvl1);
