@@ -20,6 +20,7 @@ import ictrobot.gems.magnetic.block.CompressedTNT;
 import ictrobot.gems.magnetic.block.MagneticBlock;
 import ictrobot.gems.magnetic.item.ExplosionRing;
 import ictrobot.gems.magnetic.item.FlightRing;
+import ictrobot.gems.magnetic.item.HeatRing;
 import ictrobot.gems.magnetic.item.ItemRing;
 import ictrobot.gems.magnetic.item.RepelPlayer;
 import ictrobot.gems.magnetic.item.TeleportRing;
@@ -50,6 +51,7 @@ public class MagneticModule {
    public static int explosionPower;
    public static int teleportPower;
    public static int itemPower;
+   public static int heatPower;
    //Define IDs - Colour Gems
    public static int positiveID;
    public static int negativeID;
@@ -73,9 +75,10 @@ public class MagneticModule {
    public static int explosionRingID;
    public static int teleportRingID;
    public static int itemRingID;
+   public static int heatRingID;
    public static int TNTlvl1ID;
    public static int ringID;
-
+   
    //Define Blocks - Colour Gems
    public static Block orePositive;
    public static Block oreNegative;
@@ -103,6 +106,7 @@ public class MagneticModule {
    public static Item teleportRing;
    public static Item itemRing;
    public static Item ring;
+   public static Item heatRing;
 
    public static Dim0WorldGenerator worldPositive;
    public static Dim0WorldGenerator worldNegative;
@@ -123,11 +127,12 @@ public class MagneticModule {
       jetpackID = ConfigHelper.item("jetpackID");
       creativeJetpackID = ConfigHelper.item("creativeJetpackID");
       longFallID = ConfigHelper.item("longFallID");
+      ringID = ConfigHelper.item("ringID");
       flightRingID = ConfigHelper.item("flightRingID");
       explosionRingID = ConfigHelper.item("explosionRingID");
       teleportRingID = ConfigHelper.item("teleportRingID");
       itemRingID = ConfigHelper.item("itemRingID");
-      ringID = ConfigHelper.item("ringID");
+      heatRingID = ConfigHelper.item("heatRingID");
       
       blockPositiveID = ConfigHelper.block("blockPositiveID");
       blockNegativeID = ConfigHelper.block("blockNegativeID");
@@ -140,6 +145,7 @@ public class MagneticModule {
       explosionPower = ConfigHelper.other("Explosion Ring", "Max Explosion Level", 8);
       teleportPower = ConfigHelper.other("Teleport Ring", "Range for Teleport", 10);
       itemPower = ConfigHelper.other("Item Ring", "Range", 10);
+      heatPower = ConfigHelper.other("Heat Ring", "Range", 3);
       ConfigHelper.save();
       
       //Define World Gen
@@ -178,6 +184,7 @@ public class MagneticModule {
       explosionRing =(new ExplosionRing(explosionRingID, explosionPower));
       teleportRing = (new TeleportRing(teleportRingID, teleportPower));
       itemRing = (new ItemRing(itemRingID, itemPower));
+      heatRing = (new HeatRing(heatRingID, heatPower));
       ring =(new CraftingIngredient(ringID, "Ring"));
       //Function Blocks
       magneticBlock = (new MagneticBlock(magneticBlockID, "MagneticBlock", Material.iron));  
@@ -244,6 +251,7 @@ public class MagneticModule {
       Register.Item(explosionRing, "Explosion Ring");
       Register.Item(teleportRing, "Teleport Ring");
       Register.Item(itemRing, "Item Ring");
+      Register.Item(heatRing, "Heat Ring");
       Register.Item(ring, "Ring");
       
       Register.Ore("itemRepelPlayer", repelPlayerLvl1);
