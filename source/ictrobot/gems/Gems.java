@@ -4,6 +4,7 @@ import java.io.File;
 
 import ictrobot.core.helper.config.ConfigHelper;
 import ictrobot.core.proxy.*;
+import ictrobot.gems.magical.command.MagicalWarpCommand;
 import ictrobot.gems.module.*;
 import ictrobot.gems.module.compat.*;
 import cpw.mods.fml.common.Mod;
@@ -30,6 +31,7 @@ public class Gems {
   public boolean MagneticModuleEnable;
   public boolean CompatOreEnable;
   public boolean OtherIngotsEnable;
+  public boolean MagicalEnable;
   
   //FOR CONFIG HELPER
   public static File configfile;
@@ -51,7 +53,8 @@ public class Gems {
     MagneticModuleEnable = ConfigHelper.module("MagneticModuleEnable", true);
     CompatOreEnable = ConfigHelper.module("CompatOreEnable", false);
     OtherIngotsEnable = ConfigHelper.module("OtherIngotsEnable", true);
-
+    MagicalEnable = ConfigHelper.module("OtherIngotsEnable", true);
+    
     ConfigHelper.save();
       
     if (LapisGemEnable==true) {
@@ -71,6 +74,9 @@ public class Gems {
     }
     if (OtherIngotsEnable==true) {
       OtherIngotsModule.Config(5);
+    }
+    if (MagicalEnable==true) {
+      MagicalModule.Config(6);
     }
   }
 
@@ -99,6 +105,9 @@ public class Gems {
       CompatOreModule.Settings();
       CompatOreModule.WorldGen();
     }
+    if (MagicalEnable==true) {
+      MagicalModule.Settings();
+    }
   }
 
   @EventHandler
@@ -122,11 +131,18 @@ public class Gems {
     if (CompatOreEnable==true) {
       CompatOreModule.Register();
     }
+    if (MagicalEnable==true) {
+      MagicalModule.Register();
+    }
   }
   
   @EventHandler
   public void serverLoad(FMLServerStartingEvent event) {
     event.registerServerCommand(new GemsCommand());
+    
+    if (MagicalEnable==true) {
+      event.registerServerCommand(new MagicalWarpCommand());
+    }
   }
   
 }
