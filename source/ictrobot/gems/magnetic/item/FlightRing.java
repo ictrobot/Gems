@@ -3,6 +3,7 @@ package ictrobot.gems.magnetic.item;
 import java.util.List;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -57,6 +58,13 @@ public class FlightRing extends Item {
     if( itemStack.getTagCompound() != null ) {
       NBTTagCompound tag = itemStack.getTagCompound();
       par3List.add("\u00A77Magnetic Jump Level " + tag.getInteger("RPLevel"));
+    }
+  }
+  
+  public void onUpdate(ItemStack itemStack, World world, Entity entity, int par4, boolean par5) {
+    if (entity instanceof EntityPlayer) {
+      EntityPlayer player = (EntityPlayer)entity;
+      Gems.proxy.resetPlayerInAirTime(player);
     }
   }
 }

@@ -59,31 +59,33 @@ public class JetpackTickHandler implements ITickHandler {
       }
     }
     
-    boolean WearingArmor = player.getCurrentArmor(2) != null;
-    boolean HasRing = player.inventory.hasItem(MagneticModule.flightRingID + 256);
-    
-    boolean ShouldFly = false;
-    
-    if (WearingArmor) {
-      if (player.getCurrentArmor(2).itemID == MagneticModule.creativeJetpackID + 256) {
+    if (!player.capabilities.isCreativeMode) {
+      boolean WearingArmor = player.getCurrentArmor(2) != null;
+      boolean HasRing = player.inventory.hasItem(MagneticModule.flightRingID + 256);
+      
+      boolean ShouldFly = false;
+      
+      if (WearingArmor) {
+        if (player.getCurrentArmor(2).itemID == MagneticModule.creativeJetpackID + 256) {
+          ShouldFly = true;
+        }
+      }
+      if (HasRing) {
         ShouldFly = true;
       }
-    }
-    if (HasRing) {
-      ShouldFly = true;
-    }
-    
-    if (ShouldFly) {
-      allowFlight(player);
-    } else {
-      disallowFlight(player);
-    }
-        
-    if (goingDown) {
-      if (!player.onGround) {
-        player.motionY = -2;
+      
+      if (ShouldFly) {
+        allowFlight(player);
       } else {
-         goingDown = false;
+        disallowFlight(player);
+      }
+          
+      if (goingDown) {
+        if (!player.onGround) {
+          player.motionY = -2;
+        } else {
+           goingDown = false;
+        }
       }
     }
   }

@@ -38,6 +38,7 @@ public class Jetpack extends ItemArmor {
           player.addVelocity(0, 0.1, 0);
           player.fallDistance = 0.0F;
           player.distanceWalkedModified = 0.0F;
+          Gems.proxy.resetPlayerInAirTime(player);
       }
     } else {
       NBTTagCompound tag = player.getEntityData();
