@@ -65,6 +65,8 @@ public class FlightRing extends Item {
     if (entity instanceof EntityPlayer) {
       EntityPlayer player = (EntityPlayer)entity;
       Gems.proxy.resetPlayerInAirTime(player);
+      player.fallDistance = 0.0F;
+      player.distanceWalkedModified = 0.0F;
     }
   }
 }
