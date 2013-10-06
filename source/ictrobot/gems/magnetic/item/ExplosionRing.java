@@ -1,61 +1,62 @@
 package ictrobot.gems.magnetic.item;
 
-import ictrobot.core.Core;
-
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.util.List;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
-import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.world.World;
 
-public class ExplosionRing extends Item {
+public class ExplosionRing extends BaseRing {
 
-	int Level;
-	int Power;
-  
   public ExplosionRing(int id, int par2) {
-    super(id);
-    Power = par2;
-    setTextureName(Core.ModID + ":" + "ExplosionRing");
-    setUnlocalizedName("ExplosionRing");
-    setCreativeTab(CreativeTabs.tabTools);
-    setMaxStackSize(1);
+    super(id, par2, "Explosion");
   }
 
-  @Override
-  public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
+  public void tickServer(ItemStack itemStack, World world, Entity entity, int par4, boolean par5) {
     if( itemStack.getTagCompound() == null ) {
       itemStack.setTagCompound( new NBTTagCompound( ) );
-      itemStack.getTagCompound().setInteger("ExplosionLevel", 1); 
+      itemStack.getTagCompound().setInteger("Power", 1);
+      itemStack.getTagCompound().setInteger("MaxPower", DefaultPower);
     }
+  }
+  
+  public ItemStack rightClick(ItemStack itemStack, World world, EntityPlayer player) {
+    if( itemStack.getTagCompound() == null ) {
+      itemStack.setTagCompound( new NBTTagCompound( ) );
+      itemStack.getTagCompound().setInteger("Power", 1); 
+      itemStack.getTagCompound().setInteger("MaxPower", DefaultPower);
+    }
+    return itemStack;
+  }
+  
+  public ItemStack rightClickClient(ItemStack itemStack, World world, EntityPlayer player) {
+    if (!player.isSneaking()) {
+      if(Minecraft.getMinecraft().objectMouseOver!=null) {
+        int x=Minecraft.getMinecraft().objectMouseOver.blockX;
+        int y=Minecraft.getMinecraft().objectMouseOver.blockY;
+        int z=Minecraft.getMinecraft().objectMouseOver.blockZ;
+        packet(x, y, z, player);
+      }
+    }
+    return itemStack;
+  }
+  
+  public ItemStack rightClickServer(ItemStack itemStack, World world, EntityPlayer player) {
     NBTTagCompound tag = itemStack.getTagCompound();
     if (player.isSneaking()) {
-      if (Core.isServer()) {
-        int level = tag.getInteger("ExplosionLevel");
-        level++;
-        if (level>Power) {
-          level=1;
-        }
-        tag.setInteger("ExplosionLevel", level);
-        player.addChatMessage("\u00A73\u00A7lExplosion Ring:\u00A7r\u00A77 Explosion Power " + level);
+      int level = tag.getInteger("Power");
+      level++;
+      if (level>tag.getInteger("MaxPower")) {
+        level=1;
       }
-    } else {
-      if (Core.isClient()) {
-        if(Minecraft.getMinecraft().objectMouseOver!=null) {
-          int x=Minecraft.getMinecraft().objectMouseOver.blockX;
-          int y=Minecraft.getMinecraft().objectMouseOver.blockY;
-          int z=Minecraft.getMinecraft().objectMouseOver.blockZ;
-          packet(x, y, z, player);
-        }
-      }
+      tag.setInteger("Power", level);
+      player.addChatMessage("\u00A73\u00A7lExplosion Ring:\u00A7r\u00A77 Explosion Power " + level);
     }
     return itemStack;
   }
@@ -84,7 +85,10 @@ public class ExplosionRing extends Item {
   public void addInformation(ItemStack itemStack, EntityPlayer player, List par3List, boolean par4) {
     if( itemStack.getTagCompound() != null ) {
       NBTTagCompound tag = itemStack.getTagCompound();
-      par3List.add("\u00A77Explosion Power " + tag.getInteger("ExplosionLevel"));
+      par3List.add("\u00A77Explosion Power " + tag.getInteger("Power"));
+      if(tag.getBoolean("Modified")) {
+        par3List.add("\u00A77Modified");
+      }
     }
   }
 }

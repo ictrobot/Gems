@@ -77,7 +77,7 @@ public class GemsPacketHandler implements IPacketHandler {
     ItemStack held = player.getHeldItem();
     if(held!=null) {
       if(held.getTagCompound()!=null) {
-        world.createExplosion(player, x, y, z, held.getTagCompound().getInteger("ExplosionLevel"), true);
+        world.createExplosion(player, x, y, z, held.getTagCompound().getInteger("Power"), true);
       }
     }
   }
