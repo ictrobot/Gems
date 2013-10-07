@@ -1,5 +1,15 @@
 package ictrobot.gems;
 
+import ictrobot.core.helper.config.ConfigHelper;
+import ictrobot.core.proxy.CommonProxy;
+import ictrobot.gems.module.ColourGemsModule;
+import ictrobot.gems.module.LapisGemModule;
+import ictrobot.gems.module.MagneticModule;
+import ictrobot.gems.module.OParmorModule;
+import ictrobot.gems.module.OtherIngotsModule;
+import ictrobot.gems.module.VanillaPaxelModule;
+import ictrobot.gems.module.compat.CompatOreModule;
+
 import java.io.File;
 
 import ictrobot.core.helper.config.ConfigHelper;
@@ -79,6 +89,7 @@ public class Gems {
       MagicalModule.Config(6);
     }
   }
+  
 
   @EventHandler
   public void load(FMLInitializationEvent event) {
@@ -86,6 +97,9 @@ public class Gems {
     
     if (LapisGemEnable==true) {
       LapisGemModule.Settings();
+    }
+    if (opArmorEnable==true) {
+    	OParmorModule.Settings();
     }
     if (OtherIngotsEnable==true) {
     	OtherIngotsModule.Settings();
@@ -105,16 +119,17 @@ public class Gems {
       CompatOreModule.Settings();
       CompatOreModule.WorldGen();
     }
-    if (MagicalEnable==true) {
-      MagicalModule.Settings();
     }
-  }
+  
 
   @EventHandler
   public void postInit(FMLPostInitializationEvent event) {
 
     if (LapisGemEnable==true) {
-      LapisGemModule.Register();
+        LapisGemModule.Register();
+    }
+    if (opArmorEnable==true) {
+    	OParmorModule.Register();
     }
     if (OtherIngotsEnable==true) {
     	OtherIngotsModule.Register();
@@ -146,3 +161,4 @@ public class Gems {
   }
   
 }
+
